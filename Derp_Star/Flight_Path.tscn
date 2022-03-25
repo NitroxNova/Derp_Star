@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Derp_Star/PathFollow2D.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 288.677, 369.384, 0, 0, 0, 0, 425.875, 71.8238, 0, 0, 0, 0, 641.446, 182.63, 0, 0, 0, 0, 756.495, 421.433, 0, 0, 0, 0, 288.677, 369.384 )
+}
+
+[node name="Flight_Path" type="Path2D"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 288.677, 369.384 )
+rotation = -1.13878
+script = ExtResource( 2 )
