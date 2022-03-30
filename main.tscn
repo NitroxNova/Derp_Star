@@ -1,0 +1,140 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Space_Clouds/big_stars.png" type="Texture" id=1]
+[ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Space_Clouds/smol_stars.png" type="Texture" id=3]
+[ext_resource path="res://Space_Clouds/cloud1.png" type="Texture" id=4]
+[ext_resource path="res://overlay.gd" type="Script" id=5]
+[ext_resource path="res://Space_Clouds/cloud2.png" type="Texture" id=6]
+[ext_resource path="res://Space_Clouds/clouds4.png" type="Texture" id=7]
+[ext_resource path="res://Space_Clouds/clouds3.png" type="Texture" id=8]
+[ext_resource path="res://fonts/Timeburner-xJB8.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://fonts/Hacked-KerX.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0, 0.905882, 1, 0.490196, 0.827451, 0, 1, 0.490196 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 28
+font_data = ExtResource( 9 )
+
+[node name="Main" type="Node2D"]
+pause_mode = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 2000, 2000 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 2000, 2000 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 4000, 4000 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 2000, 0 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 2000, 2000 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 0, 2000 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Derp_Star" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera2D" type="Camera2D" parent="Derp_Star"]
+current = true
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="Pause_Menu" type="TextureRect" parent="Overlay"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Pause_Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -120.0
+margin_right = 141.0
+margin_bottom = 126.0
+rect_pivot_offset = Vector2( 144, 123 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_right = 288.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_top = 109.0
+margin_right = 288.0
+margin_bottom = 152.0
+custom_fonts/font = SubResource( 4 )
+text = "Continue"
+
+[node name="Restart_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_top = 156.0
+margin_right = 288.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 4 )
+text = "Restart"
+
+[node name="Quit_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_top = 203.0
+margin_right = 288.0
+margin_bottom = 246.0
+custom_fonts/font = SubResource( 4 )
+text = "Quit"
+
+[connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
+[connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
+[connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
