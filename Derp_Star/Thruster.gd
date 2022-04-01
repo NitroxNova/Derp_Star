@@ -12,5 +12,6 @@ func deactivate():
 	set_process(false)
 	
 func _process(delta):
-	var thrust_rot = Vector2(cos(rotation), sin(rotation)).normalized()
-	get_parent().apply_impulse(position,thrust_rot*delta*40)
+	var thrust_rot = Vector2(cos(global_rotation), sin(global_rotation)).normalized()
+	var thrust_offset = global_position - get_parent().global_position
+	get_parent().apply_impulse(thrust_offset,thrust_rot*delta*40)
