@@ -28,3 +28,6 @@ func _on_Restart_Button_pressed():
 
 func _on_Quit_Button_pressed():
 	get_tree().quit()
+
+func update_points(amount):
+	$HUD/Points.text = str(amount)
