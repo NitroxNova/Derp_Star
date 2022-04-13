@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var pause = false
+var dead = false
 
 func pause():
 	pause = true
@@ -13,7 +14,7 @@ func unpause():
 	get_tree().paused = false
 
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not dead:
 		if pause:
 			unpause()
 		else:
@@ -31,3 +32,8 @@ func _on_Quit_Button_pressed():
 
 func update_points(amount):
 	$HUD/Points.text = str(amount)
+	
+func player_died():
+	dead = true
+	get_tree().paused = true
+	$Died_Menu.show()
