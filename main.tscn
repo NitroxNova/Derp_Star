@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Space_Clouds/big_stars.png" type="Texture" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
@@ -13,26 +13,51 @@
 [ext_resource path="res://main.gd" type="Script" id=11]
 [ext_resource path="res://Bumper_Spawner.gd" type="Script" id=12]
 [ext_resource path="res://fonts/TimeburnerBold-peGR.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Derp_Star/Life_Bar.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
 font_data = ExtResource( 13 )
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 1, 0.0156863, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.235294, 0.235294, 0.235294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+outline_size = 2
+extra_spacing_bottom = -3
+font_data = ExtResource( 13 )
+
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0, 0.905882, 1, 0.490196, 0.827451, 0, 1, 0.490196 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 100
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 28
 font_data = ExtResource( 9 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 1, 0, 0, 0.490196, 0, 0, 0, 0.490196 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 2000, 2000 )
 
 [node name="Main" type="Node2D"]
@@ -110,11 +135,30 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 
+[node name="Life_Bar" type="ProgressBar" parent="Overlay/HUD"]
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+margin_left = -150.0
+margin_top = -26.0
+margin_right = 150.0
+rect_pivot_offset = Vector2( 150, 26 )
+custom_styles/fg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+value = 100.0
+rounded = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Pause_Menu" type="TextureRect" parent="Overlay"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,7 +181,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_right = 288.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "PAUSED"
 align = 1
@@ -150,21 +194,71 @@ __meta__ = {
 margin_top = 109.0
 margin_right = 288.0
 margin_bottom = 152.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Continue"
 
 [node name="Restart_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_top = 156.0
 margin_right = 288.0
 margin_bottom = 199.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Restart"
 
 [node name="Quit_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_top = 203.0
 margin_right = 288.0
 margin_bottom = 246.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Quit"
+
+[node name="Died_Menu" type="TextureRect" parent="Overlay"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Died_Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -120.0
+margin_right = 141.0
+margin_bottom = 126.0
+rect_pivot_offset = Vector2( 144, 123 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Overlay/Died_Menu/VBoxContainer"]
+margin_right = 342.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "You DIED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
+margin_top = 109.0
+margin_right = 342.0
+margin_bottom = 152.0
+custom_fonts/font = SubResource( 7 )
+text = "Restart"
+
+[node name="Quit_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
+margin_top = 156.0
+margin_right = 342.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 7 )
 text = "Quit"
 
 [node name="Bumper_List" type="Node2D" parent="."]
@@ -175,17 +269,22 @@ text = "Quit"
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Derp_Star_Remote/Bumper_Spawner"]
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="Timer" type="Timer" parent="Derp_Star_Remote/Bumper_Spawner"]
 wait_time = 0.2
 autostart = true
 
+[connection signal="player_died" from="." to="Overlay" method="player_died"]
+[connection signal="update_health" from="." to="Overlay/HUD/Life_Bar" method="set_value"]
+[connection signal="update_max_health" from="." to="Overlay/HUD/Life_Bar" method="set_max_value"]
 [connection signal="update_points" from="." to="Overlay" method="update_points"]
 [connection signal="body_entered" from="Derp_Star" to="." method="_on_Derp_Star_body_entered"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
+[connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
+[connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
 [connection signal="body_exited" from="Derp_Star_Remote/Bumper_Spawner" to="Derp_Star_Remote/Bumper_Spawner" method="_on_Bumper_Manager_body_exited"]
 [connection signal="spawn_bumper" from="Derp_Star_Remote/Bumper_Spawner" to="." method="spawn_bumper"]
 [connection signal="update_count" from="Derp_Star_Remote/Bumper_Spawner" to="." method="update_bumper_count"]
