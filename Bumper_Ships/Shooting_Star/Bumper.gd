@@ -1,24 +1,27 @@
 extends RigidBody2D
 
-const MAX_SPEED = 350
-const MAX_ROTATE = 4
+const MAX_SPEED = 600
+const MAX_ROTATE = 8
+var laser = preload("res://Bumper_Ships/laser/Laser.tscn")
 
 func _ready():
 	randomize()
-	var start = Vector2(randf() * 2 - 1,randf() * 2 - 1).normalized() * 100
-	apply_central_impulse(start)
+	linear_velocity = Vector2(randf(),randf()).normalized() * MAX_SPEED
+	angular_velocity = MAX_ROTATE
 	
-func _physics_process(delta):
-	if linear_velocity.length() < MAX_SPEED:
-		var pulse = linear_velocity.normalized() * delta * 100
-		apply_central_impulse(pulse)
-	if angular_velocity >= 0 and angular_velocity < MAX_ROTATE:
-		apply_torque_impulse(100)
-	elif angular_velocity < 0 and angular_velocity > MAX_ROTATE * -1:
-		apply_torque_impulse(-100)
+func shoot():
+	var b = laser.instance()
+	b.transform = $Laser_Pointer.global_transform
+	get_tree().get_root().add_child(b)
 
 func change_color():
 	var offsets = $Rainbow.process_material.color_ramp.gradient.offsets
 	for offset in offsets.size():
 		offsets[offset] = fmod(offsets[offset] + 1.05, float(offsets.size())) - 1
 	$Rainbow.process_material.color_ramp.gradient.offsets = offsets
+
+func _on_Shooting_Star_body_entered(body):
+	var multiplier = MAX_SPEED/linear_velocity.length()
+	linear_velocity *= multiplier
+	multiplier = MAX_ROTATE/abs(angular_velocity)
+	angular_velocity *= multiplier
