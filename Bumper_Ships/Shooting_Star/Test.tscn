@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Bumper_Ships/Shooting_Star/wall.png" type="Texture" id=1]
-[ext_resource path="res://Bumper_Ships/Shooting_Star/Shooting_Star.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bumper_Ships/Shooting_Star/Bumper.tscn" type="PackedScene" id=2]
 
 [node name="Test" type="Node2D"]
 
