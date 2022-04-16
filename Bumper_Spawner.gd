@@ -6,6 +6,8 @@ const INNER_Y = 1080/2 + 100
 
 var count = 0
 var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
+var shooting_star = preload("res://Bumper_Ships/Shooting_Star/Bumper.tscn")
+var bumper_scenes = [striped_bumper,shooting_star]
 
 signal update_count
 signal spawn_bumper
@@ -15,7 +17,7 @@ func _ready():
 		spawn_bumper()
 
 func spawn_bumper():
-	var bumper = striped_bumper.instance()
+	var bumper = bumper_scenes[randi() % bumper_scenes.size()].instance()
 	bumper.position = generate_coords()
 	while not is_valid_spawn_location(bumper.position):
 		bumper.position = generate_coords()

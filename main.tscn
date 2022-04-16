@@ -280,6 +280,7 @@ autostart = true
 [connection signal="update_max_health" from="." to="Overlay/HUD/Life_Bar" method="set_max_value"]
 [connection signal="update_points" from="." to="Overlay" method="update_points"]
 [connection signal="body_entered" from="Derp_Star" to="." method="_on_Derp_Star_body_entered"]
+[connection signal="minus_health" from="Derp_Star" to="." method="minus_health"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
