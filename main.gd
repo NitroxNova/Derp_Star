@@ -9,9 +9,6 @@ signal update_health
 signal update_max_health
 signal player_died
 
-func _process(delta):
-	minus_health(delta*10)
-
 func _init():
 	randomize()
 
