@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Bumper_Ship
 
 func _ready():
 	$Thruster.activate()
