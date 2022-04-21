@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Bumper_Ship",
+"language": "GDScript",
+"path": "res://Bumper_Ships/Bumper.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Enemy_Projectile",
+"language": "GDScript",
+"path": "res://Bumper_Ships/Projectile.gd"
+} ]
+_global_script_class_icons={
+"Bumper_Ship": "",
+"Enemy_Projectile": ""
+}
+
 [application]
 
 config/name="Derp_Star"
