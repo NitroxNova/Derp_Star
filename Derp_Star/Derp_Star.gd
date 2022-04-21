@@ -13,7 +13,14 @@ func _process(delta):
 		if Input.is_action_just_pressed(hotkeys[i]):
 			thrusters[i].activate()
 		if Input.is_action_just_released(hotkeys[i]):
-			thrusters[i].deactivate()
+			thrusters[i].deactivate()	
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			$Muh_Lazer.activate()
+		else:
+			$Muh_Lazer.deactivate()
 
 func minus_health(amount):
 	emit_signal("minus_health",amount)
