@@ -9,6 +9,7 @@ signal update_health
 signal update_max_health
 signal player_died
 
+	
 func _init():
 	randomize()
 
@@ -33,6 +34,7 @@ func _on_Derp_Star_body_entered(body):
 		update_bumper_count()
 
 func spawn_bumper(bumper):
+	bumper.connect("add_points",self,"add_points")
 	$Bumper_List.add_child(bumper)
 	update_bumper_count()
 
