@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Bumper_Ship
 
 const MAX_SPEED = 600
 const MAX_ROTATE = 8
