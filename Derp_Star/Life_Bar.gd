@@ -9,8 +9,8 @@ func set_max_value(max_health):
 	half_life = max_health/2
 
 func set_value(v):
-	var start = colors[floor(v/half_life)]
-	var end = colors[ceil(v/half_life)]
+	var start = colors[floor(float(v)/half_life)]
+	var end = colors[ceil(float(v)/half_life)]
 	var percent = fmod(v,half_life)/half_life
 	var color = lerp(start,end,percent)
 	styleBox.bg_color = color
