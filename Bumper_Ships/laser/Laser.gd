@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Enemy_Projectile
 
 func _ready():
 	linear_velocity = Vector2(700,0).rotated(rotation)
