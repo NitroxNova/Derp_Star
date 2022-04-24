@@ -1,21 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Derp_Star/Muh_Lazer.gd" type="Script" id=1]
 [ext_resource path="res://Derp_Star/laser_circle.png" type="Texture" id=2]
+[ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=3]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Resource" id=1]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+current = 100
+maximum = 100
+
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.33, 0.66, 1 )
 colors = PoolColorArray( 0, 0.666667, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0, 0.666667, 1, 0.784314 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 width = 112
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 338.564, 25.7411 )
 
 [node name="Muh_Lazer" type="Area2D"]
 script = ExtResource( 1 )
+energy = SubResource( 1 )
 
 [node name="Circle" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -25,7 +33,7 @@ margin_top = 26.0
 margin_right = 52.0
 margin_bottom = 707.0
 rect_rotation = -90.0
-texture = SubResource( 2 )
+texture = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,4 +41,4 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 342.386, 0.882686 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
