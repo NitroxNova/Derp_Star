@@ -1,12 +1,9 @@
 extends RigidBody2D
 
-var thrusters = []
+onready var thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
 var hotkeys = ["thruster_1","thruster_2","thruster_3","thruster_4","thruster_5"]
 
 signal minus_health
-
-func _ready():
-	thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
 
 func _process(delta):
 	for i in 5:
