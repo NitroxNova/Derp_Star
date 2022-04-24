@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bumper_Ships/Bumper.gd"
 }, {
+"base": "Resource",
+"class": "Capped_Value",
+"language": "GDScript",
+"path": "res://Utils/Capped_Value.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Enemy_Projectile",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bumper_Ship": "",
+"Capped_Value": "",
 "Enemy_Projectile": ""
 }
 
