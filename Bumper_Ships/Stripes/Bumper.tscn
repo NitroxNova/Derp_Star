@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Derp_Star/Thruster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bumper_Ships/Stripes/Bumper.gd" type="Script" id=2]
 [ext_resource path="res://Bumper_Ships/Stripes/bumper_ship.png" type="Texture" id=3]
+[ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=4]
+[ext_resource path="res://Bumper_Ships/Health_Node.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
+
+[sub_resource type="Resource" id=2]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+current = 150
+maximum = 150
 
 [node name="Striped_Bumper" type="RigidBody2D" groups=[
 "bumper",
@@ -14,6 +22,8 @@ bounce = 1.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 script = ExtResource( 2 )
+health = SubResource( 2 )
+points = 30
 
 [node name="Thruster" parent="." instance=ExtResource( 1 )]
 position = Vector2( -207.701, -105.112 )
@@ -31,4 +41,19 @@ texture = ExtResource( 3 )
 wait_time = 1.5
 autostart = true
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Health_Node/Node2D")
+update_rotation = false
+update_scale = false
+
+[node name="Health_Node" parent="." instance=ExtResource( 5 )]
+
+[node name="ProgressBar" parent="Health_Node/Node2D" index="0"]
+margin_left = 34.7462
+margin_top = -92.1189
+margin_right = 102.746
+margin_bottom = -78.1189
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Health_Node"]
