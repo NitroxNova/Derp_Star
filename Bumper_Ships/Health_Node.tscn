@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Health_Node" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="Node2D"]
+margin_left = -34.0
+margin_top = -90.0
+margin_right = 34.0
+margin_bottom = -76.0
+custom_styles/fg = SubResource( 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
