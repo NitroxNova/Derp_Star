@@ -5,7 +5,7 @@ const MAX_ROTATE = 8
 var laser = preload("res://Bumper_Ships/laser/Laser.tscn")
 
 func _ready():
-	randomize()
+	setup()
 	linear_velocity = Vector2(randf(),randf()).normalized() * MAX_SPEED
 	angular_velocity = MAX_ROTATE
 	

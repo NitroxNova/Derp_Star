@@ -1,28 +1,36 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Bumper_Ships/Shooting_Star/star.png" type="Texture" id=1]
 [ext_resource path="res://Bumper_Ships/Shooting_Star/Bumper.gd" type="Script" id=2]
 [ext_resource path="res://Bumper_Ships/Shooting_Star/aura.png" type="Texture" id=3]
 [ext_resource path="res://Bumper_Ships/Shooting_Star/stardust.png" type="Texture" id=4]
+[ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=5]
+[ext_resource path="res://Bumper_Ships/Health_Node.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Resource" id=13]
+resource_local_to_scene = true
+script = ExtResource( 5 )
+current = 80
+maximum = 80
+
+[sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0, 1, 2, 3, 4, 5 )
 colors = PoolColorArray( 1, 0, 0, 0.313726, 1, 0.498039, 0, 0.313726, 1, 1, 0, 0.313726, 0, 0.501961, 0, 0.313726, 0, 0.501961, 1, 0.313726, 1, 0, 1, 0.313726 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=16]
 _data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=18]
 emission_shape = 1
 emission_sphere_radius = 55.0
 flag_disable_z = true
@@ -31,29 +39,29 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 360.0
 angle_random = 1.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 17 )
+color_ramp = SubResource( 15 )
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.992248 )
 colors = PoolColorArray( 1, 1, 1, 0.27451, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=10]
 _data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=12]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale_curve = SubResource( 10 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
 
 [node name="Shooting_Star" type="RigidBody2D" groups=[
 "bumper",
@@ -65,12 +73,14 @@ contact_monitor = true
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
+health = SubResource( 13 )
+points = 50
 
 [node name="Rainbow" type="Particles2D" parent="."]
 amount = 150
 lifetime = 2.0
 local_coords = false
-process_material = SubResource( 6 )
+process_material = SubResource( 18 )
 texture = ExtResource( 4 )
 
 [node name="Trail" type="Particles2D" parent="."]
@@ -78,7 +88,7 @@ amount = 100
 lifetime = 2.0
 fixed_fps = 15
 local_coords = false
-process_material = SubResource( 11 )
+process_material = SubResource( 12 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -102,6 +112,18 @@ autostart = true
 position = Vector2( 0, -67.4658 )
 rotation = -1.5708
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Health_Node/Node2D")
+update_rotation = false
+update_scale = false
+
+[node name="Health_Node" parent="." instance=ExtResource( 6 )]
+
+[node name="ProgressBar" parent="Health_Node/Node2D" index="0"]
+visible = false
+
 [connection signal="body_entered" from="." to="." method="_on_Shooting_Star_body_entered"]
 [connection signal="timeout" from="Color_Timer" to="." method="change_color"]
 [connection signal="timeout" from="Shoot_Timer" to="." method="shoot"]
+
+[editable path="Health_Node"]
