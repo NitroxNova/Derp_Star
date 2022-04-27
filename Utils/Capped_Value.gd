@@ -12,6 +12,9 @@ func set_current(amount):
 	if current > 0 and amount <= 0:
 		emit_signal("current_zero")
 	current = min(amount,maximum)
+	update_current()
+	
+func update_current():
 	emit_signal("current_changed",current)
 
 func increase_current(amount):
@@ -22,6 +25,9 @@ func decrease_current(amount):
 
 func set_maximum(amount):
 	maximum = amount
+	update_maximum()
+
+func update_maximum():
 	emit_signal("maximum_changed", maximum)
 
 func increase_maximum(amount):
