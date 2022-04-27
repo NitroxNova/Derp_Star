@@ -49,6 +49,7 @@ update_scale = false
 [node name="Health_Node" parent="." instance=ExtResource( 5 )]
 
 [node name="ProgressBar" parent="Health_Node/Node2D" index="0"]
+visible = false
 margin_left = 34.7462
 margin_top = -92.1189
 margin_right = 102.746
