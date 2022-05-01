@@ -3,8 +3,10 @@ extends RigidBody2D
 
 export (Resource) var health
 export (int) var points
+var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 
 signal add_points
+signal draw_explosion
 
 func setup():
 	health.connect("current_zero",self,"died")
@@ -19,3 +21,10 @@ func take_damage(amount):
 func died():
 	emit_signal("add_points",points)
 	queue_free()
+	explode()
+
+func explode():
+	var e = explosion.instance()
+	e.transform = global_transform
+	e.bumper_texture = $Base_Sprite.texture
+	emit_signal("draw_explosion",e)
