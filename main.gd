@@ -19,8 +19,12 @@ func add_points(amount):
 
 func spawn_bumper(bumper):
 	bumper.connect("add_points",self,"add_points")
+	bumper.connect("draw_explosion",self,"draw_explosion")
 	$Bumper_List.add_child(bumper)
 	update_bumper_count()
 
 func update_bumper_count():
 	$Derp_Star_Remote/Bumper_Spawner.count = $Bumper_List.get_child_count()
+
+func draw_explosion(e):
+	$Explosions.add_child(e)
