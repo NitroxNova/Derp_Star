@@ -11,26 +11,26 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="Resource" id=13]
+[sub_resource type="Resource" id=2]
 resource_local_to_scene = true
 script = ExtResource( 5 )
 current = 80
 maximum = 80
 
-[sub_resource type="Gradient" id=14]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 1, 2, 3, 4, 5 )
 colors = PoolColorArray( 1, 0, 0, 0.313726, 1, 0.498039, 0, 0.313726, 1, 1, 0, 0.313726, 0, 0.501961, 0, 0.313726, 0, 0.501961, 1, 0.313726, 1, 0, 1, 0.313726 )
 
-[sub_resource type="GradientTexture" id=15]
-gradient = SubResource( 14 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="Curve" id=16]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
 
-[sub_resource type="CurveTexture" id=17]
-curve = SubResource( 16 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 55.0
 flag_disable_z = true
@@ -39,8 +39,8 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 360.0
 angle_random = 1.0
-scale_curve = SubResource( 17 )
-color_ramp = SubResource( 15 )
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
 
 [sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.992248 )
@@ -73,14 +73,14 @@ contact_monitor = true
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
-health = SubResource( 13 )
+health = SubResource( 2 )
 points = 50
 
 [node name="Rainbow" type="Particles2D" parent="."]
 amount = 150
 lifetime = 2.0
 local_coords = false
-process_material = SubResource( 18 )
+process_material = SubResource( 7 )
 texture = ExtResource( 4 )
 
 [node name="Trail" type="Particles2D" parent="."]
@@ -91,10 +91,10 @@ local_coords = false
 process_material = SubResource( 12 )
 texture = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Glow" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
-[node name="Star" type="Sprite" parent="."]
+[node name="Base_Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
