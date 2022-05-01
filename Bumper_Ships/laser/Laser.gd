@@ -8,6 +8,6 @@ func _on_Despawn_Timer_timeout():
 
 func _on_Laser_body_entered(body):
 	if body.is_in_group("player"):
-		body.take_damage(5)
+		body.take_damage(3)
 		queue_free()
 	$Sprite.look_at(linear_velocity+position)
