@@ -34,7 +34,7 @@ position = Vector2( -207.701, 105.112 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -46.2, -70, -41.3, -70, 198, -12.7, 198, -11, 201.5, -6.6, 201.5, 7, 200.7, 7, 199.7, 11, 198, 11, 194, 14, 189.8, 14, -45, 69.7, -45, 70.5, -198.9, 130.5, -201.5, 130.5, -201.5, 111.2, -197.8, 80, -196.6, 80, -194.6, 73, -193.2, 73, -140, 13, -140, 10.5, -139.1, -9, -140, -9, -140, -12, -145.3, -19, -146.2, -19, -195, -73.9, -195, -76, -198, -81.1, -198, -87.5, -201.5, -111.9, -201.5, -130.5, -199, -130.5 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Base_Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
