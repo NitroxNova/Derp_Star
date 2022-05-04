@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Derp_Star/Muh_Lazer.gd" type="Script" id=1]
-[ext_resource path="res://Derp_Star/laser_circle.png" type="Texture" id=2]
+[ext_resource path="res://Derp_Star/Laser/Muh_Lazer.gd" type="Script" id=1]
+[ext_resource path="res://Derp_Star/Laser/laser_circle.png" type="Texture" id=2]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=3]
+[ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture" id=4]
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
@@ -20,6 +21,30 @@ width = 112
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 338.564, 25.7411 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 120.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+angle_random = 1.0
+scale = 0.25
+color = Color( 1, 1, 1, 0.705882 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 120.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -210.0
+angle_random = 0.25
+scale = 0.25
+color = Color( 1, 1, 1, 0.705882 )
 
 [node name="Muh_Lazer" type="Area2D"]
 script = ExtResource( 1 )
@@ -42,3 +67,20 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 342.386, 0.882686 )
 shape = SubResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 25
+lifetime = 5.5
+preprocess = 5.5
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+amount = 26
+lifetime = 5.5
+preprocess = 5.5
+process_material = SubResource( 6 )
+texture = ExtResource( 4 )
+
+[connection signal="body_entered" from="." to="." method="_on_Muh_Lazer_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Muh_Lazer_body_exited"]

@@ -28,10 +28,12 @@ func activate():
 	if energy.current > 0 and not locked:
 		show()
 		active = true
+		$CollisionShape2D.disabled = false
 	
 func deactivate():
 	hide()
 	active = false
+	$CollisionShape2D.disabled = true
 	
 func _process(delta):
 	if (energy.current < energy.maximum):
@@ -44,3 +46,11 @@ func _process(delta):
 		for body in get_overlapping_bodies():
 			if not body.is_in_group("player"):
 				body.take_damage(100*delta)
+
+func _on_Muh_Lazer_body_entered(body):
+	if body.is_in_group("bumper"):
+		body.static_on()
+
+func _on_Muh_Lazer_body_exited(body):
+	if body.is_in_group("bumper"):
+		body.static_off()
