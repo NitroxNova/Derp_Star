@@ -28,3 +28,9 @@ func explode():
 	e.transform = global_transform
 	e.bumper_texture = $Base_Sprite.texture
 	emit_signal("draw_explosion",e)
+	
+func static_on():
+	$Static.emitting = true
+	
+func static_off():
+	$Static.emitting = false
