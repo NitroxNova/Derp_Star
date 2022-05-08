@@ -2,7 +2,7 @@ extends Bumper_Ship
 
 const MAX_SPEED = 600
 const MAX_ROTATE = 8
-var laser = preload("res://Bumper_Ships/laser/Laser.tscn")
+var laser = preload("res://Bumper_Ships/Laser/Laser.tscn")
 
 func on_ready():
 	linear_velocity = Vector2(randf(),randf()).normalized() * MAX_SPEED
