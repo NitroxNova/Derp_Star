@@ -28,3 +28,4 @@ func update_bumper_count():
 
 func draw_explosion(e):
 	$Explosions.add_child(e)
+	update_bumper_count()
