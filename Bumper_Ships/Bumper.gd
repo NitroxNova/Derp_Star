@@ -8,10 +8,14 @@ var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 signal add_points
 signal draw_explosion
 
-func setup():
+func _ready():
+	connect("ready",self,"on_ready")
 	health.connect("current_zero",self,"died")
 	$Health_Node/Node2D/ProgressBar.value = health.current
 	$Health_Node/Node2D/ProgressBar.max_value = health.maximum
+	add_to_group("bumper")
+	static_off()
+	$Health_Node/Node2D/ProgressBar.hide()
 
 func take_damage(amount):
 	health.decrease_current(amount)
