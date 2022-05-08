@@ -1,13 +1,14 @@
 extends Area2D
 
-const MAX_COUNT = 100
+const MAX_COUNT = 40
 const INNER_X = 1920/2 + 100
 const INNER_Y = 1080/2 + 100
 
 var count = 0
 var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
 var shooting_star = preload("res://Bumper_Ships/Shooting_Star/Bumper.tscn")
-var bumper_scenes = [striped_bumper,shooting_star]
+var biodome = preload("res://Bumper_Ships/Bio_Dome/Colony.tscn")
+var bumper_scenes = [striped_bumper,shooting_star,biodome]
 
 signal update_count
 signal spawn_bumper
@@ -48,5 +49,5 @@ func _on_Bumper_Manager_body_exited(body):
 		emit_signal("update_count")
 
 func _on_Timer_timeout():
-	if count < MAX_COUNT:
+	while count < MAX_COUNT:
 		spawn_bumper()
