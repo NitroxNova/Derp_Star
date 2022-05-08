@@ -1,7 +1,6 @@
 extends Bumper_Ship
 
-func _ready():
-	setup()
+func on_ready():
 	$Thruster.activate()
 
 func _on_Timer_timeout():
