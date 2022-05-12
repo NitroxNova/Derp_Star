@@ -137,8 +137,6 @@ centered = false
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
 health = SubResource( 1 )
-
-[node name="Muh_Lazer" parent="Derp_Star" index="7"]
 energy = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Derp_Star"]
@@ -326,12 +324,13 @@ wait_time = 0.2
 autostart = true
 
 [connection signal="update_points" from="." to="Overlay/HUD" method="update_points"]
+[connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
+[connection signal="unlock_energy" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
+[connection signal="update_energy" from="Derp_Star" to="Overlay/HUD" method="update_energy"]
 [connection signal="update_health" from="Derp_Star" to="Overlay/HUD" method="update_health"]
+[connection signal="update_max_energy" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
 [connection signal="update_max_health" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
-[connection signal="energy_changed" from="Derp_Star/Muh_Lazer" to="Overlay/HUD" method="update_energy"]
-[connection signal="lock" from="Derp_Star/Muh_Lazer" to="Overlay/HUD" method="lock_energy"]
-[connection signal="unlock" from="Derp_Star/Muh_Lazer" to="Overlay/HUD" method="unlock_energy"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]

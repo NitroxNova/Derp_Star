@@ -11,7 +11,7 @@ var health_colors = [Color(1,0,0),Color(1,1,0),Color(0,1,0)]
 func update_energy(amount):
 	$Energy_Bar.value = amount
 	
-func update_energy_maximum(amount):
+func update_max_energy(amount):
 	$Energy_Bar.max_value = amount
 
 func lock_energy():

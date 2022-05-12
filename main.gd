@@ -10,8 +10,8 @@ func _init():
 func _ready():
 	$Derp_Star.health.update_maximum()
 	$Derp_Star.health.update_current()
-	$Derp_Star/Muh_Lazer.energy.update_maximum()
-	$Derp_Star/Muh_Lazer.energy.update_current()
+	$Derp_Star.energy.update_maximum()
+	$Derp_Star.energy.update_current()
 
 func add_points(amount):
 	player_points += amount
