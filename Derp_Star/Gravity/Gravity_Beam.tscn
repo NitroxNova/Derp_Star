@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Derp_Star/Laser/Muh_Lazer.gd" type="Script" id=1]
-[ext_resource path="res://Derp_Star/Laser/laser_circle.png" type="Texture" id=2]
-[ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture" id=4]
+[ext_resource path="res://Derp_Star/Beam.gd" type="Script" id=1]
+[ext_resource path="res://Derp_Star/Gravity/pivot.png" type="Texture" id=2]
+[ext_resource path="res://Derp_Star/Gravity/particle.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.33, 0.66, 1 )
-colors = PoolColorArray( 0, 0.666667, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0, 0.666667, 1, 0.784314 )
+colors = PoolColorArray( 0.607843, 0.607843, 0.607843, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0.607843, 0.607843, 0.607843, 0.784314 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -19,34 +19,25 @@ extents = Vector2( 338.564, 25.7411 )
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 120.0
+initial_velocity = -120.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-angle = 45.0
-angle_random = 1.0
-scale = 0.25
-color = Color( 1, 1, 1, 0.705882 )
+color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="ParticlesMaterial" id=5]
-flag_disable_z = true
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 120.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = -210.0
-angle_random = 0.25
-scale = 0.25
-color = Color( 1, 1, 1, 0.705882 )
-
-[node name="Muh_Lazer" type="Node2D"]
+[node name="Gravity_Beam" type="Node2D"]
 script = ExtResource( 1 )
-energy_cost = 15
+energy_cost = 10
 
 [node name="Circle" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="Beam" type="Area2D" parent="."]
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 4096.0
+linear_damp = 0.0
+angular_damp = 0.0
 collision_layer = 524288
 
 [node name="Gradient" type="TextureRect" parent="Beam"]
@@ -65,18 +56,13 @@ position = Vector2( 342.386, 0.882686 )
 shape = SubResource( 3 )
 
 [node name="Particles2D" type="Particles2D" parent="Beam"]
-amount = 25
+position = Vector2( 676.964, 0.174805 )
+amount = 10
 lifetime = 5.5
 preprocess = 5.5
+visibility_rect = Rect2( -700, -100, 200, 200 )
 process_material = SubResource( 4 )
-texture = ExtResource( 4 )
-
-[node name="Particles2D2" type="Particles2D" parent="Beam"]
-amount = 26
-lifetime = 5.5
-preprocess = 5.5
-process_material = SubResource( 5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="Beam" to="." method="_on_Beam_body_entered"]
 [connection signal="body_exited" from="Beam" to="." method="_on_Beam_body_exited"]
