@@ -1,6 +1,6 @@
 extends Area2D
 
-const MAX_COUNT = 40
+const MAX_COUNT = 20
 const INNER_X = 1920/2 + 100
 const INNER_Y = 1080/2 + 100
 
