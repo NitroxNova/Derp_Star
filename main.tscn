@@ -133,6 +133,8 @@ centered = false
 
 [node name="Explosions" type="Node2D" parent="."]
 
+[node name="Pick_Ups" type="Node2D" parent="."]
+
 [node name="Bumper_List" type="Node2D" parent="."]
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
