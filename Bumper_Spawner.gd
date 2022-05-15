@@ -14,8 +14,7 @@ signal update_count
 signal spawn_bumper
 
 func _ready():
-	while count < MAX_COUNT:
-		spawn_bumper()
+	_on_Timer_timeout()
 
 func spawn_bumper():
 	var bumper = bumper_scenes[randi() % bumper_scenes.size()].instance()
