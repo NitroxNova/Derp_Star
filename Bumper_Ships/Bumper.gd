@@ -2,11 +2,13 @@ class_name Bumper_Ship
 extends RigidBody2D
 
 export (Resource) var health
+export (Resource) var drop_item
 export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 
 signal add_points
 signal draw_explosion
+signal drop_item
 
 func _ready():
 	connect("ready",self,"on_ready")
@@ -24,8 +26,15 @@ func take_damage(amount):
 	
 func died():
 	emit_signal("add_points",points)
-	queue_free()
 	explode()
+	drop_item()
+	queue_free()
+
+func drop_item():
+	if drop_item:
+		var i = drop_item.instance()
+		i.transform = global_transform
+		emit_signal("drop_item",i)
 
 func explode():
 	var e = explosion.instance()

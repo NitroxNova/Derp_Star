@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Bumper_Ships/Bio_Dome/Housing/housing.png" type="Texture" id=1]
+[ext_resource path="res://Bumper_Ships/Bio_Dome/Hospital/hospital.png" type="Texture" id=1]
 [ext_resource path="res://Bumper_Ships/Bumper.gd" type="Script" id=2]
 [ext_resource path="res://Bumper_Ships/Health_Node.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Derp_Star/Laser/Static.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=5]
+[ext_resource path="res://Pick_Ups/Health/Health_Pack.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -48,12 +49,13 @@ angle = 360.0
 angle_random = 1.0
 scale = 0.25
 
-[node name="Housing" type="RigidBody2D"]
+[node name="Hospital" type="RigidBody2D"]
 mass = 0.5
 physics_material_override = SubResource( 1 )
 can_sleep = false
 script = ExtResource( 2 )
 health = SubResource( 2 )
+drop_item = ExtResource( 6 )
 points = 20
 
 [node name="Base_Sprite" type="Sprite" parent="."]
