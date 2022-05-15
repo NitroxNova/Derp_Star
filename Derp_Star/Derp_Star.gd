@@ -61,6 +61,9 @@ func change_beam(amount):
 func take_damage(amount):
 	health.decrease_current(amount)
 
+func add_health(amount):
+	health.increase_current(amount)
+	
 func update_health(amount):
 	emit_signal("update_health", amount)
 	
