@@ -39,6 +39,7 @@ gravity = 4096.0
 linear_damp = 0.0
 angular_damp = 0.0
 collision_layer = 524288
+collision_mask = 3
 
 [node name="Gradient" type="TextureRect" parent="Beam"]
 margin_top = 26.0
