@@ -17,19 +17,22 @@ func add_points(amount):
 	player_points += amount
 	emit_signal("update_points",player_points)
 
+func spawn_bumper_area(area):
+	area.connect("spawn_bumper",self,"spawn_bumper")
+	$Bumper_List.add_child(area)
+	$Bumper_List.update_bumper_count()
+
 func spawn_bumper(bumper):
 	bumper.connect("add_points",self,"add_points")
 	bumper.connect("draw_explosion",self,"draw_explosion")
 	bumper.connect("drop_item",self,"drop_item")
+	bumper.connect("spawn_bumper",self,"spawn_bumper")
 	$Bumper_List.add_child(bumper)
-	update_bumper_count()
-
-func update_bumper_count():
-	$Derp_Star_Remote/Bumper_Spawner.count = $Bumper_List.get_child_count()
+	$Bumper_List.update_bumper_count()
 
 func drop_item(i):
 	$Pick_Ups.add_child(i)
 
 func draw_explosion(e):
 	$Explosions.add_child(e)
-	update_bumper_count()
+	$Bumper_List.update_bumper_count()

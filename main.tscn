@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Space_Clouds/big_stars.png" type="Texture" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
@@ -32,6 +32,12 @@ maximum = 100
 size = 35
 font_data = ExtResource( 13 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 18
+outline_size = 2
+extra_spacing_bottom = -3
+font_data = ExtResource( 13 )
+
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 1, 0.0156863, 1 )
 border_width_left = 2
@@ -43,12 +49,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="DynamicFont" id=5]
-size = 18
-outline_size = 2
-extra_spacing_bottom = -3
-font_data = ExtResource( 13 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 resource_local_to_scene = true
@@ -82,9 +82,6 @@ colors = PoolColorArray( 1, 0, 0, 0.490196, 0, 0, 0, 0.490196 )
 
 [sub_resource type="GradientTexture" id=12]
 gradient = SubResource( 11 )
-
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 2000, 2000 )
 
 [node name="Main" type="Node2D"]
 pause_mode = 1
@@ -136,6 +133,7 @@ centered = false
 [node name="Pick_Ups" type="Node2D" parent="."]
 
 [node name="Bumper_List" type="Node2D" parent="."]
+script = ExtResource( 12 )
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
 health = SubResource( 1 )
@@ -179,9 +177,9 @@ margin_left = -150.0
 margin_top = -26.0
 margin_right = 150.0
 rect_pivot_offset = Vector2( 150, 26 )
-custom_styles/fg = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/fg = SubResource( 4 )
 value = 100.0
 rounded = true
 __meta__ = {
@@ -197,9 +195,9 @@ margin_left = -150.0
 margin_top = -26.0
 margin_right = 150.0
 rect_pivot_offset = Vector2( 150, 26 )
-custom_styles/fg = SubResource( 6 )
-custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/fg = SubResource( 6 )
 value = 100.0
 rounded = true
 __meta__ = {
@@ -233,8 +231,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_right = 288.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
 text = "PAUSED"
 align = 1
 valign = 1
@@ -290,8 +288,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="Overlay/Died_Menu/VBoxContainer"]
 margin_right = 342.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
 text = "You DIED"
 align = 1
 valign = 1
@@ -313,19 +311,8 @@ margin_bottom = 199.0
 custom_fonts/font = SubResource( 10 )
 text = "Quit"
 
-[node name="Derp_Star_Remote" type="Node2D" parent="."]
-
-[node name="Bumper_Spawner" type="Area2D" parent="Derp_Star_Remote"]
-script = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Derp_Star_Remote/Bumper_Spawner"]
-shape = SubResource( 13 )
-
-[node name="Timer" type="Timer" parent="Derp_Star_Remote/Bumper_Spawner"]
-wait_time = 0.2
-autostart = true
-
 [connection signal="update_points" from="." to="Overlay/HUD" method="update_points"]
+[connection signal="spawn_bumper" from="Bumper_List" to="." method="spawn_bumper_area"]
 [connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
 [connection signal="unlock_energy" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
@@ -338,9 +325,5 @@ autostart = true
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
-[connection signal="body_exited" from="Derp_Star_Remote/Bumper_Spawner" to="Derp_Star_Remote/Bumper_Spawner" method="_on_Bumper_Manager_body_exited"]
-[connection signal="spawn_bumper" from="Derp_Star_Remote/Bumper_Spawner" to="." method="spawn_bumper"]
-[connection signal="update_count" from="Derp_Star_Remote/Bumper_Spawner" to="." method="update_bumper_count"]
-[connection signal="timeout" from="Derp_Star_Remote/Bumper_Spawner/Timer" to="Derp_Star_Remote/Bumper_Spawner" method="_on_Timer_timeout"]
 
 [editable path="Derp_Star"]
