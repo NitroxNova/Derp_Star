@@ -11,6 +11,14 @@ func _ready():
 		child.connect("drop_item",self,"drop_item")
 		child.connect("tree_exited",self,"dome_destroyed")
 
+func get_collision_shapes():
+	var shapes = []
+	for child in get_children():
+		var shape = child.get_collision_shape()
+		shape.transform = child.transform
+		shapes.append(shape)
+	return shapes
+
 func add_points(amount):
 	emit_signal("add_points",amount)
 

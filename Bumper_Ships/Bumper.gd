@@ -10,6 +10,12 @@ signal add_points
 signal draw_explosion
 signal drop_item
 
+func get_collision_shape():
+	return $Collision_Shape.duplicate()
+
+func get_collision_shapes():
+	return [get_collision_shape()]
+
 func _ready():
 	connect("ready",self,"on_ready")
 	health.connect("current_zero",self,"died")
