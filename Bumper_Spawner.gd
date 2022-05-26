@@ -12,7 +12,7 @@ var count = 0
 var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
 var shooting_star = preload("res://Bumper_Ships/Shooting_Star/Bumper.tscn")
 var biodome = preload("res://Bumper_Ships/Bio_Dome/Colony.tscn")
-var bumper_scenes = [striped_bumper,shooting_star,biodome]
+var bumper_scenes = [striped_bumper,shooting_star]
 var spawn_area_scene = preload("res://Bumper_Ships/Spawn_Area.tscn")
 
 signal spawn_bumper
