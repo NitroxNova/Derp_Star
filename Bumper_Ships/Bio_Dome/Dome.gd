@@ -25,4 +25,5 @@ func make_joints():
 		var joint = PinJoint2D.new()
 		joint.node_a = ".."
 		joint.node_b = "../../" + tube.name
+		tube.connect("tree_exited",joint,"queue_free")
 		add_child(joint)

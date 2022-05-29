@@ -1,16 +1,20 @@
 extends Node2D
 
+signal spawn_bumper
+
 const size = 500
 const min_distance = 200
 var dome_count = randi() % 4 + 4
 var dome_list = []
 var tube_list = []
 var housing = preload("res://Bumper_Ships/Bio_Dome/Housing/Dome.tscn")
-
-func _init():
-	build()
+var reactor = preload("res://Bumper_Ships/Bio_Dome/Reactor/Dome.tscn")
+var hospital = preload("res://Bumper_Ships/Bio_Dome/Hospital/Dome.tscn")
+var bigtree = preload("res://Bumper_Ships/Bio_Dome/Tree/Dome.tscn")
+var dome_scenes = [reactor,hospital,housing,bigtree,housing,bigtree,housing]
 	
 func _ready():
+	build()
 	draw()
 
 func reset():
@@ -18,20 +22,26 @@ func reset():
 	tube_list = []
 	build()
 
+func get_collision_shapes():
+	return [$CollisionShape2D.duplicate()]
+	
 func build():
 	if not make_domes():
 		reset()
-		
+
 func draw():
 	for tube in tube_list:
-		add_child(tube)
+		tube.position += position
+		emit_signal("spawn_bumper",tube)
 	for dome in dome_list:
-		add_child(dome)
+		dome.position += position
+		emit_signal("spawn_bumper",dome)
+	queue_free()
 	
 func make_domes():
 	var dome_coords = PoolVector2Array()
 	for i in dome_count:
-		var dome = housing.instance()
+		var dome = dome_scenes[i].instance()
 		var pos = rand_coords(20)
 		if not pos:
 			return false
