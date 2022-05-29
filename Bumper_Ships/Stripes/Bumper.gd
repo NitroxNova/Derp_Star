@@ -1,6 +1,10 @@
 extends Bumper_Ship
 
-func on_ready():
+func _init():
+	rotation = randf() * 2 * PI
+
+func _ready():
+	._ready()
 	$Thruster.activate()
 
 func _on_Timer_timeout():

@@ -17,7 +17,6 @@ func get_collision_shapes():
 	return [get_collision_shape()]
 
 func _ready():
-	connect("ready",self,"on_ready")
 	health.connect("current_zero",self,"died")
 	$Health_Node/Node2D/ProgressBar.value = health.current
 	$Health_Node/Node2D/ProgressBar.max_value = health.maximum
@@ -46,6 +45,8 @@ func explode():
 	var e = explosion.instance()
 	e.transform = global_transform
 	e.bumper_texture = $Base_Sprite.texture
+	e.height = $Base_Sprite.texture.get_height()
+	e.width = $Base_Sprite.texture.get_width()
 	emit_signal("draw_explosion",e)
 	
 func static_on():

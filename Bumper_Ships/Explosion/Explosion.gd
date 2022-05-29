@@ -3,6 +3,8 @@ extends Node2D
 var bumper_texture : Texture
 var shard_velocity_map = {}
 var shard_count = 50
+var height : int
+var width : int
 
 func _ready():
 	$Boom.play()
@@ -18,21 +20,19 @@ func _on_Boom_animation_finished():
 
 func make_debris():
 	var points = PoolVector2Array()
-	var w = bumper_texture.get_width()
-	var h = bumper_texture.get_height()
 	
-	$Boom.scale.x = (float(w)/256) * 1.2
-	$Boom.scale.y = (float(h)/256) * 1.2
+	$Boom.scale.x = (float(width)/256) * 1.2
+	$Boom.scale.y = (float(height)/256) * 1.2
 	
-	$Debris.position.x -= w/2
-	$Debris.position.y -= h/2
+	$Debris.position.x -= width/2
+	$Debris.position.y -= height/2
 	points.append(Vector2(0,0))
-	points.append(Vector2(0,h))
-	points.append(Vector2(w,h))
-	points.append(Vector2(w,0))
+	points.append(Vector2(0,height))
+	points.append(Vector2(width,height))
+	points.append(Vector2(width,0))
 		
 	for i in range(shard_count):
-		points.append(Vector2(randi()%w,randi()%h))
+		points.append(Vector2(randi()%width,randi()%height))
 	
 	var delaunay_points = Geometry.triangulate_delaunay_2d(points)
 	
@@ -48,6 +48,6 @@ func make_debris():
 		var shard = Polygon2D.new()
 		shard.polygon = shard_pool
 		shard.texture = bumper_texture
-		var shard_velocity = (Vector2(w/2,h/2) - center) / Vector2(w/2,h/2)
+		var shard_velocity = (Vector2(width/2,height/2) - center) / Vector2(width/2,height/2)
 		shard_velocity_map[shard] = shard_velocity
 		$Debris.add_child(shard)
