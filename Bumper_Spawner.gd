@@ -12,7 +12,7 @@ var count = 0
 var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
 var shooting_star = preload("res://Bumper_Ships/Shooting_Star/Bumper.tscn")
 var biodome = preload("res://Bumper_Ships/Bio_Dome/Colony.tscn")
-var bumper_scenes = [striped_bumper,shooting_star]
+var bumper_scenes = [striped_bumper,shooting_star,biodome]
 var spawn_area_scene = preload("res://Bumper_Ships/Spawn_Area.tscn")
 
 signal spawn_bumper
@@ -26,7 +26,6 @@ func spawn_bumper():
 		spawn_location = generate_coords()
 	var spawn_area = spawn_area_scene.instance()
 	spawn_area.position = spawn_location
-	spawn_area.rotation = randf() * 2 * PI
 	var bumper = bumper_scenes[randi() % bumper_scenes.size()].instance()
 	spawn_area.set_bumper(bumper)
 	emit_signal("spawn_bumper",spawn_area)
