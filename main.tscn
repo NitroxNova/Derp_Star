@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Space_Clouds/big_stars.png" type="Texture" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://main.gd" type="Script" id=11]
 [ext_resource path="res://Bumper_Spawner.gd" type="Script" id=12]
 [ext_resource path="res://fonts/TimeburnerBold-peGR.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Boss/Space_Wyrm/Space_Wyrm.tscn" type="PackedScene" id=14]
 [ext_resource path="res://HUD.gd" type="Script" id=15]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=16]
 
@@ -134,6 +135,9 @@ centered = false
 
 [node name="Bumper_List" type="Node2D" parent="."]
 script = ExtResource( 12 )
+
+[node name="Space_Wyrm" parent="." instance=ExtResource( 14 )]
+position = Vector2( -750, 530 )
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
 health = SubResource( 1 )
@@ -320,6 +324,7 @@ text = "Quit"
 [connection signal="update_health" from="Derp_Star" to="Overlay/HUD" method="update_health"]
 [connection signal="update_max_energy" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
 [connection signal="update_max_health" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
+[connection signal="update_position" from="Derp_Star" to="Space_Wyrm" method="_on_Derp_Star_update_position"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
