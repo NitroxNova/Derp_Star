@@ -4,16 +4,16 @@
 [ext_resource path="res://Derp_Star/Laser/laser_circle.png" type="Texture" id=2]
 [ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture" id=4]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 338.564, 25.7411 )
+
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.33, 0.66, 1 )
 colors = PoolColorArray( 0, 0.666667, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0, 0.666667, 1, 0.784314 )
 
 [sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+gradient = SubResource( 6 )
 width = 112
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 338.564, 25.7411 )
 
 [sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
@@ -49,6 +49,10 @@ texture = ExtResource( 2 )
 [node name="Beam" type="Area2D" parent="."]
 collision_layer = 524288
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
+position = Vector2( 342.386, 0.882686 )
+shape = SubResource( 3 )
+
 [node name="Gradient" type="TextureRect" parent="Beam"]
 margin_top = 26.0
 margin_right = 52.0
@@ -56,13 +60,6 @@ margin_bottom = 707.0
 rect_rotation = -90.0
 texture = SubResource( 2 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
-position = Vector2( 342.386, 0.882686 )
-shape = SubResource( 3 )
 
 [node name="Particles2D" type="Particles2D" parent="Beam"]
 amount = 25
