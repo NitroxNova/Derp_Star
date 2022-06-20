@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Boss/Space_Wyrm/Body/Shape.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 80, 50 )
+
+[node name="Body" type="CollisionShape2D"]
+shape = SubResource( 3 )
+script = ExtResource( 1 )

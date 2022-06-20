@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Boss/Space_Wyrm/Lazer.gd" type="Script" id=1]
+[ext_resource path="res://Boss/Space_Wyrm/Lazer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Boss/Space_Wyrm/Head/head.png" type="Texture" id=3]
+[ext_resource path="res://Boss/Space_Wyrm/Head/jaw.png" type="Texture" id=4]
+
+[node name="Head" type="Bone2D"]
+position = Vector2( 160, 0 )
+rest = Transform2D( 1, 0, 0, 1, 160, 0 )
+default_length = 160.0
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Nose" type="Bone2D" parent="."]
+position = Vector2( 135, 0 )
+rest = Transform2D( 1, 0, 0, 1, 135, 0 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Jaw" type="Bone2D" parent="."]
+position = Vector2( 65, 47 )
+rotation = 0.364711
+rest = Transform2D( 0.934227, 0.356679, -0.356679, 0.934227, 65, 47 )
+
+[node name="Jaw" type="Sprite" parent="Jaw"]
+position = Vector2( 41.0374, 12.163 )
+rotation = -0.364711
+z_index = 2
+texture = ExtResource( 4 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2( 80, 0 )
+remote_path = NodePath("../../../../../../../Head")
+
+[node name="Lazer" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 30 )
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="Head" type="Sprite" parent="."]
+position = Vector2( 74, -1 )
+z_index = 1
+texture = ExtResource( 3 )

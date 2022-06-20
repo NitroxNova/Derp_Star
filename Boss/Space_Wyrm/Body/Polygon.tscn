@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Boss/Space_Wyrm/Body/body_segment.png" type="Texture" id=1]
+
+[node name="Body" type="Polygon2D"]
+position = Vector2( 160, -50 )
+texture = ExtResource( 1 )
+skeleton = NodePath("../../Skeleton2D")
+polygon = PoolVector2Array( 0, 0, 60, 0, 100, 0, 160, 0, 160, 50, 160, 100, 100, 100, 60, 100, 0, 100, 0, 50 )
+uv = PoolVector2Array( 0, 0, 60, 0, 100, 0, 160, 0, 160, 50, 160, 100, 100, 100, 60, 100, 0, 100, 0, 50 )
+bones = [ "Tail", PoolRealArray( 1, 0, 0, 0, 0, 0, 0, 0, 1, 1 ), "Tail/Body_3", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Tail/Body_3/Body_2", PoolRealArray( 0, 0, 0, 1, 1, 1, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head/Nose", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head/Jaw", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
