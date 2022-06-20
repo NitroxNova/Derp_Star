@@ -138,8 +138,10 @@ script = ExtResource( 12 )
 
 [node name="Space_Wyrm" parent="." instance=ExtResource( 14 )]
 position = Vector2( -750, 530 )
+rotation = -0.436332
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
+position = Vector2( -103, 485 )
 health = SubResource( 1 )
 energy = SubResource( 2 )
 

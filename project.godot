@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Player_Beam",
 "language": "GDScript",
 "path": "res://Derp_Star/Beam.gd"
+}, {
+"base": "CollisionShape2D",
+"class": "Wyrm_Segment",
+"language": "GDScript",
+"path": "res://Boss/Space_Wyrm/Segment.gd"
 } ]
 _global_script_class_icons={
 "Bumper_Ship": "",
 "Capped_Value": "",
 "Enemy_Projectile": "",
-"Player_Beam": ""
+"Player_Beam": "",
+"Wyrm_Segment": ""
 }
 
 [application]
