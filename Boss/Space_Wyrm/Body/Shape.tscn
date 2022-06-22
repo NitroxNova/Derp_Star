@@ -1,10 +1,32 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Boss/Space_Wyrm/Body/Shape.gd" type="Script" id=1]
+[ext_resource path="res://Bumper_Ships/Health_Node.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 80, 50 )
 
+[sub_resource type="Resource" id=4]
+resource_local_to_scene = true
+script = ExtResource( 3 )
+current = 150
+maximum = 150
+
 [node name="Body" type="CollisionShape2D"]
 shape = SubResource( 3 )
 script = ExtResource( 1 )
+health = SubResource( 4 )
+
+[node name="Health_Node" parent="." instance=ExtResource( 2 )]
+
+[node name="ProgressBar" parent="Health_Node/Node2D" index="0"]
+margin_top = -7.0
+margin_bottom = 7.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Health_Node/Node2D")
+update_rotation = false
+update_scale = false
+
+[editable path="Health_Node"]
