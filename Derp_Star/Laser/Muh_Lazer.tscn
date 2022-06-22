@@ -77,3 +77,5 @@ texture = ExtResource( 4 )
 
 [connection signal="body_entered" from="Beam" to="." method="_on_Beam_body_entered"]
 [connection signal="body_exited" from="Beam" to="." method="_on_Beam_body_exited"]
+[connection signal="body_shape_entered" from="Beam" to="." method="_on_Beam_body_shape_entered"]
+[connection signal="body_shape_exited" from="Beam" to="." method="_on_Beam_body_shape_exited"]
