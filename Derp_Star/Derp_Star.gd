@@ -16,7 +16,7 @@ signal update_energy
 signal update_max_energy
 signal lock_energy
 signal unlock_energy
-signal update_position
+signal position_changed
 
 func _ready():
 	health.connect("current_changed",self,"update_health")
@@ -31,7 +31,7 @@ func _process(delta):
 		energy.increase_current(5*delta)
 	if (energy_locked and energy.get_percent() > .25):
 		unlock_energy()
-	emit_signal("update_position",global_position)
+	emit_signal("position_changed",global_position)
 
 func _input(event):
 	if event.is_action_pressed("change_beam_up"):
