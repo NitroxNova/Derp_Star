@@ -48,6 +48,10 @@ config/name="Derp_Star"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Connector="*res://Utils/Connector.gd"
+
 [input]
 
 thruster_1={
