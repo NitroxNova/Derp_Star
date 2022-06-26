@@ -20,14 +20,14 @@
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
 script = ExtResource( 16 )
-current = 100
-maximum = 100
+current = 1000
+maximum = 1000
 
 [sub_resource type="Resource" id=2]
 resource_local_to_scene = true
 script = ExtResource( 16 )
-current = 100
-maximum = 100
+current = 1000
+maximum = 1000
 
 [sub_resource type="DynamicFont" id=3]
 size = 35
@@ -137,8 +137,8 @@ centered = false
 script = ExtResource( 12 )
 
 [node name="Space_Wyrm" parent="." instance=ExtResource( 14 )]
-position = Vector2( -750, 530 )
-rotation = -0.436332
+position = Vector2( -726, -32 )
+rotation = -1.17133
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
 position = Vector2( -103, 485 )
@@ -326,7 +326,6 @@ text = "Quit"
 [connection signal="update_health" from="Derp_Star" to="Overlay/HUD" method="update_health"]
 [connection signal="update_max_energy" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
 [connection signal="update_max_health" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
-[connection signal="update_position" from="Derp_Star" to="Space_Wyrm" method="_on_Derp_Star_update_position"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
