@@ -7,6 +7,10 @@ var prev_segment
 var next_segment
 export (Resource) var health
 	
+func uv_bone_path():
+	var path = get_node("../Skeleton2D").get_path_to(bone)
+	return path
+	
 func connect_health():
 	health.connect("current_zero",self,"died")
 	$Health_Node/Node2D/ProgressBar.value = health.current
@@ -38,7 +42,3 @@ func update_remote_transform():
 	var bone_remote = bone.get_node("RemoteTransform2D")
 	bone_remote.remote_path = bone_remote.get_path_to(self)
 	next_segment.update_remote_transform()
-
-func set_polygon_x(pos = 0):
-	polygon.position.x = pos
-	next_segment.set_polygon_x(pos + 160)
