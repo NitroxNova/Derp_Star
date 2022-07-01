@@ -6,11 +6,6 @@ var body_shape = preload("res://Boss/Space_Wyrm/Body/Shape.tscn")
 var head_shape = preload("res://Boss/Space_Wyrm/Head/Shape.tscn")
 var body_polygon = preload("res://Boss/Space_Wyrm/Body/Polygon.tscn")
 var space_wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn")
-var rotation_start = [1,1,1,-1,-1,-1]
-var rotation_end = [1.2,1.2,1.2,-1.2,-1.2,-1.2]
-
-func _ready():
-	$AnimationPlayer.play("Idle")
 
 func destroy_segment(segment):
 	var top_half = space_wyrm.instance()
@@ -22,6 +17,8 @@ func destroy_segment(segment):
 	next_segment.bone.get_parent().remove_child(next_segment.bone)
 	tail.bone.add_child(next_segment.bone)
 	tail.set_next(next_segment)
+	top_half.get_node("AnimationPlayer").setup_charge_animation()
+	top_half.get_node("AnimationPlayer").play("Charge")
 	
 	while next_segment != null:
 		remove_child(next_segment)
@@ -40,6 +37,8 @@ func destroy_segment(segment):
 	head.set_prev(segment.prev_segment)
 	add_child(head)
 	$Tail.setup()
+	$AnimationPlayer.setup_charge_animation()
+	$AnimationPlayer.play("Charge")
 	
 func build(body_count):
 	var idle_animation = $AnimationPlayer.get_animation("Idle")
@@ -54,18 +53,13 @@ func build(body_count):
 		segment.set_prev(prev_segment)
 		prev_segment.bone.add_child(segment.bone)
 		add_child(segment)
-		prev_segment = segment
-		
-		var track_index = idle_animation.add_track(Animation.TYPE_VALUE)
-		var anim_path = str(get_path_to(segment.bone))
-		idle_animation.track_set_path(track_index,anim_path + ":rotation")
-		idle_animation.track_insert_key(track_index,0,rotation_start[i%rotation_start.size()])
-		idle_animation.track_insert_key(track_index,3,rotation_end[i%rotation_end.size()])
-		
+		prev_segment = segment		
 	var head = head_shape.instance()
 	head.bone = head_bone.instance()
 	prev_segment.bone.add_child(head.bone)
 	head.set_prev(prev_segment)
 	add_child(head)
 	$Tail.setup()
+	$AnimationPlayer.setup_charge_animation()
+	$AnimationPlayer.play("Charge")
 	
