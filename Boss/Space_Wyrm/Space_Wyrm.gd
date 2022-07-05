@@ -6,6 +6,24 @@ var body_shape = preload("res://Boss/Space_Wyrm/Body/Shape.tscn")
 var head_shape = preload("res://Boss/Space_Wyrm/Head/Shape.tscn")
 var body_polygon = preload("res://Boss/Space_Wyrm/Body/Polygon.tscn")
 var space_wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn")
+var wyrmhole = preload("res://Boss/Space_Wyrm/Wyrmhole/Wyrmhole.tscn")
+
+signal close_wyrmhole
+
+func spawn_wyrmhole():
+	var port_1 = wyrmhole.instance()
+	var port_2 = wyrmhole.instance()
+	port_1.position = $Head.global_position
+	port_2.position = Connector.derp_star.global_position
+	port_2.connect("opened",self,"teleport")
+	connect("close_wyrmhole",port_1,"close")
+	connect("close_wyrmhole",port_2,"close")
+	Connector.draw_explosion(port_1)
+	Connector.draw_explosion(port_2)
+	
+func teleport(wyrmhole):
+	global_position = wyrmhole.position + ($Tail.global_position - $Head.global_position)
+	emit_signal("close_wyrmhole")
 
 func destroy_segment(segment):
 	var top_half = space_wyrm.instance()
@@ -17,8 +35,7 @@ func destroy_segment(segment):
 	next_segment.bone.get_parent().remove_child(next_segment.bone)
 	tail.bone.add_child(next_segment.bone)
 	tail.set_next(next_segment)
-	top_half.get_node("AnimationPlayer").setup_charge_animation()
-	top_half.get_node("AnimationPlayer").play("Charge")
+	top_half.get_node("AnimationPlayer").setup()
 	
 	while next_segment != null:
 		remove_child(next_segment)
@@ -37,8 +54,7 @@ func destroy_segment(segment):
 	head.set_prev(segment.prev_segment)
 	add_child(head)
 	$Tail.setup()
-	$AnimationPlayer.setup_charge_animation()
-	$AnimationPlayer.play("Charge")
+	$AnimationPlayer.setup()
 	
 func build(body_count):
 	var idle_animation = $AnimationPlayer.get_animation("Idle")
@@ -60,6 +76,5 @@ func build(body_count):
 	head.set_prev(prev_segment)
 	add_child(head)
 	$Tail.setup()
-	$AnimationPlayer.setup_charge_animation()
-	$AnimationPlayer.play("Charge")
+	$AnimationPlayer.setup()
 	

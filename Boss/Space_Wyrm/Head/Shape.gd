@@ -5,8 +5,8 @@ func _ready():
 	connect_health()
 	Connector.derp_star_position(self)
 
-#func derp_star_position_changed(pos):
-#	bone.look_at(pos)
+func derp_star_position_changed(pos):
+	bone.look_at(pos)
 	
 func take_damage(amount):
 	if invulnerable:
