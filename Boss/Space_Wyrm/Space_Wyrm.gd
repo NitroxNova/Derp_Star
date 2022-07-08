@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var attack_phase = ""
+
 var body_bone = preload("res://Boss/Space_Wyrm/Body/Bone.tscn")
 var head_bone = preload("res://Boss/Space_Wyrm/Head/Bone.tscn")
 var body_shape = preload("res://Boss/Space_Wyrm/Body/Shape.tscn")
@@ -20,10 +22,24 @@ func spawn_wyrmhole():
 	connect("close_wyrmhole",port_2,"close")
 	Connector.draw_explosion(port_1)
 	Connector.draw_explosion(port_2)
+	$AnimationPlayer.play("Idle")
+	$Tail.aura_off()
 	
 func teleport(wyrmhole):
 	global_position = wyrmhole.position + ($Tail.global_position - $Head.global_position)
 	emit_signal("close_wyrmhole")
+	$Head.bone.get_node("Lazer").activate()
+	$Laser_Timer.start()
+	attack_phase = "Laser"
+
+func charge():
+	$Head.bone.get_node("Lazer").deactivate()
+	$AnimationPlayer.play("Charge")
+	$Charge_Timer.start()
+	attack_phase = "Charge"
+	rotation = Connector.derp_star.global_position.angle_to_point(global_position)
+	linear_velocity = Vector2(800,0).rotated(rotation)
+	$Tail.aura_on()
 
 func destroy_segment(segment):
 	var top_half = space_wyrm.instance()
@@ -78,3 +94,7 @@ func build(body_count):
 	$Tail.setup()
 	$AnimationPlayer.setup()
 	
+func _on_Space_Wyrm_body_entered(body):
+	var damage = linear_velocity.length()/20
+	if (body.is_in_group("player") and attack_phase=="Charge"):
+		body.take_damage(damage)

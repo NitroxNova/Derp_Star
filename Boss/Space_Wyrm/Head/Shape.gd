@@ -7,6 +7,12 @@ func _ready():
 
 func derp_star_position_changed(pos):
 	bone.look_at(pos)
+
+func aura_on():
+	$Particles2D.show()
+
+func aura_off():
+	$Particles2D.hide()
 	
 func take_damage(amount):
 	if invulnerable:

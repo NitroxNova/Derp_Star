@@ -6,7 +6,15 @@ var polygon
 var prev_segment
 var next_segment
 export (Resource) var health
-	
+
+func aura_on():
+	$Particles2D.show()
+	next_segment.aura_on()
+
+func aura_off():
+	$Particles2D.hide()
+	next_segment.aura_off()
+
 func uv_bone_path():
 	var path = get_node("../Skeleton2D").get_path_to(bone)
 	return path
