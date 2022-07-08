@@ -71,5 +71,6 @@ visible = false
 position = Vector2( -26.354, 2.793 )
 
 [connection signal="body_entered" from="." to="." method="_on_Derp_Star_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_Derp_Star_body_shape_entered"]
 [connection signal="decrease_energy" from="Muh_Lazer" to="." method="decrease_energy"]
 [connection signal="decrease_energy" from="Gravity_Beam" to="." method="decrease_energy"]

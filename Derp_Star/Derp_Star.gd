@@ -51,9 +51,16 @@ func _input(event):
 				thrusters[i].deactivate()	
 			
 func _on_Derp_Star_body_entered(body):
+	var damage = linear_velocity.length()/10
 	if body.is_in_group("bumper"):
-		body.take_damage(linear_velocity.length()/10)
-		
+		body.take_damage(damage)
+
+func _on_Derp_Star_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	var shape = body.shape_owner_get_owner(body_shape_index)
+	var damage = linear_velocity.length()/10
+	if is_instance_valid(shape) and shape.has_method("take_damage"):
+		shape.take_damage(damage)
+			
 func change_beam(amount):
 		beams[beam_index].deactivate()
 		beams[beam_index].hide()
@@ -95,3 +102,5 @@ func lock_energy():
 func unlock_energy():
 	energy_locked = false
 	emit_signal("unlock_energy")
+
+	
