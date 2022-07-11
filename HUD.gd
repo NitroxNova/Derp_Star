@@ -8,6 +8,9 @@ var energy_lock_color = Color(.5,.5,.5)
 var half_life
 var health_colors = [Color(1,0,0),Color(1,1,0),Color(0,1,0)]
 
+func _ready():
+	update_boss_cores(Player_Stats.boss_cores)
+
 func update_energy(amount):
 	$Energy_Bar.value = amount
 	
@@ -34,3 +37,6 @@ func update_health(v):
 
 func update_points(amount):
 	$Points.text = str(amount)
+
+func update_boss_cores(amount):
+	$Boss_Cores/HBoxContainer/Label.text = str(amount)

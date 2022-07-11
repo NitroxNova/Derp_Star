@@ -13,7 +13,7 @@ func _ready():
 	$Derp_Star.health.update_current()
 	$Derp_Star.energy.update_maximum()
 	$Derp_Star.energy.update_current()
-	$Space_Wyrm.build(12)
+#	$Space_Wyrm.build(12)
 
 func add_points(amount):
 	player_points += amount

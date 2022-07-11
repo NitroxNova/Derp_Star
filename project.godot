@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Connector="*res://Utils/Connector.gd"
+Player_Stats="*res://Utils/Player_Stats.gd"
 
 [input]
 
