@@ -43,11 +43,13 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="Space_Wyrm" type="RigidBody2D"]
+[node name="Space_Wyrm" type="RigidBody2D" groups=["Space_Wyrm"]]
 contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 script = ExtResource( 5 )
+points = 100
+final_points = 2000
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 

@@ -1,5 +1,7 @@
 extends Wyrm_Segment
 
+export var points = 0
+
 func _ready():
 	connect_health()
 
@@ -14,3 +16,7 @@ func map_bones():
 	polygon.add_bone(next_segment.uv_bone_path(), [0, 0, 0, 1, 1, 1, 0, 0, 0, 0])
 	polygon.add_bone(prev_segment.uv_bone_path(), [1, 0, 0, 0, 0, 0, 0, 0, 1, 1])
 	next_segment.map_bones()
+
+func died():
+	.died()
+	Connector.add_points(points)

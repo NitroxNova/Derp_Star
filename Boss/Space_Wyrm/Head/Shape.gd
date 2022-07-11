@@ -21,7 +21,7 @@ func take_damage(amount):
 		.take_damage(amount)
 
 func died():
-	get_parent().queue_free()
+	get_parent().died()
 
 func update_remote_transform():
 	var bone_remote = bone.get_node("RemoteTransform2D")

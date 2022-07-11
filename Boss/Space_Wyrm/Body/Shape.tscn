@@ -27,6 +27,7 @@ color = Color( 1, 1, 1, 0.588235 )
 shape = SubResource( 3 )
 script = ExtResource( 1 )
 health = SubResource( 4 )
+points = 10
 
 [node name="Health_Node" parent="." instance=ExtResource( 2 )]
 

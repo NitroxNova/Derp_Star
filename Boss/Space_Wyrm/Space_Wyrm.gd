@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+export var points = 0
+export var final_points = 0
+
 var attack_phase = ""
 
 var body_bone = preload("res://Boss/Space_Wyrm/Body/Bone.tscn")
@@ -11,6 +14,17 @@ var space_wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn")
 var wyrmhole = preload("res://Boss/Space_Wyrm/Wyrmhole/Wyrmhole.tscn")
 
 signal close_wyrmhole
+
+func died():
+	var wyrm_count = get_tree().get_nodes_in_group("Space_Wyrm").size()
+	if (wyrm_count == 1):
+		Connector.add_points(final_points)
+		var boss_core = load("res://Pick_Ups/Boss_Core/Boss_Core.tscn").instance()
+		boss_core.position = $Head.global_position
+		Connector.drop_item(boss_core)
+	else:
+		Connector.add_points(points)
+	queue_free()
 
 func spawn_wyrmhole():
 	var port_1 = wyrmhole.instance()

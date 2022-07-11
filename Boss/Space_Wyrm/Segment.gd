@@ -7,6 +7,7 @@ var prev_segment
 var next_segment
 export (Resource) var health
 
+
 func aura_on():
 	$Particles2D.show()
 	next_segment.aura_on()
