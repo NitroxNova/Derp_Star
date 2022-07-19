@@ -21,20 +21,20 @@ func add_points(amount):
 
 func spawn_bumper_area(area):
 	area.connect("spawn_bumper",self,"spawn_bumper")
-	$Bumper_List.add_child(area)
-	$Bumper_List.update_bumper_count()
+	$Dimension/Bumper_List.add_child(area)
+	$Dimension/Bumper_List.update_bumper_count()
 
 func spawn_bumper(bumper):
 	bumper.connect("add_points",self,"add_points")
 	bumper.connect("draw_explosion",self,"draw_explosion")
 	bumper.connect("drop_item",self,"drop_item")
 	bumper.connect("spawn_bumper",self,"spawn_bumper")
-	$Bumper_List.add_child(bumper)
-	$Bumper_List.update_bumper_count()
+	$Dimension/Bumper_List.add_child(bumper)
+	$Dimension/Bumper_List.update_bumper_count()
 
 func drop_item(i):
-	$Pick_Ups.add_child(i)
+	$Dimension/Pick_Ups.add_child(i)
 
 func draw_explosion(e):
-	$Explosions.add_child(e)
-	$Bumper_List.update_bumper_count()
+	$Dimension/Explosions.add_child(e)
+	$Dimension/Bumper_List.update_bumper_count()

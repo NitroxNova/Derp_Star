@@ -93,56 +93,6 @@ gradient = SubResource( 11 )
 pause_mode = 1
 script = ExtResource( 11 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
-motion_mirroring = Vector2( 2000, 2000 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 3 )
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
-motion_mirroring = Vector2( 2000, 2000 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource( 1 )
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.7, 0.7 )
-motion_mirroring = Vector2( 4000, 4000 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource( 4 )
-centered = false
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 2000, 0 )
-texture = ExtResource( 6 )
-centered = false
-
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 2000, 2000 )
-texture = ExtResource( 8 )
-centered = false
-
-[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 0, 2000 )
-texture = ExtResource( 7 )
-centered = false
-
-[node name="Explosions" type="Node2D" parent="."]
-
-[node name="Pick_Ups" type="Node2D" parent="."]
-
-[node name="Bumper_List" type="Node2D" parent="."]
-script = ExtResource( 12 )
-
-[node name="Boss" parent="." instance=ExtResource( 14 )]
-
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
 position = Vector2( 851, 497 )
 health = SubResource( 1 )
@@ -349,8 +299,59 @@ margin_bottom = 199.0
 custom_fonts/font = SubResource( 10 )
 text = "Quit"
 
+[node name="Dimension" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Dimension"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 2000, 2000 )
+
+[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 2000, 2000 )
+
+[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 4000, 4000 )
+
+[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 2000, 0 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 2000, 2000 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 0, 2000 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Explosions" type="Node2D" parent="Dimension"]
+
+[node name="Pick_Ups" type="Node2D" parent="Dimension"]
+
+[node name="Bumper_List" type="Node2D" parent="Dimension"]
+script = ExtResource( 12 )
+
+[node name="Boss" parent="Dimension" instance=ExtResource( 14 )]
+
 [connection signal="update_points" from="." to="Overlay/HUD" method="update_points"]
-[connection signal="spawn_bumper" from="Bumper_List" to="." method="spawn_bumper_area"]
 [connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
 [connection signal="unlock_energy" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
@@ -363,5 +364,6 @@ text = "Quit"
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
+[connection signal="spawn_bumper" from="Dimension/Bumper_List" to="." method="spawn_bumper_area"]
 
 [editable path="Derp_Star"]
