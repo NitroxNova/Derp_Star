@@ -11,6 +11,6 @@ func spawn_wyrm(wyrmhole):
 	var wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn").instance()
 	wyrm.position = wyrmhole.global_position
 	add_child(wyrm)
-	wyrm.build(5)
+	wyrm.build(2)
 	wyrmhole.close()
 	Connector.hide_boss_flash()

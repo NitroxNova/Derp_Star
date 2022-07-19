@@ -12,6 +12,7 @@ var head_shape = preload("res://Boss/Space_Wyrm/Head/Shape.tscn")
 var body_polygon = preload("res://Boss/Space_Wyrm/Body/Polygon.tscn")
 var space_wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn")
 var wyrmhole = preload("res://Boss/Space_Wyrm/Wyrmhole/Wyrmhole.tscn")
+var player_portal = preload("res://Boss/Space_Wyrm/Wyrmhole/Player_Portal.tscn")
 
 signal close_wyrmhole
 
@@ -22,9 +23,23 @@ func died():
 		var boss_core = load("res://Pick_Ups/Boss_Core/Boss_Core.tscn").instance()
 		boss_core.position = $Head.global_position
 		Connector.drop_item(boss_core)
+		spawn_player_portal()
 	else:
 		Connector.add_points(points)
 	queue_free()
+
+func spawn_player_portal():
+	var port_1 = player_portal.instance()
+	var port_2 = player_portal.instance()
+	port_1.linked_portal = port_2
+	port_2.linked_portal = port_1
+	port_1.position = global_position
+	port_2.position = global_position
+	port_1.dimension_id = 0
+	port_2.dimension_id = 1
+	Connector.dimension_list[port_1.dimension_id].add_child(port_1)
+	Connector.dimension_list[port_2.dimension_id].add_child(port_2)
+	
 
 func spawn_wyrmhole():
 	var port_1 = wyrmhole.instance()
