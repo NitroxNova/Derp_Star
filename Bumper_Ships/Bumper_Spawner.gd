@@ -6,7 +6,6 @@ const INNER_Y = 1080/2 + 100
 
 const SPAWN_SIZE = 4000
 const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
-onready var derp_star = get_node("../Derp_Star")
 
 var count = 0
 var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
@@ -31,19 +30,19 @@ func spawn_bumper():
 	emit_signal("spawn_bumper",spawn_area)
 
 func generate_coords():
-	var min_coord = derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
+	var min_coord = Connector.derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
 	var newx = (randf() * SPAWN_SIZE) + min_coord[0]
 	var newy = (randf() * SPAWN_SIZE) + min_coord[1]
 	return Vector2(newx,newy)
 
 func is_valid_spawn_location(loc):
-	if loc[0] < derp_star.global_position.x - INNER_X:
+	if loc[0] < Connector.derp_star.global_position.x - INNER_X:
 		return true
-	elif loc[0] > derp_star.global_position.x + INNER_X:
+	elif loc[0] > Connector.derp_star.global_position.x + INNER_X:
 		return true
-	elif loc[1] < derp_star.global_position.y - INNER_Y:
+	elif loc[1] < Connector.derp_star.global_position.y - INNER_Y:
 		return true
-	elif loc[1] > derp_star.global_position.y + INNER_Y:
+	elif loc[1] > Connector.derp_star.global_position.y + INNER_Y:
 		return true
 	else:
 		return false
@@ -55,7 +54,7 @@ func _process(delta):
 
 func despawn_random(n=1):
 	var rand_bumper = get_child(randi() % get_child_count())
-	var distance = rand_bumper.global_position.distance_to(derp_star.global_position)
+	var distance = rand_bumper.global_position.distance_to(Connector.derp_star.global_position)
 	if distance > DESPAWN_RADIUS:
 		rand_bumper.queue_free()
 		update_bumper_count()
