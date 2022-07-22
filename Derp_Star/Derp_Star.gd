@@ -27,6 +27,7 @@ func _ready():
 	energy.connect("maximum_changed",self,"update_max_energy")
 
 func _process(delta):
+#	print(energy.current)
 	if (energy.current < energy.maximum):
 		energy.increase_current(5*delta)
 	if (energy_locked and energy.get_percent() > .25):
@@ -38,6 +39,10 @@ func _input(event):
 		change_beam(1)
 	elif event.is_action_pressed("change_beam_down"):
 		change_beam(-1)
+	elif event.is_action_pressed("energy_shield") and not energy_locked:
+		$Energy_Shield.enable()
+	elif event.is_action_released("energy_shield"):
+		$Energy_Shield.disable()
 	elif event is InputEventMouseButton and not energy_locked:
 		if event.pressed:
 			beams[beam_index].activate()
@@ -97,6 +102,7 @@ func add_energy(amount):
 func lock_energy():
 	energy_locked = true
 	beams[beam_index].deactivate()
+	$Energy_Shield.disable()
 	emit_signal("lock_energy")
 
 func unlock_energy():
