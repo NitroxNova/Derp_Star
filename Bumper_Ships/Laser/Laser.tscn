@@ -11,7 +11,7 @@ bounce = 1.0
 radius = 4.37846
 
 [node name="Laser" type="RigidBody2D"]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 mass = 0.01
 physics_material_override = SubResource( 1 )
