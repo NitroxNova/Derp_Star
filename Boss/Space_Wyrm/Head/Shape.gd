@@ -3,10 +3,10 @@ var invulnerable = true
 
 func _ready():
 	connect_health()
-	Connector.derp_star_position(self)
-
-func derp_star_position_changed(pos):
-	bone.look_at(pos)
+	
+func _process(delta):
+	var target_angle = Connector.derp_star.global_position.angle_to_point(bone.global_position)
+	bone.global_rotation = lerp_angle(bone.global_rotation,target_angle,.05)
 
 func aura_on():
 	$Particles2D.show()

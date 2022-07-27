@@ -46,7 +46,7 @@ func setup_idle_animation():
 	var index = 0
 	var rotation_start = [1,1,1,-1,-1,-1]
 	var rotation_end = [1.2,1.2,1.2,-1.2,-1.2,-1.2]
-	while segment != null:
+	while segment.next_segment != null:
 		var track_index = idle.add_track(Animation.TYPE_VALUE)
 		var anim_path = str(get_parent().get_path_to(segment.bone))
 		idle.track_set_path(track_index,anim_path + ":rotation")

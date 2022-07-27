@@ -17,6 +17,7 @@ var player_portal = preload("res://Boss/Space_Wyrm/Wyrmhole/Player_Portal.tscn")
 signal close_wyrmhole
 
 func died():
+	emit_signal("close_wyrmhole")
 	var wyrm_count = get_tree().get_nodes_in_group("Space_Wyrm").size()
 	if (wyrm_count == 1):
 		Connector.add_points(final_points)
@@ -51,24 +52,29 @@ func spawn_wyrmhole():
 	connect("close_wyrmhole",port_2,"close")
 	Connector.draw_explosion(port_1)
 	Connector.draw_explosion(port_2)
-	$AnimationPlayer.play("Idle")
-	$Tail.aura_off()
 	
 func teleport(wyrmhole):
 	global_position = wyrmhole.position + ($Tail.global_position - $Head.global_position)
 	emit_signal("close_wyrmhole")
-	$Head.bone.get_node("Lazer").activate()
-	$Laser_Timer.start()
-	attack_phase = "Laser"
+	laser()
 
 func charge():
 	$Head.bone.get_node("Lazer").deactivate()
-	$AnimationPlayer.play("Charge")
-	$Charge_Timer.start()
-	attack_phase = "Charge"
-	rotation = Connector.derp_star.global_position.angle_to_point(global_position)
-	linear_velocity = Vector2(800,0).rotated(rotation)
 	$Tail.aura_on()
+	if attack_phase != "Charge":
+		$AnimationPlayer.play("Charge")
+		$Charge_Timer.start()
+		attack_phase = "Charge"
+		rotation = Connector.derp_star.global_position.angle_to_point(global_position)
+		linear_velocity = Vector2(800,0).rotated(rotation)
+
+func laser():
+	$Head.bone.get_node("Lazer").activate()
+	$Tail.aura_off()
+	if attack_phase != "Laser":
+		$Laser_Timer.start()
+		attack_phase = "Laser"
+		$AnimationPlayer.play("Idle")
 
 func destroy_segment(segment):
 	var top_half = space_wyrm.instance()
@@ -92,6 +98,7 @@ func destroy_segment(segment):
 		
 	get_parent().add_child(top_half)
 	tail.setup()
+	top_half.laser()
 	
 	var head = head_shape.instance()
 	head.bone = head_bone.instance()
@@ -100,6 +107,10 @@ func destroy_segment(segment):
 	add_child(head)
 	$Tail.setup()
 	$AnimationPlayer.setup()
+	if attack_phase == "Laser":
+		laser()
+	else:
+		charge()
 	
 func build(body_count):
 	var idle_animation = $AnimationPlayer.get_animation("Idle")
@@ -122,6 +133,7 @@ func build(body_count):
 	add_child(head)
 	$Tail.setup()
 	$AnimationPlayer.setup()
+	laser()
 	
 func _on_Space_Wyrm_body_entered(body):
 	var damage = linear_velocity.length()/20
