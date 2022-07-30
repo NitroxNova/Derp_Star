@@ -16,7 +16,6 @@ signal update_energy
 signal update_max_energy
 signal lock_energy
 signal unlock_energy
-signal position_changed
 
 func _ready():
 	health.connect("current_changed",self,"update_health")
@@ -27,13 +26,35 @@ func _ready():
 	energy.connect("maximum_changed",self,"update_max_energy")
 
 func _process(delta):
-#	print(energy.current)
 	if (energy.current < energy.maximum):
 		energy.increase_current(5*delta)
 	if (energy_locked and energy.get_percent() > .25):
 		unlock_energy()
-	emit_signal("position_changed",global_position)
+	if Input.is_action_pressed("accelerate"):
+		accelerate()
+	if Input.is_action_pressed("brake"):
+		brake()
 
+func brake():
+	for t in thrusters:
+		var angle = t.global_rotation
+		var direction = Vector2(cos(angle), sin(angle))
+		var angle_to = linear_velocity.angle_to(direction)
+		if (angle_to > .5 * PI or angle_to < -.5 * PI) and linear_velocity.length() > 10:
+			t.activate()
+		else:
+			t.deactivate()
+	
+func accelerate():
+	for t in thrusters:
+		var angle = t.global_rotation
+		var direction = Vector2(cos(angle), sin(angle))
+		var angle_to = linear_velocity.angle_to(direction)
+		if angle_to < .5 * PI and angle_to > -.5 * PI:
+			t.activate()
+		else:
+			t.deactivate()
+		
 func _input(event):
 	if event.is_action_pressed("change_beam_up"):
 		change_beam(1)
@@ -43,6 +64,9 @@ func _input(event):
 		$Energy_Shield.enable()
 	elif event.is_action_released("energy_shield"):
 		$Energy_Shield.disable()
+	elif event.is_action_released("accelerate") or event.is_action_released("brake"):
+		for t in thrusters:
+			t.deactivate()
 	elif event is InputEventMouseButton and not energy_locked:
 		if event.pressed:
 			beams[beam_index].activate()
