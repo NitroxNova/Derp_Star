@@ -14,7 +14,7 @@ func _ready():
 func shoot():
 	var b = laser.instance()
 	b.transform = $Laser_Pointer.global_transform
-	get_tree().get_root().add_child(b)
+	Connector.spawn_projectile(b)
 
 func _on_Shooting_Star_body_entered(body):
 	var multiplier = MAX_SPEED/linear_velocity.length()
