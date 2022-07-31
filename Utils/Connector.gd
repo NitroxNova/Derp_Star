@@ -4,6 +4,7 @@ var main
 var derp_star
 var explosions
 var pick_ups
+var projectiles
 var overlay
 var hud
 var dimension_list
@@ -12,6 +13,7 @@ func reset():
 	derp_star = get_node("/root/Main/Derp_Star")
 	explosions = get_node("/root/Main/Dimension/Explosions")
 	pick_ups = get_node("/root/Main/Dimension/Pick_Ups")
+	projectiles = get_node("/root/Main/Dimension/Projectiles")
 	overlay = get_node("/root/Main/Overlay")
 	hud = get_node("/root/Main/Overlay/HUD")
 	main = get_node("/root/Main")
@@ -41,3 +43,6 @@ func add_points(amount):
 
 func drop_item(i):
 	pick_ups.add_child(i)
+
+func spawn_projectile(p):
+	projectiles.add_child(p)

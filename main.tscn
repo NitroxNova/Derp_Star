@@ -346,6 +346,8 @@ centered = false
 
 [node name="Pick_Ups" type="Node2D" parent="Dimension"]
 
+[node name="Projectiles" type="Node2D" parent="Dimension"]
+
 [node name="Bumper_List" type="Node2D" parent="Dimension"]
 script = ExtResource( 12 )
 
