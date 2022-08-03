@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Utils/Dictionary_Resource.gd" type="Script" id=1]
+[ext_resource path="res://Talent/Talent_Resource.gd" type="Script" id=2]
+[ext_resource path="res://Talent/Image/max_health.png" type="Texture" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+display_name = "Max Health"
+texture = ExtResource( 3 )
+maximum = 0
+
+[resource]
+script = ExtResource( 1 )
+list = {
+"max_health": SubResource( 1 )
+}
