@@ -133,4 +133,6 @@ func unlock_energy():
 	energy_locked = false
 	emit_signal("unlock_energy")
 
-	
+func _on_Talents_talents_changed():
+	var new_max = 1000 + Player_Stats.get_talent("max_health") * 100
+	health.set_maximum(new_max)
