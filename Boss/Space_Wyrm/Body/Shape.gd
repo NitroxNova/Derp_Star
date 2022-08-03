@@ -19,4 +19,4 @@ func map_bones():
 
 func died():
 	.died()
-	Connector.add_points(points)
+	Player_Stats.increase_points(points)

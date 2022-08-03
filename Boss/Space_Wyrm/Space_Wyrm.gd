@@ -20,13 +20,13 @@ func died():
 	emit_signal("close_wyrmhole")
 	var wyrm_count = get_tree().get_nodes_in_group("Space_Wyrm").size()
 	if (wyrm_count == 1):
-		Connector.add_points(final_points)
+		Player_Stats.increase_points(final_points)
 		var boss_core = load("res://Pick_Ups/Boss_Core/Boss_Core.tscn").instance()
 		boss_core.position = $Head.global_position
 		Connector.drop_item(boss_core)
 		spawn_player_portal()
 	else:
-		Connector.add_points(points)
+		Player_Stats.increase_points(points)
 	queue_free()
 
 func spawn_player_portal():

@@ -6,7 +6,6 @@ export (Resource) var drop_item
 export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 
-signal add_points
 signal draw_explosion
 signal drop_item
 
@@ -30,7 +29,7 @@ func take_damage(amount):
 	$Health_Node/Node2D/ProgressBar.show()
 	
 func died():
-	emit_signal("add_points",points)
+	Player_Stats.increase_points(points)
 	explode()
 	drop_item()
 	queue_free()
