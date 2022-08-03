@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Space_Clouds/big_stars.png" type="Texture" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://HUD.gd" type="Script" id=15]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=16]
 [ext_resource path="res://Pick_Ups/Boss_Core/boss_core.png" type="Texture" id=17]
+[ext_resource path="res://Talent/Talent_Overlay.gd" type="Script" id=18]
+[ext_resource path="res://Talent/Display.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
@@ -29,6 +31,10 @@ resource_local_to_scene = true
 script = ExtResource( 16 )
 current = 1000
 maximum = 1000
+
+[sub_resource type="DynamicFont" id=10]
+size = 28
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 35
@@ -79,10 +85,6 @@ gradient = SubResource( 7 )
 size = 100
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 28
-font_data = ExtResource( 9 )
-
 [sub_resource type="Gradient" id=11]
 colors = PoolColorArray( 1, 0, 0, 0.490196, 0, 0, 0, 0.490196 )
 
@@ -116,9 +118,49 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.686275, 0, 1, 0.25098 )
 
+[node name="Talents" type="ColorRect" parent="Overlay"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.490196, 0, 1 )
+script = ExtResource( 18 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Talents"]
+margin_left = 373.0
+margin_top = 412.0
+margin_right = 667.0
+margin_bottom = 455.0
+
+[node name="Upgrade" type="Button" parent="Overlay/Talents/HBoxContainer"]
+margin_right = 122.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 10 )
+text = "Upgrade"
+
+[node name="Unlock" type="Button" parent="Overlay/Talents/HBoxContainer"]
+margin_left = 126.0
+margin_right = 220.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 10 )
+text = "Unlock"
+
+[node name="Back" type="Button" parent="Overlay/Talents/HBoxContainer"]
+margin_left = 224.0
+margin_right = 294.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 10 )
+text = "Back"
+
+[node name="Talent" parent="Overlay/Talents" instance=ExtResource( 19 )]
+margin_left = 282.0
+margin_top = 182.0
+margin_right = 358.0
+margin_bottom = 288.0
+
 [node name="HUD" type="Control" parent="Overlay"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 15 )
 
 [node name="Points" type="Label" parent="Overlay/HUD"]
@@ -144,9 +186,6 @@ custom_fonts/font = SubResource( 5 )
 custom_styles/fg = SubResource( 4 )
 value = 100.0
 rounded = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Energy_Bar" type="ProgressBar" parent="Overlay/HUD"]
 anchor_left = 0.18
@@ -229,23 +268,30 @@ __meta__ = {
 }
 
 [node name="Resume_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_top = 109.0
-margin_right = 288.0
-margin_bottom = 152.0
-custom_fonts/font = SubResource( 10 )
-text = "Continue"
-
-[node name="Restart_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_top = 156.0
 margin_right = 288.0
 margin_bottom = 199.0
 custom_fonts/font = SubResource( 10 )
-text = "Restart"
+text = "Continue"
 
-[node name="Quit_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+[node name="Talents_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_top = 109.0
+margin_right = 288.0
+margin_bottom = 152.0
+custom_fonts/font = SubResource( 10 )
+text = "Talents"
+
+[node name="Restart_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
 margin_top = 203.0
 margin_right = 288.0
 margin_bottom = 246.0
+custom_fonts/font = SubResource( 10 )
+text = "Restart"
+
+[node name="Quit_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
+margin_top = 250.0
+margin_right = 288.0
+margin_bottom = 293.0
 custom_fonts/font = SubResource( 10 )
 text = "Quit"
 
@@ -353,7 +399,6 @@ script = ExtResource( 12 )
 
 [node name="Boss" parent="Dimension" instance=ExtResource( 14 )]
 
-[connection signal="update_points" from="." to="Overlay/HUD" method="update_points"]
 [connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
 [connection signal="unlock_energy" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
@@ -361,7 +406,14 @@ script = ExtResource( 12 )
 [connection signal="update_health" from="Derp_Star" to="Overlay/HUD" method="update_health"]
 [connection signal="update_max_energy" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
 [connection signal="update_max_health" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
+[connection signal="mode_changed" from="Overlay/Talents" to="Overlay/Talents/Talent" method="_on_Talents_mode_changed"]
+[connection signal="talents_changed" from="Overlay/Talents" to="Derp_Star" method="_on_Talents_talents_changed"]
+[connection signal="pressed" from="Overlay/Talents/HBoxContainer/Upgrade" to="Overlay/Talents" method="upgrade_mode"]
+[connection signal="pressed" from="Overlay/Talents/HBoxContainer/Unlock" to="Overlay/Talents" method="unlock_mode"]
+[connection signal="pressed" from="Overlay/Talents/HBoxContainer/Back" to="Overlay" method="pause"]
+[connection signal="talent_pressed" from="Overlay/Talents/Talent" to="Overlay/Talents" method="_on_Talent_talent_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Resume_Button" to="Overlay" method="_on_Resume_Button_pressed"]
+[connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Talents_Button" to="Overlay" method="_on_Talents_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]

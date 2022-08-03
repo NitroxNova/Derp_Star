@@ -6,11 +6,15 @@ var dead = false
 func pause():
 	pause = true
 	get_tree().paused = true
+	$Talents.hide()
 	$Pause_Menu.show()
+	$HUD/Energy_Bar.show()
+	$HUD/Life_Bar.show()
 	
 func unpause():
 	pause = false
 	$Pause_Menu.hide()
+	$Talents.hide()
 	get_tree().paused = false
 
 func _process(delta):
@@ -34,3 +38,9 @@ func player_died():
 	dead = true
 	get_tree().paused = true
 	$Died_Menu.show()
+
+func _on_Talents_Button_pressed():
+	$Pause_Menu.hide()
+	$Talents.show()
+	$HUD/Energy_Bar.hide()
+	$HUD/Life_Bar.hide()
