@@ -38,9 +38,6 @@ func show_boss_flash():
 func hide_boss_flash():
 	overlay.get_node("Boss_Flash").hide()
 
-func add_points(amount):
-	main.add_points(amount)
-
 func drop_item(i):
 	pick_ups.add_child(i)
 
