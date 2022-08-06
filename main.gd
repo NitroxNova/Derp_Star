@@ -4,12 +4,14 @@ func _init():
 	randomize()
 	
 func _ready():
+	Save.load_file()
 	Connector.reset()
+	Player_Stats.increase_points(10000)
+#	Player_Stats.increase_boss_cores(20)
 	$Derp_Star.health.update_maximum()
 	$Derp_Star.health.update_current()
 	$Derp_Star.energy.update_maximum()
 	$Derp_Star.energy.update_current()
-#	$Space_Wyrm.build(12)
 
 func spawn_bumper_area(area):
 	area.connect("spawn_bumper",self,"spawn_bumper")
