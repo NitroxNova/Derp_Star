@@ -13,30 +13,36 @@ func set_talent(t):
 	update_display()
 	
 func _on_Button_pressed():
+	if mode == "upgrade":
+		upgrade()
+	elif mode == "unlock":
+		unlock()
 	emit_signal("talent_pressed",self)
 
 func upgrade():
 	Player_Stats.decrease_points(upgrade_cost())
-	talent.upgrade += 1
+	talent.increase_upgrade()
 	update_display()
 
 func unlock():
 	Player_Stats.decrease_boss_cores(unlock_cost())
-	talent.unlock += 1
+	talent.increase_unlock()
 	update_display()
 
 func update_display():
 	var counter_text = str(talent.upgrade) + " / " + str(talent.unlock)
 	$Counter.text = counter_text
 	if mode == "upgrade":
-		if Player_Stats.points < upgrade_cost():
-			turn_red_and_disable()
-		elif talent.upgrade >= talent.unlock:
+		if talent.upgrade >= talent.unlock:
 			turn_white_and_disable()
+		elif Player_Stats.points < upgrade_cost():
+			turn_red_and_disable()
 		else:
 			turn_white_and_enable()
 	elif mode == "unlock":
-		if Player_Stats.boss_cores < unlock_cost():
+		if (not talent.maximum == 0) and talent.maximum <= talent.unlock:
+			turn_white_and_disable()
+		elif Player_Stats.boss_cores < unlock_cost():
 			turn_red_and_disable()
 		else:
 			turn_white_and_enable()

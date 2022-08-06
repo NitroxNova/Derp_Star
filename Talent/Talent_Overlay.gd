@@ -1,31 +1,34 @@
 extends ColorRect
 
 var mode = "upgrade"
+var talent_display = preload("res://Talent/Display.tscn")
 
 signal mode_changed
 signal talents_changed
 
 func _ready():
-	$Talent.set_talent(Player_Stats.talent.list["max_health"])
+	for t in Player_Stats.talent.values():
+		var d = talent_display.instance()
+		d.set_talent(t)
+		$Talents.add_child(d)
+		connect("mode_changed",d,"_on_Talents_mode_changed")
+		d.connect("talent_pressed",self,"_on_Talent_talent_pressed")
+		connect("talents_changed",d,"update_display")
 	upgrade_mode()
 
 func upgrade_mode():
 	mode = "upgrade"
 	emit_signal("mode_changed",mode)
-	$HBoxContainer/Upgrade.disabled = true
-	$HBoxContainer/Unlock.disabled = false
+	$Buttons/Upgrade.disabled = true
+	$Buttons/Unlock.disabled = false
 	color = Color(0,.5,0,1)
 
 func unlock_mode():
 	mode = "unlock"
 	emit_signal("mode_changed",mode)
-	$HBoxContainer/Unlock.disabled = true
-	$HBoxContainer/Upgrade.disabled = false
+	$Buttons/Unlock.disabled = true
+	$Buttons/Upgrade.disabled = false
 	color = Color(1,.5,0,1)
 
 func _on_Talent_talent_pressed(talent):
-	if mode == "upgrade":
-		talent.upgrade()
-	elif mode == "unlock":
-		talent.unlock()
 	emit_signal("talents_changed")
