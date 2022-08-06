@@ -67,6 +67,7 @@ rotation = -2.66512
 texture = ExtResource( 1 )
 
 [node name="Muh_Lazer" parent="." instance=ExtResource( 4 )]
+visible = false
 position = Vector2( -26.3536, 2.79289 )
 
 [node name="Gravity_Beam" parent="." instance=ExtResource( 6 )]

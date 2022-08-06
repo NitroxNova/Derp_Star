@@ -3,7 +3,8 @@ extends RigidBody2D
 onready var thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
 var hotkeys = ["thruster_1","thruster_2","thruster_3","thruster_4","thruster_5"]
 var energy_locked = false
-onready var beams = [$Muh_Lazer,$Gravity_Beam]
+#onready var beams = [$Muh_Lazer,$Gravity_Beam]
+var beams = []
 var beam_index = 0
 
 export (Resource) var health
@@ -24,6 +25,29 @@ func _ready():
 	energy.connect("current_zero",self,"lock_energy")
 	energy.connect("current_changed",self,"update_energy")
 	energy.connect("maximum_changed",self,"update_max_energy")
+	
+	Player_Stats.talent["max_health"].connect("upgrade_changed",self,"max_health_talent_changed")
+	Player_Stats.talent["max_energy"].connect("upgrade_changed",self,"max_energy_talent_changed")
+	Player_Stats.talent["laser_beam"].connect("upgrade_changed",self,"laser_beam_talent_changed")
+	Player_Stats.talent["gravity_beam"].connect("upgrade_changed",self,"gravity_beam_talent_changed")
+	
+func laser_beam_talent_changed(value,increment):
+	beams.append($Muh_Lazer)
+	if beams.size() == 1:
+		$Muh_Lazer.show()
+	
+func gravity_beam_talent_changed(value,increment):
+	beams.append($Gravity_Beam)
+	if beams.size() == 1:
+		$Gravity_Beam.show()
+	
+func max_health_talent_changed(value,increment):
+	var increase = increment * 100
+	health.increase_maximum(increase)
+
+func max_energy_talent_changed(value,increment):
+	var increase = increment * 100
+	energy.increase_maximum(increase)
 
 func _process(delta):
 	if (energy.current < energy.maximum):
@@ -60,14 +84,14 @@ func _input(event):
 		change_beam(1)
 	elif event.is_action_pressed("change_beam_down"):
 		change_beam(-1)
-	elif event.is_action_pressed("energy_shield") and not energy_locked:
+	elif event.is_action_pressed("energy_shield") and not energy_locked and Player_Stats.talent["energy_shield"].upgrade > 0:
 		$Energy_Shield.enable()
 	elif event.is_action_released("energy_shield"):
 		$Energy_Shield.disable()
 	elif event.is_action_released("accelerate") or event.is_action_released("brake"):
 		for t in thrusters:
 			t.deactivate()
-	elif event is InputEventMouseButton and not energy_locked:
+	elif event is InputEventMouseButton and not energy_locked and beams.size() > 0:
 		if event.pressed:
 			beams[beam_index].activate()
 		else:
@@ -91,6 +115,7 @@ func _on_Derp_Star_body_shape_entered(body_rid, body, body_shape_index, local_sh
 		shape.take_damage(damage)
 			
 func change_beam(amount):
+	if beams.size() > 0:
 		beams[beam_index].deactivate()
 		beams[beam_index].hide()
 		beam_index = (beam_index + amount) % beams.size()
@@ -133,6 +158,3 @@ func unlock_energy():
 	energy_locked = false
 	emit_signal("unlock_energy")
 
-func _on_Talents_talents_changed():
-	var new_max = 1000 + Player_Stats.get_talent("max_health") * 100
-	health.set_maximum(new_max)
