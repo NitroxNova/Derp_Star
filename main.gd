@@ -6,7 +6,7 @@ func _init():
 func _ready():
 	Save.load_file()
 	Connector.reset()
-	Player_Stats.increase_points(10000)
+#	Player_Stats.increase_points(10000)
 #	Player_Stats.increase_boss_cores(20)
 	$Derp_Star.health.update_maximum()
 	$Derp_Star.health.update_current()
