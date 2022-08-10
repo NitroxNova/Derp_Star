@@ -6,6 +6,7 @@ var polygon
 var prev_segment
 var next_segment
 export (Resource) var health
+var faction = "enemy"
 
 
 func aura_on():

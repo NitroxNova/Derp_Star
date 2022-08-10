@@ -4,6 +4,7 @@ export var points = 0
 export var final_points = 0
 
 var attack_phase = ""
+var faction = "enemy"
 
 var body_bone = preload("res://Boss/Space_Wyrm/Body/Bone.tscn")
 var head_bone = preload("res://Boss/Space_Wyrm/Head/Bone.tscn")
@@ -137,5 +138,4 @@ func build(body_count):
 	
 func _on_Space_Wyrm_body_entered(body):
 	var damage = linear_velocity.length()/20
-	if (body.is_in_group("player") and attack_phase=="Charge"):
-		body.take_damage(damage)
+	Connector.deal_damage(self,body,damage)

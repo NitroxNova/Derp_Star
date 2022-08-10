@@ -1,6 +1,6 @@
 extends Area2D
 
-export var source : String
+export var faction : String
 var dps = 5
 var damage_shapes = []
 
@@ -27,14 +27,9 @@ func set_length(length):
 func _process(delta):
 	var damage = dps*delta
 	for body in get_overlapping_bodies():
-		if source == "player" and not body.is_in_group("player") and body.has_method("take_damage"):
-			body.take_damage(damage)
-		elif source == "boss" and (body.is_in_group("player") or body.is_in_group("Player_Shield")) :
-			body.take_damage(damage)
+		Connector.deal_damage(self,body,damage)
 	for shape in damage_shapes:
-		if is_instance_valid(shape):
-			shape.take_damage(damage)
-		else:
+		if !Connector.deal_damage(self,shape,damage):
 			damage_shapes.erase(shape)
 
 func activate():
@@ -50,8 +45,8 @@ func deactivate():
 
 func _on_Beam_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	var shape = body.shape_owner_get_owner(body_shape_index)
-	if is_instance_valid(shape) and shape.has_method("take_damage") and source == "player" and not body.is_in_group("player"):
-			damage_shapes.append(shape)
+	if is_instance_valid(shape):
+		damage_shapes.append(shape)
 
 func _on_Beam_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	if is_instance_valid(body):

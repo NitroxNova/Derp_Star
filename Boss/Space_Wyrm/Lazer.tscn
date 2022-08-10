@@ -7,7 +7,7 @@
 script = ExtResource( 2 )
 
 [node name="Beam" parent="." instance=ExtResource( 1 )]
-source = "boss"
+faction = "enemy"
 
 [node name="Deflect" parent="." instance=ExtResource( 1 )]
-source = "player"
+faction = "player"
