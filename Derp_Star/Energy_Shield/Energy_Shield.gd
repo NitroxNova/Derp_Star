@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var energy_cost = 5
+var faction = "player"
 
 signal decrease_energy
 

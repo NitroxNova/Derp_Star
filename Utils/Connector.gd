@@ -43,3 +43,10 @@ func drop_item(i):
 
 func spawn_projectile(p):
 	projectiles.add_child(p)
+
+func deal_damage(source, target, amount):
+	if is_instance_valid(target) and target.has_method("take_damage") and source.faction != target.faction:
+		target.take_damage(amount)
+		return amount
+	else:
+		return false

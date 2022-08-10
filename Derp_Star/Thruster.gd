@@ -3,6 +3,7 @@ extends Sprite
 var is_active = true
 var dps = 50
 var damage_shapes = []
+onready var faction = get_parent().faction
 
 func _ready():
 	deactivate()
@@ -25,14 +26,9 @@ func _process(delta):
 	get_parent().apply_impulse(thrust_offset,thrust_rot*delta*40)
 	var damage = dps * delta
 	for body in $Flame.get_overlapping_bodies():
-		var is_player = get_owner().is_in_group("player")
-		var body_is_player = body.is_in_group("player")
-		if body.has_method("take_damage") and (not is_player == body_is_player):
-			body.take_damage(damage)
+		Connector.deal_damage(self,body,damage)
 	for shape in damage_shapes:
-		if is_instance_valid(shape):
-			shape.take_damage(damage)
-		else:
+		if !Connector.deal_damage(self,shape,damage):
 			damage_shapes.erase(shape)
 		
 func toggle():
@@ -43,5 +39,5 @@ func toggle():
 
 func _on_Flame_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	var shape = body.shape_owner_get_owner(body_shape_index)
-	if is_instance_valid(shape) and shape.has_method("take_damage") and get_owner().is_in_group("player") and not body.is_in_group("player"):
+	if is_instance_valid(shape):
 		damage_shapes.append(shape)
