@@ -5,6 +5,7 @@ export (Resource) var health
 export (Resource) var drop_item
 export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
+var faction = "enemy"
 
 signal draw_explosion
 signal drop_item
