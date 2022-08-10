@@ -26,7 +26,7 @@ func get_talent(t_name):
 
 func add_boss_core():
 	boss_cores += 1
-	print(boss_cores)
+	Save.save_file()
 	Connector.hud.update_boss_cores(boss_cores)
 
 func increase_boss_cores(amount):
