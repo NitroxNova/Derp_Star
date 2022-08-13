@@ -6,8 +6,8 @@ func _init():
 func _ready():
 	Save.load_file()
 	Connector.reset()
-	Player_Stats.increase_points(10000)
-	Player_Stats.increase_boss_cores(20)
+#	Player_Stats.increase_points(10000)
+#	Player_Stats.increase_boss_cores(20)
 	Player_Stats.talent["laser_beam"].increase_upgrade()
 	Player_Stats.talent["energy_shield"].increase_upgrade()
 	Player_Stats.talent["gravity_beam"].increase_upgrade()
@@ -16,22 +16,5 @@ func _ready():
 	$Derp_Star.health.update_current()
 	$Derp_Star.energy.update_maximum()
 	$Derp_Star.energy.update_current()
-
-func spawn_bumper_area(area):
-	area.connect("spawn_bumper",self,"spawn_bumper")
-	$Dimension/Bumper_List.add_child(area)
-	$Dimension/Bumper_List.update_bumper_count()
-
-func spawn_bumper(bumper):
-	bumper.connect("draw_explosion",self,"draw_explosion")
-	bumper.connect("drop_item",self,"drop_item")
-	bumper.connect("spawn_bumper",self,"spawn_bumper")
-	$Dimension/Bumper_List.add_child(bumper)
-	$Dimension/Bumper_List.update_bumper_count()
-
-func drop_item(i):
-	$Dimension/Pick_Ups.add_child(i)
-
-func draw_explosion(e):
-	$Dimension/Explosions.add_child(e)
-	$Dimension/Bumper_List.update_bumper_count()
+	
+#	Connector.load_dimension(1)
