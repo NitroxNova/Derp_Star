@@ -8,13 +8,8 @@ const SPAWN_SIZE = 4000
 const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
 
 var count = 0
-var striped_bumper = preload("res://Bumper_Ships/Stripes/Bumper.tscn")
-var shooting_star = preload("res://Bumper_Ships/Shooting_Star/Bumper.tscn")
-var biodome = preload("res://Bumper_Ships/Bio_Dome/Colony.tscn")
-var bumper_scenes = [striped_bumper,shooting_star,biodome]
+export var bumper_scenes = []
 var spawn_area_scene = preload("res://Bumper_Ships/Spawn_Area.tscn")
-
-signal spawn_bumper
 
 func update_bumper_count():
 	count = get_child_count()
@@ -27,7 +22,7 @@ func spawn_bumper():
 	spawn_area.position = spawn_location
 	var bumper = bumper_scenes[randi() % bumper_scenes.size()].instance()
 	spawn_area.set_bumper(bumper)
-	emit_signal("spawn_bumper",spawn_area)
+	Connector.spawn_bumper(spawn_area)
 
 func generate_coords():
 	var min_coord = Connector.derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)

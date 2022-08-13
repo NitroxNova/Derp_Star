@@ -1,7 +1,5 @@
 extends Node2D
 
-signal spawn_bumper
-
 const size = 500
 const min_distance = 200
 var dome_count = randi() % 4 + 4
@@ -32,10 +30,10 @@ func build():
 func draw():
 	for tube in tube_list:
 		tube.position += position
-		emit_signal("spawn_bumper",tube)
+		Connector.spawn_bumper(tube)
 	for dome in dome_list:
 		dome.position += position
-		emit_signal("spawn_bumper",dome)
+		Connector.spawn_bumper(dome)
 	queue_free()
 	
 func make_domes():

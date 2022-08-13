@@ -21,6 +21,8 @@ can_sleep = false
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 1 )
+speed = 700.0
+damage = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -22, 0 )

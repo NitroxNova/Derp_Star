@@ -7,9 +7,6 @@ export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 var faction = "enemy"
 
-signal draw_explosion
-signal drop_item
-
 func get_collision_shape():
 	return $Collision_Shape.duplicate()
 
@@ -39,7 +36,7 @@ func drop_item():
 	if drop_item:
 		var i = drop_item.instance()
 		i.transform = global_transform
-		emit_signal("drop_item",i)
+		Connector.drop_item(i)
 
 func explode():
 	var e = explosion.instance()
@@ -47,7 +44,7 @@ func explode():
 	e.bumper_texture = $Base_Sprite.texture
 	e.height = $Base_Sprite.texture.get_height()
 	e.width = $Base_Sprite.texture.get_width()
-	emit_signal("draw_explosion",e)
+	Connector.draw_explosion(e)
 	
 func static_on():
 	$Static.emitting = true

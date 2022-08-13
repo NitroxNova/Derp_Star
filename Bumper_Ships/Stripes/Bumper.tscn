@@ -55,7 +55,6 @@ margin_right = 102.746
 margin_bottom = -78.1189
 
 [node name="Static" parent="." instance=ExtResource( 6 )]
-emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

@@ -3,8 +3,6 @@ extends Area2D
 var bumper
 var frames = 1
 
-signal spawn_bumper
-
 func set_bumper(b):
 	bumper = b
 	bumper.transform = transform
@@ -14,7 +12,7 @@ func set_bumper(b):
 func spawn():
 	var overlaps = get_overlapping_bodies().size() + get_overlapping_areas().size()
 	if overlaps == 0:
-		emit_signal("spawn_bumper",bumper)
+		Connector.spawn_bumper(bumper)
 	queue_free()
 
 func _process(delta):
