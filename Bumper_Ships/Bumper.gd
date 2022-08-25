@@ -38,12 +38,17 @@ func drop_item():
 		i.transform = global_transform
 		Connector.drop_item(i)
 
+func get_base_sprite():
+	return $Base_Sprite
+
 func explode():
 	var e = explosion.instance()
 	e.transform = global_transform
-	e.bumper_texture = $Base_Sprite.texture
-	e.height = $Base_Sprite.texture.get_height()
-	e.width = $Base_Sprite.texture.get_width()
+	var bs = get_base_sprite()
+	e.bumper_texture = bs.texture
+	e.height = bs.texture.get_height()
+	e.width = bs.texture.get_width()
+	e.scale = bs.global_scale
 	Connector.draw_explosion(e)
 	
 func static_on():

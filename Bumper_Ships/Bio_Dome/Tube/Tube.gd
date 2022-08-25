@@ -26,4 +26,4 @@ func explode():
 	e.bumper_texture = $Polygon2D.texture
 	e.width = $Polygon2D.polygon[1].x
 	e.height = 30
-	emit_signal("draw_explosion",e)
+	Connector.draw_explosion(e)
