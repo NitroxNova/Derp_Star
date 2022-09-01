@@ -11,8 +11,8 @@ var hospital = preload("res://Bumper_Ships/Bio_Dome/Hospital/Dome.tscn")
 var bigtree = preload("res://Bumper_Ships/Bio_Dome/Tree/Dome.tscn")
 var dome_scenes = [reactor,hospital,housing,bigtree,housing,bigtree,housing]
 	
-func _ready():
-	build()
+
+func _on_Colony_tree_entered():
 	draw()
 
 func reset():
@@ -21,7 +21,16 @@ func reset():
 	build()
 
 func get_collision_shapes():
-	return [$CollisionShape2D.duplicate()]
+	var shapes = []
+	for tube in tube_list:
+		var tube_shape = tube.get_collision_shape()
+		tube_shape.position += position
+		shapes.append(tube_shape)
+	for dome in dome_list:
+		var dome_shape = dome.get_collision_shape()
+		dome_shape.position += position
+		shapes.append(dome_shape)
+	return shapes
 	
 func build():
 	if not make_domes():
@@ -101,3 +110,5 @@ func is_valid_coords(pos):
 		if dome.position.distance_to(pos) < min_distance:
 			return false
 	return true
+
+

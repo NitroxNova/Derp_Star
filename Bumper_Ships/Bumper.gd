@@ -7,8 +7,14 @@ export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 var faction = "enemy"
 
+func build():
+	rotation = randf() * 2 * PI
+
 func get_collision_shape():
-	return $Collision_Shape.duplicate()
+	var shape = $Collision_Shape.duplicate()
+	shape.rotation = rotation
+	shape.position += position
+	return shape
 
 func get_collision_shapes():
 	return [get_collision_shape()]

@@ -3,9 +3,9 @@ extends Bumper_Ship
 var asteroid = load("res://Bumper_Ships/Asteroid/Bumper.tscn")
 var size = 1.0
 
-func _ready():
-	if size == 1.0:
-		set_size(randf() * .8 + .2)
+func build():
+	.build()
+	set_size(randf() * .8 + .2)
 
 func died():
 	if size > .2:

@@ -1,8 +1,5 @@
 extends Bumper_Ship
 
-func _init():
-	rotation = randf() * 2 * PI
-
 func _ready():
 	._ready()
 	$Thruster.activate()
