@@ -52,7 +52,6 @@ func spawn_projectile(p):
 	
 func spawn_bumper(b):
 	bumper_list.add_child(b)
-	bumper_list.update_bumper_count()
 
 func deal_damage(source, target, amount):
 	if is_instance_valid(target) and target.has_method("take_damage") and source.faction != target.faction:
