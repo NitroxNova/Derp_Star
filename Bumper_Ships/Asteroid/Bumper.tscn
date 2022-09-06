@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Bumper_Ships/Asteroid/Bumper.gd" type="Script" id=1]
 [ext_resource path="res://Bumper_Ships/Asteroid/Variant/rock-576685_1280.png" type="Texture" id=2]
 [ext_resource path="res://Bumper_Ships/Health_Node.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=4]
 [ext_resource path="res://Derp_Star/Laser/Static.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Pick_Ups/Ore_Chunk/Cobalt.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Pick_Ups/Ore_Chunk/Uranium.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Pick_Ups/Ore_Chunk/Gold.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
@@ -45,6 +48,7 @@ scale = 0.35
 script = ExtResource( 1 )
 health = SubResource( 1 )
 points = 30
+ore_list = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ]
 
 [node name="Collision_Shape" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 55, -149.4, 112, -129.4, 112, -128.1, 132, -116.1, 132, -113.5, 143, -94.5, 143, -91.3, 150, -67.2, 150, -6.5, 149.8, -5, 148.5, -5, 138.5, 33, 137.1, 33, 118.2, 66, 116.9, 66, 101.9, 83, 99.6, 83, 78.6, 98, 74, 98, 50, 103.5, 50, 104.4, -6, 124.4, -6, 125.2, -55.5, 150, -91, 150, -93, 149.8, -93, 148.4, -112, 141.4, -112, 140.1, -125, 132.1, -125, 130.8, -139, 116.8, -139, 114.5, -149, 93.5, -149, 86, -150, 76, -150, 48.5, -144.7, 12, -143.6, 12, -132.6, -37, -131.4, -37, -117.4, -78, -116.3, -78, -107.3, -98, -106.1, -98, -95.1, -115, -93.8, -115, -86.8, -122, -41, -122, 3.5, -148, 7.89999, -148, 16, -150, 55, -150 )

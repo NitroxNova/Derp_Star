@@ -1,6 +1,7 @@
 extends Bumper_Ship
 
 var asteroid = load("res://Bumper_Ships/Asteroid/Bumper.tscn")
+export var ore_list = []
 var size = 1.0
 
 func build():
@@ -12,11 +13,18 @@ func died():
 		if (round(randf())):
 			spawn_chunk($Scalar/Split_1,size/2)
 			spawn_chunk($Scalar/Split_4,size/2)
+			spawn_ore(size/2)
 		else:
 			spawn_chunk($Scalar/Split_1,size/3)
 			spawn_chunk($Scalar/Split_2,size/3)
 			spawn_chunk($Scalar/Split_3,size/3)
 	.died()
+
+func spawn_ore(s):
+	var ore = ore_list[randi() % ore_list.size()].instance()
+	ore.position = global_position
+	ore.set_size(s)
+	Connector.drop_item(ore)
 
 func get_base_sprite():
 	return $Scalar/Base_Sprite
