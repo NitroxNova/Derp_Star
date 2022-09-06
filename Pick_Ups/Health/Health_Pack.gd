@@ -1,9 +1,4 @@
-extends RigidBody2D
+extends Dropped_Item
 
-func _on_Area2D_body_entered(body):
+func on_pickup(body):
 	body.add_health(10)
-	queue_free()
-
-
-func _on_Timer_timeout():
-	queue_free()
