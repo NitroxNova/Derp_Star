@@ -16,7 +16,8 @@ func shoot():
 	b.transform = $Laser_Pointer.global_transform
 	Connector.spawn_projectile(b)
 
-func _on_Shooting_Star_body_entered(body):
+
+func _on_Bumper_body_entered(body):
 	var multiplier = MAX_SPEED/linear_velocity.length()
 	linear_velocity *= multiplier
 	multiplier = MAX_ROTATE/abs(angular_velocity)

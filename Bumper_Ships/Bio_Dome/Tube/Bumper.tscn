@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Bumper_Ships/Bumper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bumper_Ships/Bio_Dome/Tube/Tube.gd" type="Script" id=2]
+[ext_resource path="res://Bumper_Ships/Bio_Dome/Tube/biotube.png" type="Texture" id=3]
+
+[sub_resource type="ParticlesMaterial" id=6]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 16, 15, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.2
+
+[sub_resource type="RectangleShape2D" id=7]
+resource_local_to_scene = true
+extents = Vector2( 16, 15 )
+
+[node name="Bumper" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+starting_health = 50
+points = 8
+
+[node name="Static" parent="." index="0"]
+position = Vector2( 0, 0 )
+amount = 20
+process_material = SubResource( 6 )
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 7 )
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="3"]
+position = Vector2( -16, -15 )
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 0, 0, 32, 0, 32, 30, 0, 30 )

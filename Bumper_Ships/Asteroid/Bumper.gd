@@ -35,8 +35,9 @@ func set_size(s):
 	$Collision_Shape.scale = scale_vec
 	$Scalar.scale = scale_vec
 	$Health_Node/Node2D/ProgressBar.rect_position.y *= sqrt(s)
-	health.set_maximum(health.maximum*s)
-	health.set_current(health.maximum)
+	$Static.scale = scale_vec
+	$Static.position *= scale_vec
+	starting_health *= s
 	points = ceil(points*s)
 
 func spawn_chunk(loc,s):
@@ -46,9 +47,3 @@ func spawn_chunk(loc,s):
 	var vel = (a.position - global_position) * 300
 	a.linear_velocity = vel
 	Connector.spawn_bumper(a)
-
-func static_on():
-	$Scalar/Static.emitting = true
-	
-func static_off():
-	$Scalar/Static.emitting = false

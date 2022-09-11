@@ -1,11 +1,15 @@
 class_name Bumper_Ship
 extends RigidBody2D
 
-export (Resource) var health
+export var starting_health : int
+var health : Capped_Value
 export (Resource) var drop_item
 export (int) var points
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 var faction = "enemy"
+
+signal update_current_health
+signal update_maximum_health
 
 func build():
 	rotation = randf() * 2 * PI
@@ -20,16 +24,17 @@ func get_collision_shapes():
 	return [get_collision_shape()]
 
 func _ready():
+	health = Capped_Value.new(starting_health,starting_health)
 	health.connect("current_zero",self,"died")
-	$Health_Node/Node2D/ProgressBar.value = health.current
-	$Health_Node/Node2D/ProgressBar.max_value = health.maximum
+	emit_signal("update_maximum_health",health.maximum)
+	emit_signal("update_current_health",health.current)
 	add_to_group("bumper")
 	static_off()
 	$Health_Node/Node2D/ProgressBar.hide()
 
 func take_damage(amount):
 	health.decrease_current(amount)
-	$Health_Node/Node2D/ProgressBar.value = health.current
+	emit_signal("update_current_health",health.current)
 	$Health_Node/Node2D/ProgressBar.show()
 	
 func died():
@@ -62,3 +67,7 @@ func static_on():
 	
 func static_off():
 	$Static.emitting = false
+
+
+func _on_Bumper_a():
+	pass # Replace with function body.

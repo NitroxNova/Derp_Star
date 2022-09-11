@@ -1,6 +1,6 @@
 extends Bumper_Ship
 
-var tube_scene = preload("res://Bumper_Ships/Bio_Dome/Tube/Tube.tscn")
+var tube_scene = preload("res://Bumper_Ships/Bio_Dome/Tube/Bumper.tscn")
 var connected_tubes = []
 
 func _ready():
