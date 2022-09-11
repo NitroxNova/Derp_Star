@@ -8,6 +8,10 @@ signal current_changed
 signal current_zero
 signal maximum_changed
 
+func _init(c=current,m=maximum):
+	set_maximum(m)
+	set_current(c)
+
 func set_current(amount):
 	if current > 0 and amount <= 0:
 		emit_signal("current_zero")
