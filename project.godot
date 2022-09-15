@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Biome",
+"language": "GDScript",
+"path": "res://Dimension/Biome.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Bumper_Ship",
 "language": "GDScript",
@@ -55,6 +60,7 @@ _global_script_classes=[ {
 "path": "res://Boss/Space_Wyrm/Segment.gd"
 } ]
 _global_script_class_icons={
+"Biome": "",
 "Bumper_Ship": "",
 "Capped_Value": "",
 "Dictionary_Resource": "",
@@ -74,6 +80,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+RNG="*res://Utils/RNG.gd"
 Connector="*res://Utils/Connector.gd"
 Player_Stats="*res://Utils/Player_Stats.gd"
 Save="*res://Utils/Save.gd"
