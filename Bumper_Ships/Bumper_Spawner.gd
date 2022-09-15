@@ -7,15 +7,31 @@ const INNER_Y = 1080/2 + 100
 const SPAWN_SIZE = 4000
 const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
 
-export var bumper_scenes = []
+export var biome_config = []
+var biome_list = []
+
+func _ready():
+	for i in biome_config:
+		var biome = i.new()
+		biome.reset_bumper()
+		biome_list.append(biome)
+		
+func get_biome(coords):
+	for biome in biome_list:
+		if biome.is_valid_location(coords):
+			biome.current_bumper.position = coords
+			return biome
 
 func spawn_bumper():
-	var bumper = bumper_scenes[randi() % bumper_scenes.size()].instance()
-	bumper.build()
-	bumper.position = generate_coords()
-	while not is_valid_spawn_location(bumper):
-		bumper.position = generate_coords()
-	Connector.spawn_bumper(bumper)
+	var success = false
+	while not success:
+		var coords = generate_coords()
+		var biome = get_biome(coords)
+		var bumper = biome.current_bumper
+		if is_valid_spawn_location(bumper):
+			success = true
+			Connector.spawn_bumper(bumper)
+			biome.reset_bumper()
 
 func generate_coords():
 	var min_coord = Connector.derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
