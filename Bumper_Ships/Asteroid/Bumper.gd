@@ -6,7 +6,6 @@ var size = 1.0
 
 func build():
 	.build()
-	set_size(randf() * .8 + .2)
 
 func died():
 	if size > .2:
@@ -41,9 +40,15 @@ func set_size(s):
 	points = ceil(points*s)
 
 func spawn_chunk(loc,s):
-	var a = asteroid.instance()
+	var builder = Asteroid_Builder.new()
+	var a = builder.build(s,$Scalar/Base_Sprite.material.get("shader_param/gradient").gradient)
 	a.position = loc.global_position
 	a.set_size(s)
-	var vel = (a.position - global_position) * 300
+	var vel = (a.position - global_position) * 5
 	a.linear_velocity = vel
 	Connector.spawn_bumper(a)
+
+
+func _on_Bumper_body_entered(body):
+	var damage = linear_velocity.length() * size * .2
+	Connector.deal_damage(self,body,damage)
