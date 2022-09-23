@@ -1,25 +1,16 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" type="Texture" id=1]
+[ext_resource path="res://Dimension/Derp_Space/Dimension.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" type="Texture" id=3]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" type="Texture" id=4]
 [ext_resource path="res://overlay.gd" type="Script" id=5]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" type="Texture" id=6]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" type="Texture" id=7]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" type="Texture" id=8]
 [ext_resource path="res://fonts/Timeburner-xJB8.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://fonts/Hacked-KerX.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://main.gd" type="Script" id=11]
-[ext_resource path="res://Bumper_Ships/Bumper_Spawner.gd" type="Script" id=12]
 [ext_resource path="res://fonts/TimeburnerBold-peGR.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://Boss/Boss_Spawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://HUD.gd" type="Script" id=15]
 [ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=16]
 [ext_resource path="res://Pick_Ups/Boss_Core/boss_core.png" type="Texture" id=17]
 [ext_resource path="res://Talent/Talent_Overlay.gd" type="Script" id=18]
-[ext_resource path="res://Dimension/Derp_Space/default_biome.gd" type="Script" id=19]
-[ext_resource path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" type="Script" id=20]
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
@@ -342,60 +333,7 @@ margin_bottom = 199.0
 custom_fonts/font = SubResource( 10 )
 text = "Quit"
 
-[node name="Dimension" type="Node2D" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Dimension"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
-motion_mirroring = Vector2( 2000, 2000 )
-
-[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 3 )
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
-motion_mirroring = Vector2( 2000, 2000 )
-
-[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource( 1 )
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Dimension/ParallaxBackground"]
-motion_scale = Vector2( 0.7, 0.7 )
-motion_mirroring = Vector2( 4000, 4000 )
-
-[node name="Sprite" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource( 4 )
-centered = false
-
-[node name="Sprite2" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 2000, 0 )
-texture = ExtResource( 6 )
-centered = false
-
-[node name="Sprite3" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 2000, 2000 )
-texture = ExtResource( 8 )
-centered = false
-
-[node name="Sprite4" type="Sprite" parent="Dimension/ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 0, 2000 )
-texture = ExtResource( 7 )
-centered = false
-
-[node name="Explosions" type="Node2D" parent="Dimension"]
-
-[node name="Pick_Ups" type="Node2D" parent="Dimension"]
-
-[node name="Projectiles" type="Node2D" parent="Dimension"]
-
-[node name="Bumper_List" type="Node2D" parent="Dimension"]
-script = ExtResource( 12 )
-biome_config = [ ExtResource( 20 ), ExtResource( 19 ) ]
-
-[node name="Boss" parent="Dimension" instance=ExtResource( 14 )]
+[node name="Dimension" parent="." instance=ExtResource( 1 )]
 
 [connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]

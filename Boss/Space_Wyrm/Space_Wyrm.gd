@@ -38,7 +38,7 @@ func spawn_player_portal():
 	port_1.position = global_position
 	port_2.position = global_position
 	port_1.dimension_id = 0
-	port_2.dimension_id = 1
+	port_2.dimension_id = RNG.randi_range(1,2)
 	Connector.dimension_list[port_1.dimension_id].add_child(port_1)
 	Connector.dimension_list[port_2.dimension_id].add_child(port_2)
 	

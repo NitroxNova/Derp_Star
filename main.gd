@@ -14,4 +14,4 @@ func _ready():
 	$Derp_Star.energy.update_maximum()
 	$Derp_Star.energy.update_current()
 	
-#	Connector.load_dimension(1)
+#	Connector.load_dimension(2)
