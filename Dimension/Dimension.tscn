@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Bumper_Ships/Bumper_Spawner.gd" type="Script" id=1]
+
+[node name="Dimension" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 2000, 2000 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+centered = false
+
+[node name="Explosions" type="Node2D" parent="."]
+
+[node name="Pick_Ups" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Bumper_List" type="Node2D" parent="."]
+script = ExtResource( 1 )

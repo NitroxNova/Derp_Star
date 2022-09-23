@@ -1,29 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Dimension/Olympus/Clouds.png" type="Texture" id=1]
-[ext_resource path="res://Bumper_Ships/Bumper_Spawner.gd" type="Script" id=2]
+[ext_resource path="res://Dimension/Dimension.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dimension/Olympus/default_biome.gd" type="Script" id=3]
 
-[node name="Dimension" type="Node2D"]
+[node name="Dimension" instance=ExtResource( 2 )]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
-motion_mirroring = Vector2( 2000, 2000 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 texture = ExtResource( 1 )
-centered = false
 
-[node name="Explosions" type="Node2D" parent="."]
-
-[node name="Pick_Ups" type="Node2D" parent="."]
-
-[node name="Projectiles" type="Node2D" parent="."]
-
-[node name="Bumper_List" type="Node2D" parent="."]
-script = ExtResource( 2 )
+[node name="Bumper_List" parent="." index="4"]
 biome_config = [ ExtResource( 3 ) ]
 
-[node name="Boss" type="Node2D" parent="."]
+[node name="Boss" type="Node2D" parent="." index="5"]
