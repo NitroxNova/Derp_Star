@@ -105,12 +105,12 @@ func _input(event):
 				thrusters[i].deactivate()	
 			
 func _on_Derp_Star_body_entered(body):
-	var damage = linear_velocity.length()/10
+	var damage = linear_velocity.length()/20
 	Connector.deal_damage(self,body,damage)
 
 func _on_Derp_Star_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	var shape = body.shape_owner_get_owner(body_shape_index)
-	var damage = linear_velocity.length()/10
+	var damage = linear_velocity.length()/20
 	Connector.deal_damage(self,shape,damage)
 			
 func change_beam(amount):
