@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var space_state = get_world_2d().direct_space_state
+
 func _ready():
 	deactivate()
 
@@ -13,7 +15,6 @@ func deactivate():
 	set_physics_process(false)
 
 func _physics_process(delta):
-	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_ray(global_position, $Beam/Endpoint.global_position, [], 4)
 	if result:
 		var length = global_position.distance_to(result.position)
