@@ -32,3 +32,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	for body in $Bite_Area.get_overlapping_bodies():
 		if body.faction != faction and not $AnimationPlayer.is_playing():
 			$AnimationPlayer.play("Chomp")
+
