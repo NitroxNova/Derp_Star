@@ -13,9 +13,10 @@ func _init(c=current,m=maximum):
 	set_current(c)
 
 func set_current(amount):
-	if current > 0 and amount <= 0:
-		emit_signal("current_zero")
+	var prev = current
 	current = min(amount,maximum)
+	if prev > 0 and current <= 0:
+		emit_signal("current_zero")
 	update_current()
 	
 func update_current():
