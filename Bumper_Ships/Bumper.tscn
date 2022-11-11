@@ -48,7 +48,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="Bumper" type="RigidBody2D"]
+[node name="Bumper" type="RigidBody2D" groups=["bumper"]]
 physics_material_override = SubResource( 4 )
 script = ExtResource( 1 )
 
