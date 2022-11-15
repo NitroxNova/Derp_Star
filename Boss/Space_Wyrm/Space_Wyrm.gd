@@ -22,9 +22,7 @@ func died():
 	var wyrm_count = get_tree().get_nodes_in_group("Space_Wyrm").size()
 	if (wyrm_count == 1):
 		Player_Stats.increase_points(final_points)
-		var boss_core = load("res://Pick_Ups/Boss_Core/Boss_Core.tscn").instance()
-		boss_core.position = $Head.global_position
-		Connector.drop_item(boss_core)
+		Connector.drop_boss_core($Head.global_position)
 		spawn_player_portal()
 	else:
 		Player_Stats.increase_points(points)

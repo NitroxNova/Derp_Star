@@ -48,6 +48,11 @@ func hide_boss_flash():
 func drop_item(i):
 	pick_ups.add_child(i)
 
+func drop_boss_core(pos):
+	var boss_core = load("res://Pick_Ups/Boss_Core/Boss_Core.tscn").instance()
+	boss_core.position = pos
+	drop_item(boss_core)
+
 func spawn_projectile(p):
 	projectiles.add_child(p)
 	
