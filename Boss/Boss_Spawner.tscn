@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Boss/Boss_Spawner.gd" type="Script" id=1]
+[ext_resource path="res://Boss/Black_Hole/Black_Hole.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Boss/Space_Wyrm/Intro_Scene.tscn" type="PackedScene" id=3]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource( 1 )
+boss_list = [ ExtResource( 3 ), ExtResource( 2 ) ]
 
-[node name="Wyrm_Timer" type="Timer" parent="."]
-wait_time = 60.0
+[node name="Spawn_Timer" type="Timer" parent="."]
+wait_time = 30.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Wyrm_Timer" to="." method="_on_Wyrm_Timer_timeout"]
+[connection signal="timeout" from="Spawn_Timer" to="." method="spawn_boss"]

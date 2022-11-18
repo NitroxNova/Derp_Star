@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Boss/Space_Wyrm/Intro_Scene.gd" type="Script" id=1]
+[ext_resource path="res://Boss/Space_Wyrm/Wyrmhole/Wyrmhole.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/Boss_Flash_Config.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.104265, 0.563981, 1 )
+colors = PoolColorArray( 0.309662, 0, 0.542969, 1, 0.883179, 0.320312, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+text = "Space
+Wyrm"
+gradient = SubResource( 1 )
+
+[node name="Space_Wyrm_Intro" type="Node2D"]
+script = ExtResource( 1 )
+flash_config = SubResource( 2 )
+
+[node name="Wyrmhole" parent="." instance=ExtResource( 2 )]
+
+[connection signal="closed" from="Wyrmhole" to="." method="wyrmhole_closed"]
+[connection signal="opened" from="Wyrmhole" to="." method="spawn_wyrm"]

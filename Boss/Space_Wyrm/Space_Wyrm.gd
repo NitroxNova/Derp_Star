@@ -27,7 +27,8 @@ func died():
 	else:
 		Player_Stats.increase_points(points)
 	queue_free()
-
+	get_parent().boss_defeated()
+	
 func spawn_player_portal():
 	var port_1 = player_portal.instance()
 	var port_2 = player_portal.instance()

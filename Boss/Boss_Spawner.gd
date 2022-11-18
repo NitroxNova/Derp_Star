@@ -1,16 +1,11 @@
 extends Node2D
+export var boss_list = []
 
-func _on_Wyrm_Timer_timeout():
-	var wyrmhole = load("res://Boss/Space_Wyrm/Wyrmhole/Wyrmhole.tscn").instance()
-	wyrmhole.position = Connector.derp_star.global_position
-	Connector.draw_explosion(wyrmhole)
-	wyrmhole.connect("opened",self,"spawn_wyrm")
-	Connector.show_boss_flash()
+func spawn_boss():
+	var boss = RNG.array_rand(boss_list).instance()
+	boss.position = Connector.derp_star.global_position
+	add_child(boss)
+	Connector.overlay.play_boss_flash(boss.flash_config)
 
-func spawn_wyrm(wyrmhole):
-	var wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn").instance()
-	wyrm.position = wyrmhole.global_position
-	add_child(wyrm)
-	wyrm.build(2)
-	wyrmhole.close()
-	Connector.hide_boss_flash()
+func boss_defeated():
+	$Spawn_Timer.start()

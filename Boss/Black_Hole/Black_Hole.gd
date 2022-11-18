@@ -1,5 +1,6 @@
 extends Area2D
 
+export var flash_config : Resource
 var faction = "environment"
 var dps : float = 30
 var size : float = 1
@@ -75,8 +76,8 @@ func spawn_item():
 
 
 func _on_Light_Timer_timeout():
-		queue_free()
-
+	queue_free()
+	get_parent().boss_defeated()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	state = GROW
