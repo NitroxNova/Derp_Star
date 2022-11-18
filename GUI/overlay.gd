@@ -24,6 +24,11 @@ func _process(delta):
 		else:
 			pause()
 
+func play_boss_flash(config:Boss_Flash_Config):
+	$Boss/Flash.material.get("shader_param/gradient").gradient = config.gradient
+	$Boss/Label.text = config.text
+	$Boss/AnimationPlayer.play("Flash")
+
 func _on_Resume_Button_pressed():
 	unpause()
 
