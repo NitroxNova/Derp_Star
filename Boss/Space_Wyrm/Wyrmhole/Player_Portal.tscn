@@ -83,7 +83,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 144.679
+radius = 111.041
 
 [node name="Wyrmhole" type="Sprite"]
 rotation = -6.28319

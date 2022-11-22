@@ -4,7 +4,7 @@ signal opened
 
 var dimension_id
 var linked_portal
-var disabled
+var disabled = true
 
 func close():
 	$Resize_Player.play("Close")
@@ -12,6 +12,7 @@ func close():
 func _on_Resize_Player_animation_finished(anim_name):
 	if anim_name == "Open":
 		emit_signal("opened",self)
+		disabled = false
 	elif anim_name == "Close":
 		queue_free()
 

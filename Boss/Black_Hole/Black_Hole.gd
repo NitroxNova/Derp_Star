@@ -82,3 +82,6 @@ func _on_Light_Timer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	state = GROW
 	$CollisionShape2D.disabled = false
+
+func _on_Tween_tree_entered():
+	$Tween.resume_all()

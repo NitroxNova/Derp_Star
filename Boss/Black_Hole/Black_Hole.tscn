@@ -141,6 +141,7 @@ autoplay = "Fade_In"
 anims/Fade_In = SubResource( 24 )
 anims/RESET = SubResource( 25 )
 
+[connection signal="tree_entered" from="Tween" to="." method="_on_Tween_tree_entered"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="Item_Timer" to="." method="spawn_item"]
 [connection signal="timeout" from="Light_Timer" to="." method="_on_Light_Timer_timeout"]
