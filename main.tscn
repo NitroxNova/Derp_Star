@@ -153,7 +153,6 @@ pause_mode = 1
 script = ExtResource( 11 )
 
 [node name="Derp_Star" parent="." instance=ExtResource( 2 )]
-position = Vector2( 851, 497 )
 health = SubResource( 1 )
 energy = SubResource( 2 )
 
