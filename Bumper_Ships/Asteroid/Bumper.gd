@@ -23,7 +23,7 @@ func spawn_ore(s):
 	var ore = ore_list[randi() % ore_list.size()].instance()
 	ore.position = global_position
 	ore.set_size(s)
-	Connector.drop_item(ore)
+	emit_signal("spawn_item",ore)
 
 func get_base_sprite():
 	return $Scalar/Base_Sprite
@@ -46,7 +46,7 @@ func spawn_chunk(loc,s):
 	a.set_size(s)
 	var vel = (a.position - global_position) * 5
 	a.linear_velocity = vel
-	Connector.spawn_bumper(a)
+	emit_signal("spawn_bumper",a)
 
 
 func _on_Bumper_body_entered(body):

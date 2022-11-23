@@ -19,4 +19,4 @@ func _on_Lightning_Timer_timeout():
 	$Lightning_Rod.rotate(rot)
 	var l = lightning.instance()
 	l.transform = $Lightning_Rod/Spawn.global_transform
-	Connector.spawn_projectile(l)
+	emit_signal("spawn_projectile",l)

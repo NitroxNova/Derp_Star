@@ -10,6 +10,8 @@ const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
 export var biome_config = []
 var biome_list = []
 
+signal spawn_bumper
+
 func _ready():
 	for i in biome_config:
 		var biome = i.new()
@@ -22,7 +24,7 @@ func get_biome(coords):
 			biome.current_bumper.position = coords
 			return biome
 
-func spawn_bumper():
+func generate_bumper():
 	var success = false
 	while not success:
 		var coords = generate_coords()
@@ -30,7 +32,7 @@ func spawn_bumper():
 		var bumper = biome.current_bumper
 		if is_valid_spawn_location(bumper):
 			success = true
-			Connector.spawn_bumper(bumper)
+			emit_signal("spawn_bumper",bumper)
 			biome.reset_bumper()
 
 func generate_coords():
@@ -72,7 +74,7 @@ func is_off_screen(loc):
 
 func _process(delta):
 	while get_child_count() < MAX_COUNT:
-		spawn_bumper()
+		generate_bumper()
 	despawn_random(20)
 
 func despawn_random(n=1):

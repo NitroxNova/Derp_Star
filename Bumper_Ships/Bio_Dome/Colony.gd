@@ -9,8 +9,9 @@ var housing = preload("res://Bumper_Ships/Bio_Dome/Housing/Dome.tscn")
 var reactor = preload("res://Bumper_Ships/Bio_Dome/Reactor/Dome.tscn")
 var hospital = preload("res://Bumper_Ships/Bio_Dome/Hospital/Dome.tscn")
 var bigtree = preload("res://Bumper_Ships/Bio_Dome/Tree/Dome.tscn")
-var dome_scenes = [reactor,hospital,housing,bigtree,housing,bigtree,housing]
-	
+var dome_scenes = [reactor,hospital,housing,bigtree,housing,bigtree,housing]	
+
+signal spawn_bumper
 
 func _on_Colony_tree_entered():
 	draw()
@@ -39,10 +40,10 @@ func build():
 func draw():
 	for tube in tube_list:
 		tube.position += position
-		Connector.spawn_bumper(tube)
+		emit_signal("spawn_bumper",tube)
 	for dome in dome_list:
 		dome.position += position
-		Connector.spawn_bumper(dome)
+		emit_signal("spawn_bumper",dome)
 	queue_free()
 	
 func make_domes():

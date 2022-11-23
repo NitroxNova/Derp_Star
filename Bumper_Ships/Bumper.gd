@@ -10,6 +10,10 @@ var faction = "enemy"
 
 signal update_current_health
 signal update_maximum_health
+signal spawn_bumper
+signal spawn_explosion
+signal spawn_item
+signal spawn_projectile
 
 func build():
 	rotation = randf() * 2 * PI
@@ -47,7 +51,7 @@ func drop_item():
 	if drop_item:
 		var i = drop_item.instance()
 		i.transform = global_transform
-		Connector.drop_item(i)
+		emit_signal("spawn_item",i)
 
 func get_base_sprite():
 	return $Base_Sprite
@@ -60,7 +64,7 @@ func explode():
 	e.height = bs.texture.get_height()
 	e.width = bs.texture.get_width()
 	e.scale = bs.global_scale
-	Connector.draw_explosion(e)
+	emit_signal("spawn_explosion",e)
 	
 func static_on():
 	$Static.emitting = true
@@ -68,6 +72,3 @@ func static_on():
 func static_off():
 	$Static.emitting = false
 
-
-func _on_Bumper_a():
-	pass # Replace with function body.

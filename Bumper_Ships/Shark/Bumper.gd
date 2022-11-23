@@ -16,7 +16,7 @@ func explode():
 	e.bumper_texture = $Polygon2D.texture
 	e.width = 400
 	e.height = 162
-	Connector.draw_explosion(e)
+	emit_signal("spawn_explosion",e)
 
 
 func _on_Bite_Area_body_entered(body):

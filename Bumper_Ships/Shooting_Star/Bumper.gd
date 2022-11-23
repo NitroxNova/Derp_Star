@@ -14,7 +14,7 @@ func build():
 func shoot():
 	var b = laser.instance()
 	b.transform = $Laser_Pointer.global_transform
-	Connector.spawn_projectile(b)
+	emit_signal("spawn_projectile",b)
 
 
 func _on_Bumper_body_entered(body):
