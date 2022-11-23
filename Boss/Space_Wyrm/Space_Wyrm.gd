@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Boss
 
 export var points = 0
 export var final_points = 0
@@ -22,12 +22,12 @@ func died():
 	var wyrm_count = get_tree().get_nodes_in_group("Space_Wyrm").size()
 	if (wyrm_count == 1):
 		Player_Stats.increase_points(final_points)
-		Connector.drop_boss_core($Head.global_position)
+		emit_signal("spawn_boss_core",$Head.global_position)
 		spawn_player_portal()
 	else:
 		Player_Stats.increase_points(points)
 	queue_free()
-	get_parent().boss_defeated()
+	emit_signal("boss_defeated")
 	
 func spawn_player_portal():
 	var port_1 = player_portal.instance()
@@ -38,8 +38,8 @@ func spawn_player_portal():
 	port_2.position = global_position
 	port_1.dimension_id = 0
 	port_2.dimension_id = RNG.randi_range(1,2)
-	Connector.dimension_list[port_1.dimension_id].add_child(port_1)
-	Connector.dimension_list[port_2.dimension_id].add_child(port_2)
+	emit_signal("spawn_explosion",port_1)
+	Connector.dimension_list[port_2.dimension_id].spawn_explosion(port_2)
 	
 
 func spawn_wyrmhole():
@@ -50,8 +50,8 @@ func spawn_wyrmhole():
 	port_2.connect("opened",self,"teleport")
 	connect("close_wyrmhole",port_1,"close")
 	connect("close_wyrmhole",port_2,"close")
-	Connector.draw_explosion(port_1)
-	Connector.draw_explosion(port_2)
+	emit_signal("spawn_explosion",port_1)
+	emit_signal("spawn_explosion",port_2)
 	
 func teleport(wyrmhole):
 	global_position = wyrmhole.position + ($Tail.global_position - $Head.global_position)
@@ -95,8 +95,8 @@ func destroy_segment(segment):
 			$Polygons.remove_child(next_segment.polygon)
 			top_half.get_node("Polygons").add_child(next_segment.polygon)
 		next_segment = next_segment.next_segment
-		
-	get_parent().add_child(top_half)
+	
+	emit_signal("spawn_boss",top_half)	
 	tail.setup()
 	top_half.laser()
 	

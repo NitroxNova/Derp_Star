@@ -1,4 +1,4 @@
-extends Area2D
+extends Boss_Area
 
 export var flash_config : Resource
 var faction = "environment"
@@ -63,7 +63,7 @@ func _on_Tween_tween_all_completed():
 		$Light_Timer.start()
 		$Light_Beams.emitting = false
 		$Item_Timer.stop()
-		Connector.drop_boss_core(global_position)
+		emit_signal("spawn_boss_core",global_position)
 
 func spawn_item():
 	if state == COLLAPSE:
@@ -71,13 +71,13 @@ func spawn_item():
 		if item is Ore_Chunk:
 			item.set_size(rand_range(.1,.4))
 		item.position = global_position + Vector2(rand_range(-500,500),rand_range(-500,500))
-		Connector.drop_item(item)
+		emit_signal("spawn_item",item)
 		item.apply_central_impulse(Vector2(rand_range(-500,500),rand_range(-500,500)))
 
 
 func _on_Light_Timer_timeout():
 	queue_free()
-	get_parent().boss_defeated()
+	emit_signal("boss_defeated")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	state = GROW

@@ -2,10 +2,12 @@ extends Node2D
 
 export var flash_config : Resource
 
+signal spawn_boss
+
 func spawn_wyrm(wyrmhole):
 	var wyrm = load("res://Boss/Space_Wyrm/Space_Wyrm.tscn").instance()
 	wyrm.position = wyrmhole.global_position
-	get_parent().add_child(wyrm)
+	emit_signal("spawn_boss",wyrm)
 	wyrm.build(3)
 	wyrmhole.close()
 
