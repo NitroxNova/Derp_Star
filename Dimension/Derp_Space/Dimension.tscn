@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Dimension/Dimension.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" type="Texture" id=7]
 [ext_resource path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" type="Texture" id=8]
 [ext_resource path="res://Dimension/Derp_Space/default_biome.gd" type="Script" id=9]
-[ext_resource path="res://Boss/Boss_Spawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Boss/Space_Wyrm/Intro_Scene.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Boss/Black_Hole/Black_Hole.tscn" type="PackedScene" id=11]
 
 [node name="Dimension" instance=ExtResource( 1 )]
 
@@ -50,4 +51,5 @@ centered = false
 [node name="Bumper_List" parent="." index="4"]
 biome_config = [ ExtResource( 2 ), ExtResource( 9 ) ]
 
-[node name="Boss" parent="." index="5" instance=ExtResource( 10 )]
+[node name="Boss" parent="." index="5"]
+boss_list = [ ExtResource( 10 ), ExtResource( 11 ) ]
