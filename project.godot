@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dimension/Biome.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://Boss/Boss.gd"
+}, {
+"base": "Area2D",
+"class": "Boss_Area",
+"language": "GDScript",
+"path": "res://Boss/Boss_Area.gd"
+}, {
 "base": "Resource",
 "class": "Boss_Flash_Config",
 "language": "GDScript",
@@ -72,6 +82,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Asteroid_Builder": "",
 "Biome": "",
+"Boss": "",
+"Boss_Area": "",
 "Boss_Flash_Config": "",
 "Bumper_Ship": "",
 "Capped_Value": "",
