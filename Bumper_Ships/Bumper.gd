@@ -64,6 +64,7 @@ func explode():
 	e.height = bs.texture.get_height()
 	e.width = bs.texture.get_width()
 	e.scale = bs.global_scale
+	e.shader_material = bs.material
 	emit_signal("spawn_explosion",e)
 	
 func static_on():

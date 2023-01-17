@@ -5,6 +5,7 @@ var shard_velocity_map = {}
 var shard_count = 50
 var height : int
 var width : int
+var shader_material
 
 func _ready():
 	$Boom.play()
@@ -48,6 +49,7 @@ func make_debris():
 		var shard = Polygon2D.new()
 		shard.polygon = shard_pool
 		shard.texture = bumper_texture
+		shard.material = shader_material
 		var shard_velocity = (Vector2(width/2,height/2) - center) / Vector2(width/2,height/2)
 		shard_velocity_map[shard] = shard_velocity
 		$Debris.add_child(shard)
