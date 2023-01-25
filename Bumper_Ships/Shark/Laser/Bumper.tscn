@@ -7,3 +7,6 @@
 
 [node name="Laser_Mount" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 135, -14 )
+
+[connection signal="aggro_off" from="." to="Laser_Mount" method="deactivate"]
+[connection signal="aggro_on" from="." to="Laser_Mount" method="activate"]
