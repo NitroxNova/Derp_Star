@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bumper_Ships/Projectile.gd"
 }, {
+"base": "Node2D",
+"class": "Laser_Beam",
+"language": "GDScript",
+"path": "res://Weapon/Laser_Beam/Weapon.gd"
+}, {
 "base": "Dropped_Item",
 "class": "Ore_Chunk",
 "language": "GDScript",
@@ -90,6 +95,7 @@ _global_script_class_icons={
 "Dictionary_Resource": "",
 "Dropped_Item": "",
 "Enemy_Projectile": "",
+"Laser_Beam": "",
 "Ore_Chunk": "",
 "Player_Beam": "",
 "Talent": "",

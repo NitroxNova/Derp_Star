@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
 var energy_cost = 5
-var faction = "player"
+var faction
 
 signal decrease_energy
 
 func _ready():
+	faction = get_parent().faction
 	disable()
+	
 	
 func _process(delta):
 	emit_signal("decrease_energy",energy_cost*delta)
