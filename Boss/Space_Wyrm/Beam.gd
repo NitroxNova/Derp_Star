@@ -3,26 +3,26 @@ extends Area2D
 export var faction : String
 var dps = 5
 var damage_shapes = []
+var length
 
 func _ready():
 	deactivate()
-	set_length(500)
+	set_length(1000)
 
-func set_length(length):
-	if length > 1000:
-		length = 1000
-	$Gradient.rect_size.y = length
-	
-	$CollisionShape2D.shape.extents.x = length/2
-	$CollisionShape2D.position.x = length/2
-	
-	var ratio = (length/1000.0)
-	var amount = 25 * ratio
-	var lifetime = 8.2 * ratio
-	$Particles2D.amount = amount
-	$Particles2D.lifetime = lifetime
-	$Particles2D2.amount = amount
-	$Particles2D2.lifetime = lifetime
+func set_length(l):
+	if length != l:
+		length = l
+		if length > 1000:
+			length = 1000
+		$Gradient.rect_size.y = length
+		
+		$CollisionShape2D.shape.extents.x = length/2
+		$CollisionShape2D.position.x = length/2
+		
+		$Lightning_Texture.texture.region.size.x = length
+		
+func set_particles_offset(xo:int):
+	$Lightning_Texture.texture.region.position.x = xo
 
 func _process(delta):
 	var damage = dps*delta

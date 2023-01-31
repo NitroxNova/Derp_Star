@@ -21,6 +21,7 @@ func _physics_process(delta):
 		$Beam.set_length(length)
 		$Deflect.position.x = length
 		$Deflect.set_length(1000-length)
+		$Deflect.set_particles_offset(length)
 		var incoming_direction = result.position - global_position
 		$Deflect.global_rotation = incoming_direction.bounce(result.normal).angle()
 		$Deflect.activate()
