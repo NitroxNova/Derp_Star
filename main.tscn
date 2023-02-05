@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Dimension/Derp_Space/Dimension.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/Died_Menu.gd" type="Script" id=3]
 [ext_resource path="res://GUI/overlay.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Timeburner-xJB8.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://fonts/Hacked-KerX.ttf" type="DynamicFontData" id=10]
@@ -371,9 +372,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 12 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 3 )
+messages = [ "Died
+Suddenly", "You
+Died", "$whackd", "Death By
+Pew-Pew", "Derp Star
+Didn't
+Kill Itself" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Died_Menu"]
 anchor_left = 0.5
@@ -390,11 +395,12 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_right = 342.0
-margin_bottom = 105.0
+margin_right = 288.0
+margin_bottom = 213.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
-text = "You DIED"
+text = "You 
+DIED"
 align = 1
 valign = 1
 __meta__ = {
@@ -402,16 +408,16 @@ __meta__ = {
 }
 
 [node name="Restart_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_top = 109.0
-margin_right = 342.0
-margin_bottom = 152.0
+margin_top = 217.0
+margin_right = 288.0
+margin_bottom = 260.0
 custom_fonts/font = SubResource( 10 )
 text = "Restart"
 
 [node name="Quit_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_top = 156.0
-margin_right = 342.0
-margin_bottom = 199.0
+margin_top = 264.0
+margin_right = 288.0
+margin_bottom = 307.0
 custom_fonts/font = SubResource( 10 )
 text = "Quit"
 
