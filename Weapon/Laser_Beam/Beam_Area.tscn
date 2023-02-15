@@ -12,3 +12,6 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Max_Length" type="Position2D" parent="."]
+
+[connection signal="body_shape_entered" from="." to="." method="body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="body_shape_exited"]

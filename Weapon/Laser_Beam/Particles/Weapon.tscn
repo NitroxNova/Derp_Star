@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Weapon/Laser_Beam/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Weapon/Laser_Beam/Particles/Weapon.gd" type="Script" id=2]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Lazer/Particles_Viewport")
+
+[node name="Laser_Beam" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Particles_Viewport" type="Viewport" parent="." index="1"]
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Particles_Line2D" type="Line2D" parent="." index="2"]
+points = PoolVector2Array( 0, 0, 400, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture = SubResource( 1 )
+texture_mode = 2
+joint_mode = 1
+end_cap_mode = 2

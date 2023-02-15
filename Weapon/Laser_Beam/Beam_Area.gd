@@ -1,4 +1,5 @@
 extends Area2D
+class_name Laser_Beam_Area
 
 var length : float
 var height : float
@@ -7,10 +8,14 @@ onready var direct_space = get_world_2d().direct_space_state
 var area_scene = load("res://Weapon/Laser_Beam/Beam_Area.tscn")
 var faction
 var dps
+var damage_shapes = []
 
 func _physics_process(delta):
 	for body in get_overlapping_bodies():
 		Connector.deal_damage(self,body,dps*delta)
+	for shape in damage_shapes:
+		if !Connector.deal_damage(self,shape,dps*delta):
+			damage_shapes.erase(shape)
 
 func set_height(h:float):
 	height = h
@@ -51,3 +56,13 @@ func cast_beam():
 	else:
 		set_length(max_length)
 		remove_child($Beam_Area)
+
+func body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	var shape = body.shape_owner_get_owner(body_shape_index)
+	if is_instance_valid(shape):
+		damage_shapes.append(shape)
+
+func body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+	if is_instance_valid(body):
+		var shape = body.shape_owner_get_owner(body_shape_index)
+		damage_shapes.erase(shape)

@@ -16,8 +16,7 @@ func _physics_process(delta):
 
 func deactivate():
 	set_physics_process(false)
-	var points = []
-	$Line2D.points = points
+	$Line2D.points = []
 	remove_child($Beam_Area)
 	
 func activate():
