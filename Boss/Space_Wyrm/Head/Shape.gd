@@ -3,6 +3,7 @@ var invulnerable = true
 
 func _ready():
 	connect_health()
+	bone.get_node("Lazer").faction = faction
 	
 func _process(delta):
 	var target_angle = Connector.derp_star.global_position.angle_to_point(bone.global_position)
