@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 2000, 2000 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 centered = false
 
 [node name="Explosions" type="Node2D" parent="."]

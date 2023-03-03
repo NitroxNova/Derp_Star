@@ -1,36 +1,36 @@
 extends RigidBody2D
 
-onready var thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
+@onready var thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
 var hotkeys = ["thruster_1","thruster_2","thruster_3","thruster_4","thruster_5"]
-var energy_locked = false
+var is_energy_locked = false
 #onready var beams = [$Muh_Lazer,$Gravity_Beam]
 var beams = []
 var beam_index = 0
 var faction = "player"
 
-export (Resource) var health
-export (Resource) var energy
+@export var health : Capped_Value
+@export var energy : Capped_Value
 
-signal update_health
-signal update_max_health
+signal health_changed
+signal max_health_changed
 signal player_died
-signal update_energy
-signal update_max_energy
-signal lock_energy
-signal unlock_energy
+signal energy_changed
+signal max_energy_changed
+signal energy_locked
+signal energy_unlocked
 
 func _ready():
-	health.connect("current_changed",self,"update_health")
-	health.connect("maximum_changed",self,"update_max_health")
-	health.connect("current_zero",self,"player_died")
-	energy.connect("current_zero",self,"lock_energy")
-	energy.connect("current_changed",self,"update_energy")
-	energy.connect("maximum_changed",self,"update_max_energy")
+	health.connect("current_changed",Callable(self,"update_health"))
+	health.connect("maximum_changed",Callable(self,"update_max_health"))
+	health.connect("current_zero",Callable(self,"died"))
+	energy.connect("current_zero",Callable(self,"lock_energy"))
+	energy.connect("current_changed",Callable(self,"update_energy"))
+	energy.connect("maximum_changed",Callable(self,"update_max_energy"))
 	
-	Player_Stats.talent["max_health"].connect("upgrade_changed",self,"max_health_talent_changed")
-	Player_Stats.talent["max_energy"].connect("upgrade_changed",self,"max_energy_talent_changed")
-	Player_Stats.talent["laser_beam"].connect("upgrade_changed",self,"laser_beam_talent_changed")
-	Player_Stats.talent["gravity_beam"].connect("upgrade_changed",self,"gravity_beam_talent_changed")
+	Player_Stats.talent["max_health"].connect("upgrade_changed",Callable(self,"max_health_talent_changed"))
+	Player_Stats.talent["max_energy"].connect("upgrade_changed",Callable(self,"max_energy_talent_changed"))
+	Player_Stats.talent["laser_beam"].connect("upgrade_changed",Callable(self,"laser_beam_talent_changed"))
+	Player_Stats.talent["gravity_beam"].connect("upgrade_changed",Callable(self,"gravity_beam_talent_changed"))
 	
 func laser_beam_talent_changed(value,increment):
 	beams.append($Muh_Lazer)
@@ -85,14 +85,14 @@ func _input(event):
 		change_beam(1)
 	elif event.is_action_pressed("change_beam_down"):
 		change_beam(-1)
-	elif event.is_action_pressed("energy_shield") and not energy_locked and Player_Stats.talent["energy_shield"].upgrade > 0:
+	elif event.is_action_pressed("energy_shield") and not is_energy_locked and Player_Stats.talent["energy_shield"].upgrade > 0:
 		$Energy_Shield.enable()
 	elif event.is_action_released("energy_shield"):
 		$Energy_Shield.disable()
 	elif event.is_action_released("accelerate") or event.is_action_released("brake"):
 		for t in thrusters:
 			t.deactivate()
-	elif event is InputEventMouseButton and not energy_locked and beams.size() > 0:
+	elif event is InputEventMouseButton and not is_energy_locked and beams.size() > 0:
 		if event.pressed:
 			beams[beam_index].activate()
 		else:
@@ -127,19 +127,19 @@ func add_health(amount):
 	health.increase_current(amount)
 	
 func update_health(amount):
-	emit_signal("update_health", amount)
+	emit_signal("health_changed", amount)
 	
 func update_max_health(amount):
-	emit_signal("update_max_health", amount)
+	emit_signal("max_health_changed", amount)
 
-func player_died():
+func died():
 	emit_signal("player_died")
 	
 func update_energy(amount):
-	emit_signal("update_energy", amount)
+	emit_signal("energy_changed", amount)
 	
 func update_max_energy(amount):
-	emit_signal("update_max_energy", amount)
+	emit_signal("max_energy_changed", amount)
 
 func decrease_energy(amount):
 	energy.decrease_current(amount)
@@ -148,12 +148,12 @@ func add_energy(amount):
 	energy.increase_current(amount)
 
 func lock_energy():
-	energy_locked = true
+	is_energy_locked = true
 	beams[beam_index].deactivate()
 	$Energy_Shield.disable()
-	emit_signal("lock_energy")
+	emit_signal("energy_locked")
 
 func unlock_energy():
-	energy_locked = false
-	emit_signal("unlock_energy")
+	is_energy_locked = false
+	emit_signal("energy_unlocked")
 

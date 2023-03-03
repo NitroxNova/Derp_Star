@@ -6,118 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Resource",
-"class": "Asteroid_Builder",
-"language": "GDScript",
-"path": "res://Bumper_Ships/Asteroid/Builder.gd"
-}, {
-"base": "Resource",
-"class": "Biome",
-"language": "GDScript",
-"path": "res://Dimension/Biome.gd"
-}, {
-"base": "RigidBody2D",
-"class": "Boss",
-"language": "GDScript",
-"path": "res://Boss/Boss.gd"
-}, {
-"base": "Area2D",
-"class": "Boss_Area",
-"language": "GDScript",
-"path": "res://Boss/Boss_Area.gd"
-}, {
-"base": "Resource",
-"class": "Boss_Flash_Config",
-"language": "GDScript",
-"path": "res://GUI/Boss_Flash_Config.gd"
-}, {
-"base": "RigidBody2D",
-"class": "Bumper_Ship",
-"language": "GDScript",
-"path": "res://Bumper_Ships/Bumper.gd"
-}, {
-"base": "Resource",
-"class": "Capped_Value",
-"language": "GDScript",
-"path": "res://Utils/Capped_Value.gd"
-}, {
-"base": "Resource",
-"class": "Dictionary_Resource",
-"language": "GDScript",
-"path": "res://Utils/Dictionary_Resource.gd"
-}, {
-"base": "RigidBody2D",
-"class": "Dropped_Item",
-"language": "GDScript",
-"path": "res://Pick_Ups/Item.gd"
-}, {
-"base": "RigidBody2D",
-"class": "Enemy_Projectile",
-"language": "GDScript",
-"path": "res://Bumper_Ships/Projectile.gd"
-}, {
-"base": "Node2D",
-"class": "Laser_Beam",
-"language": "GDScript",
-"path": "res://Weapon/Laser_Beam/Weapon.gd"
-}, {
-"base": "Area2D",
-"class": "Laser_Beam_Area",
-"language": "GDScript",
-"path": "res://Weapon/Laser_Beam/Beam_Area.gd"
-}, {
-"base": "Dropped_Item",
-"class": "Ore_Chunk",
-"language": "GDScript",
-"path": "res://Pick_Ups/Ore_Chunk/Ore_Chunk.gd"
-}, {
-"base": "Laser_Beam",
-"class": "Particle_Laser_Beam",
-"language": "GDScript",
-"path": "res://Weapon/Laser_Beam/Particles/Weapon.gd"
-}, {
-"base": "Node2D",
-"class": "Player_Beam",
-"language": "GDScript",
-"path": "res://Derp_Star/Beam.gd"
-}, {
-"base": "Resource",
-"class": "Talent",
-"language": "GDScript",
-"path": "res://Talent/Talent_Resource.gd"
-}, {
-"base": "CollisionShape2D",
-"class": "Wyrm_Segment",
-"language": "GDScript",
-"path": "res://Boss/Space_Wyrm/Segment.gd"
-} ]
-_global_script_class_icons={
-"Asteroid_Builder": "",
-"Biome": "",
-"Boss": "",
-"Boss_Area": "",
-"Boss_Flash_Config": "",
-"Bumper_Ship": "",
-"Capped_Value": "",
-"Dictionary_Resource": "",
-"Dropped_Item": "",
-"Enemy_Projectile": "",
-"Laser_Beam": "",
-"Laser_Beam_Area": "",
-"Ore_Chunk": "",
-"Particle_Laser_Beam": "",
-"Player_Beam": "",
-"Talent": "",
-"Wyrm_Segment": ""
-}
+config_version=5
 
 [application]
 
 config/name="Derp_Star"
 run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
@@ -131,65 +26,65 @@ Save="*res://Utils/Save.gd"
 
 thruster_1={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":81,"physical_keycode":0,"key_label":0,"unicode":113,"echo":false,"script":null)
+]
 }
 thruster_2={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":87,"physical_keycode":0,"key_label":0,"unicode":119,"echo":false,"script":null)
+]
 }
 thruster_3={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":69,"physical_keycode":0,"key_label":0,"unicode":101,"echo":false,"script":null)
+]
 }
 thruster_4={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":82,"physical_keycode":0,"key_label":0,"unicode":82,"echo":false,"script":null)
+]
 }
 thruster_5={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":84,"physical_keycode":0,"key_label":0,"unicode":116,"echo":false,"script":null)
+]
 }
 pause={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194305,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 change_beam_up={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":4,"pressed":false,"double_click":false,"script":null)
+]
 }
 change_beam_down={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":5,"pressed":false,"double_click":false,"script":null)
+]
 }
 energy_shield={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
 }
 accelerate={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777241,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194329,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 brake={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194325,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 
 [physics]
 
-common/enable_pause_aware_picking=true
 2d/default_gravity=0
+common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://default_env.tres"

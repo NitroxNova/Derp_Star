@@ -1,9 +1,9 @@
-extends Sprite
+extends Sprite2D
 
 var is_active = true
 var dps = 50
 var damage_shapes = []
-onready var faction = get_parent().faction
+@onready var faction = get_parent().faction
 
 func _ready():
 	deactivate()
@@ -23,7 +23,7 @@ func deactivate():
 func _process(delta):
 	var thrust_rot = Vector2(cos(global_rotation), sin(global_rotation)).normalized()
 	var thrust_offset = global_position - get_parent().global_position
-	get_parent().apply_impulse(thrust_offset,thrust_rot*delta*40)
+	get_parent().apply_impulse(thrust_rot*delta*40, thrust_offset)
 	var damage = dps * delta
 	for body in $Flame.get_overlapping_bodies():
 		Connector.deal_damage(self,body,damage)

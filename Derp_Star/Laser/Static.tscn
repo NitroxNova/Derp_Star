@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Derp_Star/Laser/spark.png" type="Texture" id=1]
+[ext_resource path="res://Derp_Star/Laser/spark.png" type="Texture2D" id=1]
 
 [sub_resource type="Image" id=6]
 data = {
@@ -17,7 +17,7 @@ flags = 0
 image = SubResource( 6 )
 size = Vector2( 2048, 23 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 emission_shape = 3
 emission_point_texture = SubResource( 5 )
 emission_point_count = 45058
@@ -31,7 +31,7 @@ angle = 360.0
 angle_random = 1.0
 scale = 0.25
 
-[node name="Static" type="Particles2D"]
+[node name="Static" type="GPUParticles2D"]
 position = Vector2( -201, -130 )
 amount = 30
 lifetime = 0.5

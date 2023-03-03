@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Player_Beam
 
-export var energy_cost : int
+@export var energy_cost : int
 
 signal decrease_energy
 

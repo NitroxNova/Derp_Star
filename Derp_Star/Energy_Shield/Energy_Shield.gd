@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var energy_cost = 5
 var faction

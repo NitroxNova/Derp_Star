@@ -1,69 +1,64 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://7knqr5o2y5ae"]
 
-[ext_resource path="res://Derp_Star/Beam.gd" type="Script" id=1]
-[ext_resource path="res://Derp_Star/Gravity/pivot.png" type="Texture" id=2]
-[ext_resource path="res://Derp_Star/Gravity/particle.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://Derp_Star/Beam.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bwt0esojewtur" path="res://Derp_Star/Gravity/pivot.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c1c4yvis45udg" path="res://Derp_Star/Gravity/particle.png" id="3"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.33, 0.66, 1 )
-colors = PoolColorArray( 0.607843, 0.607843, 0.607843, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0.607843, 0.607843, 0.607843, 0.784314 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.33, 0.66, 1)
+colors = PackedColorArray(0.607843, 0.607843, 0.607843, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0.607843, 0.607843, 0.607843, 0.784314)
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 width = 112
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 338.564, 25.7411 )
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(680, 48)
 
-[sub_resource type="ParticlesMaterial" id=4]
-flag_disable_z = true
+[sub_resource type="ParticleProcessMaterial" id="4"]
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = -120.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-color = Color( 1, 1, 1, 0.392157 )
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.392157)
 
 [node name="Gravity_Beam" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 energy_cost = 10
 
-[node name="Circle" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Circle" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
 [node name="Beam" type="Area2D" parent="."]
-space_override = 1
+collision_layer = 524288
+collision_mask = 3
+gravity_space_override = 1
 gravity_point = true
-gravity_vec = Vector2( 0, 0 )
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
 gravity = 4096.0
 linear_damp = 0.0
 angular_damp = 0.0
-collision_layer = 524288
-collision_mask = 3
 
 [node name="Gradient" type="TextureRect" parent="Beam"]
-margin_top = 26.0
-margin_right = 52.0
-margin_bottom = 707.0
-rect_rotation = -90.0
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_top = 26.0
+offset_right = 52.0
+offset_bottom = 707.0
+rotation = -1.5708
+texture = SubResource("2")
+expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
-position = Vector2( 342.386, 0.882686 )
-shape = SubResource( 3 )
+position = Vector2(338, 4.76837e-07)
+shape = SubResource("3")
 
-[node name="Particles2D" type="Particles2D" parent="Beam"]
-position = Vector2( 676.964, 0.174805 )
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Beam"]
+visible = false
+position = Vector2(676.964, 0.174805)
 amount = 10
+process_material = SubResource("4")
+texture = ExtResource("3")
 lifetime = 5.5
 preprocess = 5.5
-visibility_rect = Rect2( -700, -100, 200, 200 )
-process_material = SubResource( 4 )
-texture = ExtResource( 3 )
+visibility_rect = Rect2(-700, -100, 200, 200)
 
 [connection signal="body_entered" from="Beam" to="." method="_on_Beam_body_entered"]
 [connection signal="body_exited" from="Beam" to="." method="_on_Beam_body_exited"]

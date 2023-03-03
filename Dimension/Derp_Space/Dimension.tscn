@@ -1,55 +1,55 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://c6ceymo3o04n6"]
 
-[ext_resource path="res://Dimension/Dimension.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" type="Script" id=2]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" type="Texture" id=3]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" type="Texture" id=4]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" type="Texture" id=5]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" type="Texture" id=6]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" type="Texture" id=7]
-[ext_resource path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" type="Texture" id=8]
-[ext_resource path="res://Dimension/Derp_Space/default_biome.gd" type="Script" id=9]
-[ext_resource path="res://Boss/Space_Wyrm/Intro_Scene.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Boss/Black_Hole/Black_Hole.tscn" type="PackedScene" id=11]
+[ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1"]
+[ext_resource type="Script" path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bm31eh0xkulm3" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dgo4wxupmu47k" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dgpgme267nxv3" path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cx0ir0ejg4oyy" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cty4nm7l463tj" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://c1efp6j5a8vrd" path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" id="8"]
+[ext_resource type="Script" path="res://Dimension/Derp_Space/default_biome.gd" id="9"]
+[ext_resource type="PackedScene" path="res://Boss/Space_Wyrm/Intro_Scene.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://br40r1y08a8d5" path="res://Boss/Black_Hole/Black_Hole.tscn" id="11"]
 
-[node name="Dimension" instance=ExtResource( 1 )]
+[node name="Dimension" instance=ExtResource("1")]
 
-[node name="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
-texture = ExtResource( 6 )
+[node name="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("6")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
-motion_scale = Vector2( 0.2, 0.2 )
-motion_mirroring = Vector2( 2000, 2000 )
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(2000, 2000)
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2" index="0"]
-texture = ExtResource( 3 )
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("3")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
-motion_scale = Vector2( 0.7, 0.7 )
-motion_mirroring = Vector2( 4000, 4000 )
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(4000, 4000)
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="0"]
-texture = ExtResource( 5 )
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("5")
 centered = false
 
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="1"]
-position = Vector2( 2000, 0 )
-texture = ExtResource( 8 )
+[node name="Sprite2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="1"]
+position = Vector2(2000, 0)
+texture = ExtResource("8")
 centered = false
 
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="2"]
-position = Vector2( 2000, 2000 )
-texture = ExtResource( 7 )
+[node name="Sprite3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="2"]
+position = Vector2(2000, 2000)
+texture = ExtResource("7")
 centered = false
 
-[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="3"]
-position = Vector2( 0, 2000 )
-texture = ExtResource( 4 )
+[node name="Sprite4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="3"]
+position = Vector2(0, 2000)
+texture = ExtResource("4")
 centered = false
 
 [node name="Bumper_List" parent="." index="4"]
-biome_config = [ ExtResource( 2 ), ExtResource( 9 ) ]
+biome_config = [ExtResource("2"), ExtResource("9")]
 
 [node name="Boss" parent="." index="5"]
-boss_list = [ ExtResource( 10 ), ExtResource( 11 ) ]
+boss_list = [ExtResource("10"), ExtResource("11")]

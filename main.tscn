@@ -1,35 +1,33 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=28 format=3 uid="uid://d0dnd6twlor84"]
 
-[ext_resource path="res://Dimension/Derp_Space/Dimension.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Derp_Star/Derp_Star.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GUI/Died_Menu.gd" type="Script" id=3]
-[ext_resource path="res://GUI/overlay.gd" type="Script" id=5]
-[ext_resource path="res://fonts/Timeburner-xJB8.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://fonts/Hacked-KerX.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://main.gd" type="Script" id=11]
-[ext_resource path="res://fonts/TimeburnerBold-peGR.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://GUI/HUD.gd" type="Script" id=15]
-[ext_resource path="res://Utils/Capped_Value.gd" type="Script" id=16]
-[ext_resource path="res://Pick_Ups/Boss_Core/boss_core.png" type="Texture" id=17]
-[ext_resource path="res://Talent/Talent_Overlay.gd" type="Script" id=18]
+[ext_resource type="PackedScene" uid="uid://c6ceymo3o04n6" path="res://Dimension/Derp_Space/Dimension.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
+[ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
+[ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
+[ext_resource type="FontFile" uid="uid://ctm4y0ti565y4" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
+[ext_resource type="Script" path="res://main.gd" id="11"]
+[ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
+[ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="16"]
+[ext_resource type="Texture2D" uid="uid://bfelndu5gtu4r" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
+[ext_resource type="Script" path="res://Talent/Talent_Overlay.gd" id="18"]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id="Resource_bvahy"]
 resource_local_to_scene = true
-script = ExtResource( 16 )
-current = 1000
-maximum = 1000
+script = ExtResource("16")
+current = 1000.0
+maximum = 1000.0
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id="Resource_rjgny"]
 resource_local_to_scene = true
-script = ExtResource( 16 )
-current = 1000
-maximum = 1000
+script = ExtResource("16")
+current = 1000.0
+maximum = 1000.0
 
-[sub_resource type="Shader" id=16]
+[sub_resource type="Shader" id="16"]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
-uniform sampler2D gradient: hint_black;
+uniform sampler2D gradient: hint_default_black;
 uniform float mix_amount = 1.0;
 
 void fragment(){
@@ -42,394 +40,339 @@ void fragment(){
 }
 "
 
-[sub_resource type="Gradient" id=17]
-offsets = PoolRealArray( 0, 0.508021, 1 )
-colors = PoolColorArray( 1, 0, 0, 1, 0, 0.109375, 1, 1, 0.945312, 1, 0, 1 )
+[sub_resource type="ShaderMaterial" id="15"]
+shader = SubResource("16")
 
-[sub_resource type="GradientTexture" id=18]
-gradient = SubResource( 17 )
-
-[sub_resource type="ShaderMaterial" id=15]
-shader = SubResource( 16 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 18 )
-
-[sub_resource type="DynamicFont" id=19]
-size = 200
-outline_size = 10
-font_data = ExtResource( 10 )
-
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id="20"]
 resource_name = "Flash"
 length = 3.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id="21"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="DynamicFont" id=10]
-size = 28
-font_data = ExtResource( 9 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdvq7"]
+_data = {
+"Flash": SubResource("20"),
+"RESET": SubResource("21")
+}
 
-[sub_resource type="DynamicFont" id=3]
-size = 35
-font_data = ExtResource( 13 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg0fh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="DynamicFont" id=5]
-size = 18
-outline_size = 2
-extra_spacing_bottom = -3
-font_data = ExtResource( 13 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13cfp"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 1, 0.0156863, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.235294, 0.235294, 0.235294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87u0d"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=6]
-resource_local_to_scene = true
-bg_color = Color( 0, 1, 1, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.235294, 0.235294, 0.235294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owu52"]
+bg_color = Color(0, 0, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="DynamicFont" id=13]
-size = 35
-font_data = ExtResource( 13 )
+[sub_resource type="Gradient" id="7"]
+colors = PackedColorArray(0, 0.905882, 1, 0.490196, 0.827451, 0, 1, 0.490196)
 
-[sub_resource type="Gradient" id=7]
-colors = PoolColorArray( 0, 0.905882, 1, 0.490196, 0.827451, 0, 1, 0.490196 )
+[sub_resource type="GradientTexture2D" id="8"]
+gradient = SubResource("7")
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="FontVariation" id="FontVariation_kr1qa"]
+base_font = ExtResource("8_jf57f")
 
-[sub_resource type="DynamicFont" id=9]
-size = 100
-font_data = ExtResource( 10 )
+[sub_resource type="Gradient" id="11"]
+colors = PackedColorArray(1, 0, 0, 0.490196, 0, 0, 0, 0.490196)
 
-[sub_resource type="Gradient" id=11]
-colors = PoolColorArray( 1, 0, 0, 0.490196, 0, 0, 0, 0.490196 )
+[sub_resource type="GradientTexture2D" id="12"]
+gradient = SubResource("11")
 
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
+[sub_resource type="FontVariation" id="FontVariation_xq3uq"]
+base_font = ExtResource("8_jf57f")
 
 [node name="Main" type="Node2D"]
-pause_mode = 1
-script = ExtResource( 11 )
+process_mode = 1
+script = ExtResource("11")
+metadata/_edit_vertical_guides_ = [136.0]
 
-[node name="Derp_Star" parent="." instance=ExtResource( 2 )]
-health = SubResource( 1 )
-energy = SubResource( 2 )
+[node name="Derp_Star" parent="." instance=ExtResource("2")]
+health = SubResource("Resource_bvahy")
+energy = SubResource("Resource_rjgny")
 
 [node name="Camera2D" type="Camera2D" parent="Derp_Star"]
-current = true
 
 [node name="Overlay" type="CanvasLayer" parent="."]
-pause_mode = 2
-script = ExtResource( 5 )
+process_mode = 2
+script = ExtResource("5")
 
 [node name="Boss" type="Control" parent="Overlay"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Flash" type="ColorRect" parent="Overlay/Boss"]
-material = SubResource( 15 )
+material = SubResource("15")
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="Overlay/Boss"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 19 )
 text = "Boss
 Name"
-align = 1
-valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Overlay/Boss"]
-anims/Flash = SubResource( 20 )
-anims/RESET = SubResource( 21 )
+libraries = {
+"": SubResource("AnimationLibrary_qdvq7")
+}
 
 [node name="Talents" type="ColorRect" parent="Overlay"]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.490196, 0, 1 )
-script = ExtResource( 18 )
+color = Color(0, 0.490196, 0, 1)
+script = ExtResource("18")
 
 [node name="Talents" type="GridContainer" parent="Overlay/Talents"]
-margin_left = 259.0
-margin_top = 149.0
-margin_right = 299.0
-margin_bottom = 189.0
+layout_mode = 0
+offset_left = 259.0
+offset_top = 149.0
+offset_right = 299.0
+offset_bottom = 189.0
 columns = 3
 
 [node name="Buttons" type="HBoxContainer" parent="Overlay/Talents"]
-margin_left = 373.0
-margin_top = 412.0
-margin_right = 667.0
-margin_bottom = 455.0
+layout_mode = 0
+offset_left = 373.0
+offset_top = 412.0
+offset_right = 667.0
+offset_bottom = 455.0
 
 [node name="Upgrade" type="Button" parent="Overlay/Talents/Buttons"]
-margin_right = 122.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Upgrade"
 
 [node name="Unlock" type="Button" parent="Overlay/Talents/Buttons"]
-margin_left = 126.0
-margin_right = 220.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Unlock"
 
 [node name="Back" type="Button" parent="Overlay/Talents/Buttons"]
-margin_left = 224.0
-margin_right = 294.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Back"
 
 [node name="HUD" type="Control" parent="Overlay"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 15 )
+script = ExtResource("15")
 
 [node name="Points" type="Label" parent="Overlay/HUD"]
+layout_mode = 0
 anchor_top = 0.031
 anchor_right = 1.0
 anchor_bottom = 0.031
-margin_bottom = 47.0
-custom_fonts/font = SubResource( 3 )
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 40
 text = "0"
-align = 1
+horizontal_alignment = 1
 
 [node name="Life_Bar" type="ProgressBar" parent="Overlay/HUD"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.95
 anchor_right = 0.5
 anchor_bottom = 0.95
-margin_left = -150.0
-margin_top = -26.0
-margin_right = 150.0
-rect_pivot_offset = Vector2( 150, 26 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 5 )
-custom_styles/fg = SubResource( 4 )
-value = 100.0
+offset_left = 128.0
+offset_top = -26.0
+offset_right = 428.0
+offset_bottom = 1.0
+pivot_offset = Vector2(150, 26)
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_xg0fh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_13cfp")
+value = 50.0
 rounded = true
 
 [node name="Energy_Bar" type="ProgressBar" parent="Overlay/HUD"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.18
 anchor_top = 0.95
 anchor_right = 0.18
 anchor_bottom = 0.95
-margin_left = -150.0
-margin_top = -26.0
-margin_right = 150.0
-rect_pivot_offset = Vector2( 150, 26 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 5 )
-custom_styles/fg = SubResource( 6 )
-value = 100.0
+offset_left = 128.0
+offset_top = -26.0
+offset_right = 428.0
+offset_bottom = 1.0
+pivot_offset = Vector2(150, 26)
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_87u0d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_owu52")
+value = 50.0
 rounded = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Boss_Cores" type="PanelContainer" parent="Overlay/HUD"]
-margin_right = 14.0
-margin_bottom = 14.0
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 14.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Overlay/HUD/Boss_Cores"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 82.0
-margin_bottom = 57.0
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Overlay/HUD/Boss_Cores/HBoxContainer"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 17 )
-expand = true
-stretch_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("17")
+expand_mode = 2
 
 [node name="Label" type="Label" parent="Overlay/HUD/Boss_Cores/HBoxContainer"]
-margin_left = 54.0
-margin_top = 1.0
-margin_right = 75.0
-margin_bottom = 48.0
-custom_fonts/font = SubResource( 13 )
+layout_mode = 2
+theme_override_font_sizes/font_size = 37
 text = "0"
 
 [node name="Pause_Menu" type="TextureRect" parent="Overlay"]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = SubResource("8")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Pause_Menu"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -147.0
-margin_top = -120.0
-margin_right = 141.0
-margin_bottom = 126.0
-rect_pivot_offset = Vector2( 144, 123 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -147.0
+offset_top = -120.0
+offset_right = 141.0
+offset_bottom = 126.0
+pivot_offset = Vector2(144, 123)
 
 [node name="Label" type="Label" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_right = 288.0
-margin_bottom = 105.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 9 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_kr1qa")
+theme_override_font_sizes/font_size = 80
 text = "PAUSED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
 [node name="Resume_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_top = 156.0
-margin_right = 288.0
-margin_bottom = 199.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Continue"
 
 [node name="Talents_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_top = 109.0
-margin_right = 288.0
-margin_bottom = 152.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Talents"
 
 [node name="Restart_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_top = 203.0
-margin_right = 288.0
-margin_bottom = 246.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Restart"
 
 [node name="Quit_Button" type="Button" parent="Overlay/Pause_Menu/VBoxContainer"]
-margin_top = 250.0
-margin_right = 288.0
-margin_bottom = 293.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Quit"
 
 [node name="Died_Menu" type="TextureRect" parent="Overlay"]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 12 )
-expand = true
-script = ExtResource( 3 )
-messages = [ "Died
+texture = SubResource("12")
+expand_mode = 1
+script = ExtResource("3")
+messages = ["Died
 Suddenly", "You
 Died", "$whackd", "Death By
 Pew-Pew", "Derp Star
 Didn't
-Kill Itself" ]
+Kill Itself"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Died_Menu"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -147.0
-margin_top = -120.0
-margin_right = 141.0
-margin_bottom = 126.0
-rect_pivot_offset = Vector2( 144, 123 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -147.0
+offset_top = -120.0
+offset_right = 141.0
+offset_bottom = 126.0
+pivot_offset = Vector2(144, 123)
 
 [node name="Label" type="Label" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_right = 288.0
-margin_bottom = 213.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 9 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_xq3uq")
+theme_override_font_sizes/font_size = 80
 text = "You 
 DIED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
 [node name="Restart_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_top = 217.0
-margin_right = 288.0
-margin_bottom = 260.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Restart"
 
 [node name="Quit_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
-margin_top = 264.0
-margin_right = 288.0
-margin_bottom = 307.0
-custom_fonts/font = SubResource( 10 )
+layout_mode = 2
 text = "Quit"
 
-[node name="Dimension" parent="." instance=ExtResource( 1 )]
+[node name="Dimension" parent="." instance=ExtResource("1")]
 
-[connection signal="lock_energy" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
+[connection signal="energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_energy"]
+[connection signal="energy_locked" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
+[connection signal="energy_unlocked" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
+[connection signal="health_changed" from="Derp_Star" to="Overlay/HUD" method="update_health"]
+[connection signal="max_energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
+[connection signal="max_health_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
 [connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
-[connection signal="unlock_energy" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
-[connection signal="update_energy" from="Derp_Star" to="Overlay/HUD" method="update_energy"]
-[connection signal="update_health" from="Derp_Star" to="Overlay/HUD" method="update_health"]
-[connection signal="update_max_energy" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
-[connection signal="update_max_health" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
 [connection signal="talents_changed" from="Overlay/Talents" to="Derp_Star" method="_on_Talents_talents_changed"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Upgrade" to="Overlay/Talents" method="upgrade_mode"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Unlock" to="Overlay/Talents" method="unlock_mode"]

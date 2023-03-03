@@ -4,7 +4,7 @@ var damage_shapes = []
 var faction = "player"
 	
 func _process(delta):
-	._process(delta)
+	super._process(delta)
 	var damage = 100 * delta
 	for body in $Beam.get_overlapping_bodies():
 		Connector.deal_damage(self,body,damage)

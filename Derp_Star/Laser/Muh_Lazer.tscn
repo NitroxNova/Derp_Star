@@ -1,79 +1,67 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cwb8h8uacacpr"]
 
-[ext_resource path="res://Derp_Star/Laser/Muh_Lazer.gd" type="Script" id=1]
-[ext_resource path="res://Derp_Star/Laser/laser_circle.png" type="Texture" id=2]
-[ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture" id=4]
+[ext_resource type="Script" path="res://Derp_Star/Laser/Muh_Lazer.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://rr5xbhsjp4r2" path="res://Derp_Star/Laser/laser_circle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cbhwnj0yupdlm" path="res://Derp_Star/Laser/lightning.png" id="4"]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 338.564, 25.7411 )
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(671, 44)
 
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.33, 0.66, 1 )
-colors = PoolColorArray( 0, 0.666667, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0, 0.666667, 1, 0.784314 )
+[sub_resource type="Gradient" id="6"]
+offsets = PackedFloat32Array(0, 0.33, 0.66, 1)
+colors = PackedColorArray(0, 0.666667, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 0, 0.666667, 1, 0.784314)
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("6")
 width = 112
 
-[sub_resource type="ParticlesMaterial" id=4]
-flag_disable_z = true
+[sub_resource type="ParticleProcessMaterial" id="4"]
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 120.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = 45.0
-angle_random = 1.0
-scale = 0.25
-color = Color( 1, 1, 1, 0.705882 )
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.705882)
 
-[sub_resource type="ParticlesMaterial" id=5]
-flag_disable_z = true
+[sub_resource type="ParticleProcessMaterial" id="5"]
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 120.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = -210.0
-angle_random = 0.25
-scale = 0.25
-color = Color( 1, 1, 1, 0.705882 )
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.705882)
 
 [node name="Muh_Lazer" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 energy_cost = 15
 
-[node name="Circle" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Circle" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
 [node name="Beam" type="Area2D" parent="."]
 collision_layer = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
-position = Vector2( 342.386, 0.882686 )
-shape = SubResource( 3 )
+position = Vector2(340.5, 2)
+shape = SubResource("3")
 
 [node name="Gradient" type="TextureRect" parent="Beam"]
-margin_top = 26.0
-margin_right = 52.0
-margin_bottom = 707.0
-rect_rotation = -90.0
-texture = SubResource( 2 )
-expand = true
+offset_top = 26.0
+offset_right = 52.0
+offset_bottom = 707.0
+rotation = -1.5708
+texture = SubResource("2")
+expand_mode = 1
 
-[node name="Particles2D" type="Particles2D" parent="Beam"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Beam"]
+visible = false
 amount = 25
+process_material = SubResource("4")
+texture = ExtResource("4")
 lifetime = 5.5
 preprocess = 5.5
-process_material = SubResource( 4 )
-texture = ExtResource( 4 )
 
-[node name="Particles2D2" type="Particles2D" parent="Beam"]
+[node name="Particles2D2" type="GPUParticles2D" parent="Beam"]
+visible = false
 amount = 26
+process_material = SubResource("5")
+texture = ExtResource("4")
 lifetime = 5.5
 preprocess = 5.5
-process_material = SubResource( 5 )
-texture = ExtResource( 4 )
 
 [connection signal="body_entered" from="Beam" to="." method="_on_Beam_body_entered"]
 [connection signal="body_exited" from="Beam" to="." method="_on_Beam_body_exited"]
