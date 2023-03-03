@@ -29,7 +29,7 @@ func _physics_process(delta):
 	linear_velocity = Vector2(speed,0).rotated(global_rotation)
 	
 func explode():
-	var e = explosion.instance()
+	var e = explosion.instantiate()
 	e.transform = global_transform
 	e.bumper_texture = $Polygon2D.texture
 	e.width = 400

@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 func _ready():
 	$Laser_Beam.faction = get_parent().faction

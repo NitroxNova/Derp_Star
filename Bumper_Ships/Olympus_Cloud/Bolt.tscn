@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Bumper_Ships/Olympus_Cloud/Bolt.gd" type="Script" id=1]
-[ext_resource path="res://Bumper_Ships/Olympus_Cloud/lightning.png" type="Texture" id=2]
+[ext_resource path="res://Bumper_Ships/Olympus_Cloud/lightning.png" type="Texture2D" id=2]
 
 [sub_resource type="PhysicsMaterial" id=2]
 friction = 0.0
@@ -13,13 +13,13 @@ bounce = 1.0
 collision_mask = 5
 mass = 0.01
 physics_material_override = SubResource( 2 )
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
 speed = 500.0
 damage = 5.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

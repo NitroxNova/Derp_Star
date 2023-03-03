@@ -5,14 +5,14 @@ const MAX_ROTATE = 8
 var laser = preload("res://Bumper_Ships/Laser/Laser.tscn")
 
 func build():
-	.build()
+	super.build()
 	var x_velocity = randf() * 2 - 1
 	var y_velocity = randf() * 2 - 1
 	linear_velocity = Vector2(x_velocity,y_velocity).normalized() * MAX_SPEED
 	angular_velocity = MAX_ROTATE
 	
 func shoot():
-	var b = laser.instance()
+	var b = laser.instantiate()
 	b.transform = $Laser_Pointer.global_transform
 	emit_signal("spawn_projectile",b)
 

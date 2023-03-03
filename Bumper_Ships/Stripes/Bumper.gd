@@ -1,7 +1,7 @@
 extends Bumper_Ship
 
 func _ready():
-	._ready()
+	super._ready()
 	$Thruster.activate()
 
 func _on_Timer_timeout():
