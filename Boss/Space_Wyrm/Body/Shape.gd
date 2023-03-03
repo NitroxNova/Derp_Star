@@ -1,6 +1,6 @@
 extends Wyrm_Segment
 
-export var points = 0
+@export var points = 0
 
 func _ready():
 	connect_health()
@@ -18,5 +18,5 @@ func map_bones():
 	next_segment.map_bones()
 
 func died():
-	.died()
+	super.died()
 	Player_Stats.increase_points(points)

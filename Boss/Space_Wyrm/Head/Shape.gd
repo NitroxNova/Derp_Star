@@ -10,16 +10,16 @@ func _process(delta):
 	bone.global_rotation = lerp_angle(bone.global_rotation,target_angle,.05)
 
 func aura_on():
-	$Particles2D.show()
+	$GPUParticles2D.show()
 
 func aura_off():
-	$Particles2D.hide()
+	$GPUParticles2D.hide()
 	
 func take_damage(amount):
 	if invulnerable:
 		prev_segment.take_damage(amount)
 	else:
-		.take_damage(amount)
+		super.take_damage(amount)
 
 func died():
 	get_parent().died()
@@ -34,7 +34,7 @@ func set_polygon_x(pos = 0):
 func set_prev(ps, set_next = true):
 	if ps.get_name() == "Tail":
 		invulnerable = false
-	.set_prev(ps,set_next)
+	super.set_prev(ps,set_next)
 	
 func map_bones():
 	pass

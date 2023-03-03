@@ -1,19 +1,19 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Weapon/Laser_Beam/Particles/Weapon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture" id=2]
-[ext_resource path="res://Boss/Space_Wyrm/Head/head.png" type="Texture" id=3]
-[ext_resource path="res://Boss/Space_Wyrm/Head/jaw.png" type="Texture" id=4]
+[ext_resource path="res://Derp_Star/Laser/lightning.png" type="Texture2D" id=2]
+[ext_resource path="res://Boss/Space_Wyrm/Head/head.png" type="Texture2D" id=3]
+[ext_resource path="res://Boss/Space_Wyrm/Head/jaw.png" type="Texture2D" id=4]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.5, 1 )
-colors = PoolColorArray( 0.196078, 0, 0.392157, 1, 0.993439, 0.160156, 1, 1, 0.196078, 0, 0.392157, 1 )
+offsets = PackedFloat32Array( 0, 0.5, 1 )
+colors = PackedColorArray( 0.196078, 0, 0.392157, 1, 0.993439, 0.160156, 1, 1, 0.196078, 0, 0.392157, 1 )
 
 [sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 fill_to = Vector2( 0, 1 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
@@ -25,7 +25,7 @@ angle_random = 1.0
 scale = 0.25
 color = Color( 0.745098, 0, 1, 0.588235 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
@@ -60,7 +60,7 @@ position = Vector2( 65, 47 )
 rotation = 0.364711
 rest = Transform2D( 0.934227, 0.356679, -0.356679, 0.934227, 65, 47 )
 
-[node name="Jaw" type="Sprite" parent="Jaw"]
+[node name="Jaw" type="Sprite2D" parent="Jaw"]
 position = Vector2( 41.0374, 12.163 )
 rotation = -0.364711
 z_index = 2
@@ -75,7 +75,7 @@ position = Vector2( 79, 41 )
 dps = 50.0
 
 [node name="Line2D" parent="Lazer" index="0"]
-points = PoolVector2Array( 0, 0, 1000, 0 )
+points = PackedVector2Array( 0, 0, 1000, 0 )
 width = 50.0
 default_color = Color( 1, 1, 1, 0.705882 )
 texture = SubResource( 2 )
@@ -84,7 +84,7 @@ texture_mode = 2
 [node name="Particles_Viewport" parent="Lazer" index="1"]
 size = Vector2( 1000, 60 )
 
-[node name="Particles2D" type="Particles2D" parent="Lazer/Particles_Viewport" index="0"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Lazer/Particles_Viewport" index="0"]
 position = Vector2( -1, 30 )
 amount = 25
 lifetime = 8.2
@@ -96,7 +96,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Particles2D2" type="Particles2D" parent="Lazer/Particles_Viewport" index="1"]
+[node name="Particles2D2" type="GPUParticles2D" parent="Lazer/Particles_Viewport" index="1"]
 position = Vector2( 0, 30 )
 amount = 26
 lifetime = 8.2
@@ -109,12 +109,12 @@ __meta__ = {
 }
 
 [node name="Particles_Line2D" parent="Lazer" index="2"]
-points = PoolVector2Array( 0, 0, 1000, 0 )
+points = PackedVector2Array( 0, 0, 1000, 0 )
 width = 60.0
 default_color = Color( 1, 1, 1, 0.831373 )
 texture = SubResource( 7 )
 
-[node name="Head" type="Sprite" parent="."]
+[node name="Head" type="Sprite2D" parent="."]
 position = Vector2( 74, -1 )
 z_index = 1
 texture = ExtResource( 3 )

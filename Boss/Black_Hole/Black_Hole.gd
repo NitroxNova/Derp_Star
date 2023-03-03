@@ -1,6 +1,6 @@
 extends Boss_Area
 
-export var flash_config : Resource
+@export var flash_config : Resource
 var faction = "environment"
 var dps : float = 30
 var size : float = 1
@@ -65,14 +65,14 @@ func _on_Tween_tween_all_completed():
 		$Item_Timer.stop()
 		emit_signal("spawn_boss_core",global_position)
 
-func spawn_item():
+func generate_item():
 	if state == COLLAPSE:
-		var item : Dropped_Item = RNG.array_rand(item_list).instance()
+		var item : Dropped_Item = RNG.array_rand(item_list).instantiate()
 		if item is Ore_Chunk:
-			item.set_size(rand_range(.1,.4))
-		item.position = global_position + Vector2(rand_range(-500,500),rand_range(-500,500))
+			item.set_size(randf_range(.1,.4))
+		item.position = global_position + Vector2(randf_range(-500,500),randf_range(-500,500))
 		emit_signal("spawn_item",item)
-		item.apply_central_impulse(Vector2(rand_range(-500,500),rand_range(-500,500)))
+		item.apply_central_impulse(Vector2(randf_range(-500,500),randf_range(-500,500)))
 
 
 func _on_Light_Timer_timeout():

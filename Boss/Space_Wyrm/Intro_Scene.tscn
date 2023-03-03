@@ -5,8 +5,8 @@
 [ext_resource path="res://GUI/Boss_Flash_Config.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.104265, 0.563981, 1 )
-colors = PoolColorArray( 0.309662, 0, 0.542969, 1, 0.883179, 0.320312, 1, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0.104265, 0.563981, 1 )
+colors = PackedColorArray( 0.309662, 0, 0.542969, 1, 0.883179, 0.320312, 1, 1, 1, 1, 1, 1 )
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 3 )

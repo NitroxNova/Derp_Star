@@ -5,16 +5,16 @@ var bone
 var polygon
 var prev_segment
 var next_segment
-export (Resource) var health
+@export (Resource) var health
 var faction = "enemy"
 
 
 func aura_on():
-	$Particles2D.show()
+	$GPUParticles2D.show()
 	next_segment.aura_on()
 
 func aura_off():
-	$Particles2D.hide()
+	$GPUParticles2D.hide()
 	next_segment.aura_off()
 
 func uv_bone_path():
@@ -22,7 +22,7 @@ func uv_bone_path():
 	return path
 	
 func connect_health():
-	health.connect("current_zero",self,"died")
+	health.connect("current_zero",Callable(self,"died"))
 	$Health_Node/Node2D/ProgressBar.value = health.current
 	$Health_Node/Node2D/ProgressBar.max_value = health.maximum
 	$Health_Node/Node2D/ProgressBar.hide()

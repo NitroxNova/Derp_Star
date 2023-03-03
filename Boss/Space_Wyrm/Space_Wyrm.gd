@@ -1,7 +1,7 @@
 extends Boss
 
-export var points = 0
-export var final_points = 0
+@export var points = 0
+@export var final_points = 0
 
 var attack_phase = ""
 var faction = "enemy"
@@ -30,8 +30,8 @@ func died():
 	emit_signal("boss_defeated")
 	
 func spawn_player_portal():
-	var port_1 = player_portal.instance()
-	var port_2 = player_portal.instance()
+	var port_1 = player_portal.instantiate()
+	var port_2 = player_portal.instantiate()
 	port_1.linked_portal = port_2
 	port_2.linked_portal = port_1
 	port_1.position = global_position
@@ -43,13 +43,13 @@ func spawn_player_portal():
 	
 
 func spawn_wyrmhole():
-	var port_1 = wyrmhole.instance()
-	var port_2 = wyrmhole.instance()
+	var port_1 = wyrmhole.instantiate()
+	var port_2 = wyrmhole.instantiate()
 	port_1.position = $Head.global_position
 	port_2.position = Connector.derp_star.global_position
-	port_2.connect("opened",self,"teleport")
-	connect("close_wyrmhole",port_1,"close")
-	connect("close_wyrmhole",port_2,"close")
+	port_2.connect("opened",Callable(self,"teleport"))
+	connect("close_wyrmhole",Callable(port_1,"close"))
+	connect("close_wyrmhole",Callable(port_2,"close"))
 	emit_signal("spawn_explosion",port_1)
 	emit_signal("spawn_explosion",port_2)
 	
@@ -77,7 +77,7 @@ func laser():
 		$AnimationPlayer.play("Idle")
 
 func destroy_segment(segment):
-	var top_half = space_wyrm.instance()
+	var top_half = space_wyrm.instantiate()
 	top_half.transform = segment.global_transform
 	var tail = top_half.get_node("Tail")
 	tail.bone = top_half.get_node("Skeleton2D/Tail")
@@ -100,8 +100,8 @@ func destroy_segment(segment):
 	tail.setup()
 	top_half.laser()
 	
-	var head = head_shape.instance()
-	head.bone = head_bone.instance()
+	var head = head_shape.instantiate()
+	head.bone = head_bone.instantiate()
 	segment.prev_segment.bone.add_child(head.bone)
 	head.set_prev(segment.prev_segment)
 	add_child(head)
@@ -118,16 +118,16 @@ func build(body_count):
 	$Tail.polygon = $Polygons/Tail
 	var prev_segment = $Tail
 	for i in body_count:
-		var segment = body_shape.instance()
-		segment.bone = body_bone.instance()
-		segment.polygon = body_polygon.instance()
+		var segment = body_shape.instantiate()
+		segment.bone = body_bone.instantiate()
+		segment.polygon = body_polygon.instantiate()
 		$Polygons.add_child(segment.polygon)
 		segment.set_prev(prev_segment)
 		prev_segment.bone.add_child(segment.bone)
 		add_child(segment)
 		prev_segment = segment		
-	var head = head_shape.instance()
-	head.bone = head_bone.instance()
+	var head = head_shape.instantiate()
+	head.bone = head_bone.instantiate()
 	prev_segment.bone.add_child(head.bone)
 	head.set_prev(prev_segment)
 	add_child(head)
