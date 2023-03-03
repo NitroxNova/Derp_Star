@@ -1,8 +1,8 @@
 extends Resource
 class_name Capped_Value
 
-export (int) var current
-export (int) var maximum
+@export var current : float
+@export var maximum : float
 
 signal current_changed
 signal current_zero

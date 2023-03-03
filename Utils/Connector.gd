@@ -15,8 +15,8 @@ func reset():
 	main = get_node("/root/Main")
 	dimension_list = []
 	dimension_list.append(get_node("/root/Main/Dimension"))
-	dimension_list.append(load("res://Dimension/Olympus/Dimension.tscn").instance())
-	dimension_list.append(load("res://Dimension/Oceanus/Dimension.tscn").instance())
+	dimension_list.append(load("res://Dimension/Olympus/Dimension.tscn").instantiate())
+	dimension_list.append(load("res://Dimension/Oceanus/Dimension.tscn").instantiate())
 	Player_Stats.reset()
 	
 func load_dimension(id):

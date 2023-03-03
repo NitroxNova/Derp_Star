@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Max_Length" type="Position2D" parent="."]
+[node name="Max_Length" type="Marker2D" parent="."]
 
 [connection signal="body_shape_entered" from="." to="." method="body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="body_shape_exited"]

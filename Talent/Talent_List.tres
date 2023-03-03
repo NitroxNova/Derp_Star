@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Utils/Dictionary_Resource.gd" type="Script" id=1]
 [ext_resource path="res://Talent/Talent_Resource.gd" type="Script" id=2]
-[ext_resource path="res://Talent/Image/max_health.png" type="Texture" id=3]
-[ext_resource path="res://Talent/Image/max_energy.png" type="Texture" id=4]
-[ext_resource path="res://Talent/Image/Laser_Beam.png" type="Texture" id=5]
-[ext_resource path="res://Talent/Image/energy_shield.png" type="Texture" id=6]
-[ext_resource path="res://Talent/Image/Gravity_Beam.png" type="Texture" id=7]
+[ext_resource path="res://Talent/Image/max_health.png" type="Texture2D" id=3]
+[ext_resource path="res://Talent/Image/max_energy.png" type="Texture2D" id=4]
+[ext_resource path="res://Talent/Image/Laser_Beam.png" type="Texture2D" id=5]
+[ext_resource path="res://Talent/Image/energy_shield.png" type="Texture2D" id=6]
+[ext_resource path="res://Talent/Image/Gravity_Beam.png" type="Texture2D" id=7]
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )

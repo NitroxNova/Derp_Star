@@ -1,11 +1,11 @@
 extends Node2D
 class_name Laser_Beam
 
-export var dps: float
+@export var dps: float
 var faction
 var area_scene = preload("res://Weapon/Laser_Beam/Beam_Area.tscn")
-onready var length = $Line2D.points[1].x
-onready var height = $Line2D.width
+@onready var length = $Line2D.points[1].x
+@onready var height = $Line2D.width
 
 func _ready():
 	deactivate()
@@ -21,7 +21,7 @@ func deactivate():
 	
 func activate():
 	set_physics_process(true)
-	var beam_area = area_scene.instance()
+	var beam_area = area_scene.instantiate()
 	beam_area.set_height(height)
 	beam_area.set_maximum_length(length)
 	beam_area.faction = faction
@@ -29,7 +29,7 @@ func activate():
 	add_child(beam_area)
 
 func draw_beam():
-	var points = PoolVector2Array()
+	var points = PackedVector2Array()
 	var curr_beam = $Beam_Area
 	var done = false
 	while not done:
@@ -40,5 +40,5 @@ func draw_beam():
 		else:
 			done = true
 	points.append(curr_beam.get_raycast_end())
-	points = $Line2D.get_global_transform().xform_inv(points)
+	points = $Line2D.get_global_transform()points * 
 	$Line2D.points = points

@@ -9,12 +9,12 @@ viewport_path = NodePath("Lazer/Particles_Viewport")
 [node name="Laser_Beam" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Particles_Viewport" type="Viewport" parent="." index="1"]
+[node name="Particles_Viewport" type="SubViewport" parent="." index="1"]
 transparent_bg = true
 render_target_v_flip = true
 
 [node name="Particles_Line2D" type="Line2D" parent="." index="2"]
-points = PoolVector2Array( 0, 0, 400, 0 )
+points = PackedVector2Array( 0, 0, 400, 0 )
 default_color = Color( 1, 1, 1, 1 )
 texture = SubResource( 1 )
 texture_mode = 2

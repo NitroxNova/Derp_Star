@@ -5,9 +5,9 @@ func _ready():
 	$Particles_Line2D.width = $Particles_Viewport.size.y
 
 func draw_beam():
-	.draw_beam()
+	super.draw_beam()
 	$Particles_Line2D.points = $Line2D.points
 
 func deactivate():
-	.deactivate()
+	super.deactivate()
 	$Particles_Line2D.points = []

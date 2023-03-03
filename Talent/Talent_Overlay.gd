@@ -8,12 +8,12 @@ signal talents_changed
 
 func _ready():
 	for t in Player_Stats.talent.values():
-		var d = talent_display.instance()
+		var d = talent_display.instantiate()
 		d.set_talent(t)
 		$Talents.add_child(d)
-		connect("mode_changed",d,"_on_Talents_mode_changed")
-		d.connect("talent_pressed",self,"_on_Talent_talent_pressed")
-		connect("talents_changed",d,"update_display")
+		connect("mode_changed",Callable(d,"_on_Talents_mode_changed"))
+		d.connect("talent_pressed",Callable(self,"_on_Talent_talent_pressed"))
+		connect("talents_changed",Callable(d,"update_display"))
 	upgrade_mode()
 
 func upgrade_mode():

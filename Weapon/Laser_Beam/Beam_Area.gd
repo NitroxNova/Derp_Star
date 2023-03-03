@@ -4,7 +4,7 @@ class_name Laser_Beam_Area
 var length : float
 var height : float
 var max_length : float
-onready var direct_space = get_world_2d().direct_space_state
+@onready var direct_space = get_world_2d().direct_space_state
 var area_scene = load("res://Weapon/Laser_Beam/Beam_Area.tscn")
 var faction
 var dps
@@ -19,11 +19,11 @@ func _physics_process(delta):
 
 func set_height(h:float):
 	height = h
-	$CollisionShape2D.shape.extents.y = height/2
+	$CollisionShape2D.shape.size.y = height/2
 	
 func set_length(l:float):
 	length = l
-	$CollisionShape2D.shape.extents.x = length/2
+	$CollisionShape2D.shape.size.x = length/2
 	$CollisionShape2D.position.x = length/2
 
 func set_maximum_length(m):
@@ -43,7 +43,7 @@ func cast_beam():
 	if result:
 		set_length(start.distance_to(result.position))
 		if not $Beam_Area:
-			var new_area = area_scene.instance()
+			var new_area = area_scene.instantiate()
 			new_area.set_height(height)
 			new_area.dps = dps
 			add_child(new_area)
