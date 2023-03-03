@@ -16,12 +16,12 @@ func set_endpoints(c1,c2):
 	var length = c1.distance_to(c2) - 130
 	$Polygon2D.polygon = [Vector2(0,0),Vector2(length,0),Vector2(length,30),Vector2(0,30)]
 	$Polygon2D.position.x = length/2 * -1
-	$Collision_Shape.shape.extents.x = length/2
+	$Collision_Shape.shape.size.x = length
 	$Static.process_material.emission_box_extents.x = length/2
 	$Static.amount = length * .1
 
 func explode():
-	var e = explosion.instance()
+	var e = explosion.instantiate()
 	e.transform = global_transform
 	e.bumper_texture = $Polygon2D.texture
 	e.width = $Polygon2D.polygon[1].x

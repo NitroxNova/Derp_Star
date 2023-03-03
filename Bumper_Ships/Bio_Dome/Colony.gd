@@ -47,11 +47,11 @@ func draw():
 	queue_free()
 	
 func make_domes():
-	var dome_coords = PoolVector2Array()
+	var dome_coords = PackedVector2Array()
 	for i in dome_count:
-		var dome = dome_scenes[i].instance()
+		var dome = dome_scenes[i].instantiate()
 		var pos = rand_coords(20)
-		if not pos:
+		if not pos is Vector2:
 			return false
 		dome.position = pos
 		dome_list.append(dome)
@@ -59,10 +59,10 @@ func make_domes():
 	return make_triangles(dome_coords)
 	
 func make_triangles(dome_coords):
-	var delaunay_points = Geometry.triangulate_delaunay_2d(dome_coords)
+	var delaunay_points = Geometry2D.triangulate_delaunay(dome_coords)
 	for triangle_index in len(delaunay_points) / 3:
 		var triangle_domes = []
-		var triangle_coords = PoolVector2Array()
+		var triangle_coords = PackedVector2Array()
 		for n in 3:
 			var i = delaunay_points[(triangle_index * 3) + n]
 			triangle_domes.append(i)	
@@ -83,7 +83,7 @@ func is_valid_triangle(coords):
 	return true
 
 func is_valid_angle(c0,c1,c2):
-	var angle = abs(rad2deg((c2-c0).angle_to(c1-c0)))
+	var angle = abs(rad_to_deg((c2-c0).angle_to(c1-c0)))
 	if angle < 25:
 		return false
 	return true

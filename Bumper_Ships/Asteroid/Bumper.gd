@@ -1,11 +1,11 @@
 extends Bumper_Ship
 
 var asteroid = load("res://Bumper_Ships/Asteroid/Bumper.tscn")
-export var ore_list = []
+@export var ore_list = []
 var size = 1.0
 
 func build():
-	.build()
+	super.build()
 
 func died():
 	if size > .2:
@@ -17,10 +17,10 @@ func died():
 			spawn_chunk($Scalar/Split_1,size/3)
 			spawn_chunk($Scalar/Split_2,size/3)
 			spawn_chunk($Scalar/Split_3,size/3)
-	.died()
+	super.died()
 
 func spawn_ore(s):
-	var ore = ore_list[randi() % ore_list.size()].instance()
+	var ore = ore_list[randi() % ore_list.size()].instantiate()
 	ore.position = global_position
 	ore.set_size(s)
 	emit_signal("spawn_item",ore)
@@ -33,7 +33,7 @@ func set_size(s):
 	var scale_vec = Vector2(sqrt(s),sqrt(s))
 	$Collision_Shape.scale = scale_vec
 	$Scalar.scale = scale_vec
-	$Health_Node/Node2D/ProgressBar.rect_position.y *= sqrt(s)
+	$Health_Node/Node2D/ProgressBar.position.y *= sqrt(s)
 	$Static.scale = scale_vec
 	$Static.position *= scale_vec
 	starting_health *= s
@@ -41,7 +41,7 @@ func set_size(s):
 
 func spawn_chunk(loc,s):
 	var builder = Asteroid_Builder.new()
-	var a = builder.build(s,$Scalar/Base_Sprite.material.get("shader_param/gradient").gradient)
+	var a = builder.build(s,$Scalar/Base_Sprite.material.get("shader_parameter/gradient").gradient)
 	a.position = loc.global_position
 	a.set_size(s)
 	var vel = (a.position - global_position) * 5

@@ -7,13 +7,13 @@ var speed_max = 600
 func build():
 	var pattern_id = RNG.randi_range(1,8)
 	var pattern_texture = load("res://Bumper_Ships/Hot_Air_Balloon/Pattern/color_mask_" + str(pattern_id)+ ".svg")
-	$Base_Sprite.material.set_shader_param("Pattern",pattern_texture)
+	$Base_Sprite.material.set_shader_parameter("Pattern",pattern_texture)
 	
-	var color_list = [Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.purple, Color.white, Color.teal, Color.pink]
+	var color_list = [Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PURPLE, Color.WHITE, Color.TEAL, Color.PINK]
 	color_list = RNG.array_rand_multi(color_list,3)
-	$Base_Sprite.material.set_shader_param("Color_1",color_list[0])
-	$Base_Sprite.material.set_shader_param("Color_2",color_list[1])
-	$Base_Sprite.material.set_shader_param("Color_3",color_list[2])
+	$Base_Sprite.material.set_shader_parameter("Color_1",color_list[0])
+	$Base_Sprite.material.set_shader_parameter("Color_2",color_list[1])
+	$Base_Sprite.material.set_shader_parameter("Color_3",color_list[2])
 	
 func _integrate_forces(state):
 	applied_torque = rotation / PI * -100000

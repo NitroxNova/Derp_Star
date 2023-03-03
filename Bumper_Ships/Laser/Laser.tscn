@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Bumper_Ships/Laser/Laser.gd" type="Script" id=1]
-[ext_resource path="res://Bumper_Ships/Laser/laserRed01.png" type="Texture" id=2]
+[ext_resource path="res://Bumper_Ships/Laser/laserRed01.png" type="Texture2D" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -15,7 +15,7 @@ collision_mask = 5
 mass = 0.01
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 linear_damp = 0.0
@@ -24,7 +24,7 @@ script = ExtResource( 1 )
 speed = 700.0
 damage = 3.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( -22, 0 )
 texture = ExtResource( 2 )
 

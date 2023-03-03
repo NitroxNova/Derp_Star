@@ -6,7 +6,7 @@ var dealt_damage = false
 
 func _ready():
 	$Particle.emitting = true
-	var query = Physics2DShapeQueryParameters.new()
+	var query = PhysicsShapeQueryParameters2D.new()
 	query.set_shape($CollisionShape2D.shape)
 	query.transform = global_transform
 	var result = get_world_2d().direct_space_state.intersect_shape(query)

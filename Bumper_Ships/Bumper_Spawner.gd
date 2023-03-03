@@ -7,7 +7,7 @@ const INNER_Y = 1080/2 + 100
 const SPAWN_SIZE = 4000
 const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
 
-export var biome_config = []
+@export var biome_config = []
 var biome_list = []
 
 signal spawn_bumper
@@ -46,7 +46,7 @@ func generate_coords():
 	
 func is_valid_spawn_location(bumper):
 	var space_state = get_world_2d().direct_space_state
-	var query = Physics2DShapeQueryParameters.new()
+	var query = PhysicsShapeQueryParameters2D.new()
 	for cs in bumper.get_collision_shapes():
 		if cs is CollisionShape2D:
 			query.set_shape(cs.shape)

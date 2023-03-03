@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://vnu58dox3882"]
 
-[ext_resource path="res://Bumper_Ships/Bio_Dome/Hospital/hospital.png" type="Texture" id=1]
-[ext_resource path="res://Bumper_Ships/Bio_Dome/Dome.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Pick_Ups/Health/Health_Pack.tscn" type="PackedScene" id=6]
+[ext_resource type="Texture2D" uid="uid://cx5vx5x1dvylc" path="res://Bumper_Ships/Bio_Dome/Hospital/hospital.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://c20bk5iej82pt" path="res://Bumper_Ships/Bio_Dome/Dome.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Pick_Ups/Health/Health_Pack.tscn" id="2_hu0g1"]
 
-[node name="Bumper" instance=ExtResource( 2 )]
-drop_item = ExtResource( 6 )
+[node name="Bumper" instance=ExtResource("2")]
+loot = ExtResource("2_hu0g1")
 
 [node name="Base_Sprite" parent="." index="0"]
-texture = ExtResource( 1 )
+texture = ExtResource("1")
+
+[editable path="Health_Node"]

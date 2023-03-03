@@ -1,10 +1,10 @@
 class_name Bumper_Ship
 extends RigidBody2D
 
-export var starting_health : int
+@export var starting_health : int
 var health : Capped_Value
-export (Resource) var drop_item
-export (int) var points
+@export var loot : PackedScene
+@export var points : int
 var explosion = preload("res://Bumper_Ships/Explosion/Explosion.tscn")
 var faction = "enemy"
 
@@ -29,7 +29,7 @@ func get_collision_shapes():
 
 func _ready():
 	health = Capped_Value.new(starting_health,starting_health)
-	health.connect("current_zero",self,"died")
+	health.connect("current_zero",Callable(self,"died"))
 	emit_signal("update_maximum_health",health.maximum)
 	emit_signal("update_current_health",health.current)
 	add_to_group("bumper")
@@ -48,8 +48,8 @@ func died():
 	queue_free()
 
 func drop_item():
-	if drop_item:
-		var i = drop_item.instance()
+	if not loot == null:
+		var i = loot.instantiate()
 		i.transform = global_transform
 		emit_signal("spawn_item",i)
 
@@ -57,7 +57,7 @@ func get_base_sprite():
 	return $Base_Sprite
 
 func explode():
-	var e = explosion.instance()
+	var e = explosion.instantiate()
 	e.transform = global_transform
 	var bs = get_base_sprite()
 	e.bumper_texture = bs.texture

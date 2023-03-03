@@ -6,8 +6,8 @@ extends Node2D
 var colony_scene = preload("res://Bumper_Ships/Bio_Dome/Colony.tscn")
 
 func _ready():
-	var colony = colony_scene.instance()
-	colony.connect("spawn_bumper",self,"spawn_bumper")
+	var colony = colony_scene.instantiate()
+	colony.connect("spawn_bumper",Callable(self,"spawn_bumper"))
 	add_child(colony)	
 	
 func _init():

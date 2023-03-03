@@ -1,6 +1,6 @@
 extends Node2D
 
-var bumper_texture : Texture
+var bumper_texture : Texture2D
 var shard_velocity_map = {}
 var shard_count = 50
 var height : int
@@ -17,10 +17,11 @@ func _process(delta):
 		child.color.a -= delta 
 
 func _on_Boom_animation_finished():
+#	print("explosion finished")
 	queue_free()
 
 func make_debris():
-	var points = PoolVector2Array()
+	var points = PackedVector2Array()
 	
 	$Boom.scale.x = (float(width)/256) * 1.2
 	$Boom.scale.y = (float(height)/256) * 1.2
@@ -35,10 +36,10 @@ func make_debris():
 	for i in range(shard_count):
 		points.append(Vector2(randi()%width,randi()%height))
 	
-	var delaunay_points = Geometry.triangulate_delaunay_2d(points)
+	var delaunay_points = Geometry2D.triangulate_delaunay(points)
 	
 	for index in len(delaunay_points) / 3:
-		var shard_pool = PoolVector2Array()
+		var shard_pool = PackedVector2Array()
 		var center = Vector2.ZERO
 		
 		for n in range(3):

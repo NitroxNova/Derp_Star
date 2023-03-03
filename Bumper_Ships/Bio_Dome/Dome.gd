@@ -4,12 +4,12 @@ var tube_scene = preload("res://Bumper_Ships/Bio_Dome/Tube/Bumper.tscn")
 var connected_tubes = []
 
 func _ready():
-	._ready()
+	super._ready()
 	make_joints()
 	
 func connect_dome(dome):
 	if not is_dome_connected(dome):
-		var tube = tube_scene.instance()
+		var tube = tube_scene.instantiate()
 		tube.set_domes(self,dome)
 		return tube
 	return false

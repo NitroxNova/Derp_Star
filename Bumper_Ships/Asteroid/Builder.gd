@@ -21,8 +21,8 @@ func build(size=null, gradient = null):
 		size = RNG.randf_range(0.2,0.8)
 	if gradient == null:
 		gradient = RNG.array_rand(gradient_list)
-	var bumper = RNG.array_rand(asteroid_list).instance()
+	var bumper = RNG.array_rand(asteroid_list).instantiate()
 	bumper.set_size(size)
-	var shader_gradient = bumper.get_node("Scalar/Base_Sprite").material.get("shader_param/gradient")
+	var shader_gradient = bumper.get_node("Scalar/Base_Sprite").material.get("shader_parameter/gradient")
 	shader_gradient.gradient = gradient
 	return bumper
