@@ -1,7 +1,7 @@
 extends Control
 
-onready var energy_styleBox = $Energy_Bar.get("custom_styles/fg")
-onready var health_styleBox = $Life_Bar.get("custom_styles/fg")
+@onready var energy_styleBox = $Energy_Bar.get("theme_override_styles/fill")
+@onready var health_styleBox = $Life_Bar.get("theme_override_styles/fill")
 
 var energy_color = Color(0,1,1)
 var energy_lock_color = Color(.5,.5,.5)

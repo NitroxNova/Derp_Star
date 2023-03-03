@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-var pause = false
+var is_paused = false
 var dead = false
 
 func pause():
-	pause = true
+	is_paused = true
 	get_tree().paused = true
 	$Talents.hide()
 	$Pause_Menu.show()
@@ -12,14 +12,14 @@ func pause():
 	$HUD/Life_Bar.show()
 	
 func unpause():
-	pause = false
+	is_paused = false
 	$Pause_Menu.hide()
 	$Talents.hide()
 	get_tree().paused = false
 
-func _process(delta):
-	if Input.is_action_just_pressed("pause") and not dead:
-		if pause:
+func pause_pressed():
+	if not dead:
+		if is_paused:
 			unpause()
 		else:
 			pause()
