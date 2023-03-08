@@ -24,9 +24,9 @@ func pause_pressed():
 		else:
 			pause()
 
-func play_boss_flash(config:Boss_Flash_Config):
-	$Boss/Flash.material.get("shader_param/gradient").gradient = config.gradient
-	$Boss/Label.text = config.text
+func play_boss_flash(boss:Boss_Encounter):
+	$Boss/Flash.material.get("shader_parameter/gradient").gradient = boss.splash_gradient
+	$Boss/Label.text = boss.splash_text
 	$Boss/AnimationPlayer.play("Flash")
 
 func _on_Resume_Button_pressed():

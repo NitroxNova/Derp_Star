@@ -1,34 +1,30 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://c1pbalkug8f7n"]
 
-[ext_resource path="res://Pick_Ups/Boss_Core/boss_core.png" type="Texture2D" id=1]
-[ext_resource path="res://Pick_Ups/Boss_Core/Boss_Core.gd" type="Script" id=2]
-[ext_resource path="res://Pick_Ups/Boss_Core/particles.png" type="Texture2D" id=3]
-[ext_resource path="res://Pick_Ups/Item.tscn" type="PackedScene" id=4]
+[ext_resource type="Texture2D" uid="uid://dg1wqgbxbwfph" path="res://Pick_Ups/Boss_Core/boss_core.png" id="1"]
+[ext_resource type="Script" path="res://Pick_Ups/Boss_Core/Boss_Core.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cyqgxnlmhcrga" path="res://Pick_Ups/Boss_Core/particles.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://c0t4ng0ksahcw" path="res://Pick_Ups/Item.tscn" id="4"]
 
-[sub_resource type="Gradient" id=4]
-colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=3]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("4")
 
-[sub_resource type="ParticleProcessMaterial" id=5]
-flag_disable_z = true
+[sub_resource type="ParticleProcessMaterial" id="5"]
 spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-color_ramp = SubResource( 3 )
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("3")
 
-[node name="Boss_Core" instance=ExtResource( 4 )]
-script = ExtResource( 2 )
+[node name="Boss_Core" instance=ExtResource("4")]
+script = ExtResource("2")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="0"]
 amount = 40
+process_material = SubResource("5")
+texture = ExtResource("3")
 lifetime = 2.0
 preprocess = 2.0
-process_material = SubResource( 5 )
-texture = ExtResource( 3 )
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource( 1 )
+texture = ExtResource("1")
