@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://br40r1y08a8d5"]
 
-[ext_resource type="Texture2D" uid="uid://d03p36jgad7br" path="res://Boss/Black_Hole/center.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://g6xg51mmtfkq" path="res://icon.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cx4oql122wuim" path="res://Boss/Black_Hole/center.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dtkemxxyih2ta" path="res://icon.png" id="2"]
 [ext_resource type="Script" path="res://Boss/Black_Hole/Black_Hole.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://cxwi3i03wlb88" path="res://Boss/Black_Hole/light_beam.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cmcsqe3d3pi1v" path="res://Boss/Black_Hole/light_beam.png" id="4"]
 [ext_resource type="Script" path="res://GUI/Boss_Flash_Config.gd" id="5"]
 
 [sub_resource type="Gradient" id="26"]
@@ -19,26 +19,27 @@ gradient = SubResource("26")
 [sub_resource type="Gradient" id="20"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="21"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vskfd"]
 gradient = SubResource("20")
 
 [sub_resource type="Curve" id="22"]
 _data = [Vector2(0, 0.177273), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="23"]
+[sub_resource type="CurveTexture" id="CurveTexture_q27dq"]
 curve = SubResource("22")
 
 [sub_resource type="ParticleProcessMaterial" id="19"]
 spread = 180.0
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("23")
-color_ramp = SubResource("21")
+angle_max = 363.8
+scale_curve = SubResource("CurveTexture_q27dq")
+color_ramp = SubResource("GradientTexture2D_vskfd")
 
 [sub_resource type="CircleShape2D" id="14"]
 radius = 156.8
 
-[sub_resource type="Shader" id="15"]
+[sub_resource type="Shader" id="Shader_uph7i"]
 code = "shader_type canvas_item;
 uniform sampler2D curve;
 
@@ -51,7 +52,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="16"]
-shader = SubResource("15")
+shader = SubResource("Shader_uph7i")
 
 [sub_resource type="Animation" id="24"]
 resource_name = "Fade_In"
@@ -91,8 +92,8 @@ _data = {
 }
 
 [node name="Black_Hole" type="Area2D"]
-collision_layer = 3
 collision_mask = 3
+gravity_space_override = 1
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
