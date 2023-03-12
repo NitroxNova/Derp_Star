@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://nhoo4j7sdf8d"]
 
-[ext_resource type="Texture2D" uid="uid://canefqu8s323w" path="res://Derp_Star/derp_star.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dkjw54e5jyjg6" path="res://Derp_Star/derp_star.png" id="1"]
 [ext_resource type="PackedScene" path="res://Derp_Star/Thruster.tscn" id="2"]
 [ext_resource type="Script" path="res://Derp_Star/Derp_Star.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cwb8h8uacacpr" path="res://Derp_Star/Laser/Muh_Lazer.tscn" id="4"]
@@ -29,6 +29,7 @@ radius = 99.0453
 
 [node name="Derp_Star" type="RigidBody2D" groups=["player"]]
 collision_layer = 524289
+collision_mask = 3
 mass = 0.1
 physics_material_override = SubResource("1")
 max_contacts_reported = 1

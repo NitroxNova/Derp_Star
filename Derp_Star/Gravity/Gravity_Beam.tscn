@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://7knqr5o2y5ae"]
 
 [ext_resource type="Script" path="res://Derp_Star/Beam.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://lcn7tycng5de" path="res://Derp_Star/Gravity/pivot.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://bccv36nscq4yi" path="res://Derp_Star/Gravity/particle.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bcyeo5vuxwogh" path="res://Derp_Star/Gravity/pivot.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bd0tk20f3277c" path="res://Derp_Star/Gravity/particle.png" id="3"]
 
 [sub_resource type="Gradient" id="1"]
 offsets = PackedFloat32Array(0, 0.33, 0.66, 1)
@@ -29,7 +29,7 @@ texture = ExtResource("2")
 
 [node name="Beam" type="Area2D" parent="."]
 collision_layer = 524288
-collision_mask = 3
+collision_mask = 6
 gravity_space_override = 1
 gravity_point = true
 gravity_point_center = Vector2(0, 0)

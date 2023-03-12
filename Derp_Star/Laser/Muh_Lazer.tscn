@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwb8h8uacacpr"]
 
 [ext_resource type="Script" path="res://Derp_Star/Laser/Muh_Lazer.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://rr5xbhsjp4r2" path="res://Derp_Star/Laser/laser_circle.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://cbhwnj0yupdlm" path="res://Derp_Star/Laser/lightning.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://5dbingbd2nco" path="res://Derp_Star/Laser/laser_circle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bpogprqi0vtur" path="res://Derp_Star/Laser/lightning.png" id="4"]
 
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(671, 44)
@@ -34,6 +34,7 @@ texture = ExtResource("2")
 
 [node name="Beam" type="Area2D" parent="."]
 collision_layer = 524288
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam"]
 position = Vector2(340.5, 2)

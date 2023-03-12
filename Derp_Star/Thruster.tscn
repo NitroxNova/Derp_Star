@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cbb0klr830pna"]
 
-[ext_resource path="res://Derp_Star/thruster_flame.png" type="Texture2D" id=1]
-[ext_resource path="res://Derp_Star/thruster.png" type="Texture2D" id=2]
-[ext_resource path="res://Derp_Star/Thruster.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://hjl48a2yp1tl" path="res://Derp_Star/thruster_flame.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bfm1afnw4r67c" path="res://Derp_Star/thruster.png" id="2"]
+[ext_resource type="Script" path="res://Derp_Star/Thruster.gd" id="3"]
 
 [node name="Thruster" type="Sprite2D"]
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
+texture = ExtResource("2")
+script = ExtResource("3")
 
 [node name="Flame" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Flame"]
-texture = ExtResource( 1 )
-offset = Vector2( -37, 1 )
+texture = ExtResource("1")
+offset = Vector2(-37, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flame"]
-position = Vector2( -37, 1 )
-polygon = PackedVector2Array( 25, -7.4, 25, 5.5, 16.4, 12, 2.5, 12, -3.5, 9, -9.9, 9, -16, 10.6, -16, 6.5, -15.2, 5, -16.7, 5, -25, -1.4, -25, -6, -23.7, -6, -16.6, -3.6, -10.9, -5.2, -12.3, -5.9, -11.6, -9, -7.6, -9, -4.3, -7.7, 7, -12, 18.1, -12 )
+position = Vector2(-37, 1)
+polygon = PackedVector2Array(25, -7.4, 25, 5.5, 16.4, 12, 2.5, 12, -3.5, 9, -9.9, 9, -16, 10.6, -16, 6.5, -15.2, 5, -16.7, 5, -25, -1.4, -25, -6, -23.7, -6, -16.6, -3.6, -10.9, -5.2, -12.3, -5.9, -11.6, -9, -7.6, -9, -4.3, -7.7, 7, -12, 18.1, -12)
 
 [connection signal="body_shape_entered" from="Flame" to="." method="_on_Flame_body_shape_entered"]
