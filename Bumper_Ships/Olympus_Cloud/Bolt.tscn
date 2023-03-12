@@ -1,29 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://crpuqw7mxsgnw"]
 
-[ext_resource path="res://Bumper_Ships/Olympus_Cloud/Bolt.gd" type="Script" id=1]
-[ext_resource path="res://Bumper_Ships/Olympus_Cloud/lightning.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://Bumper_Ships/Olympus_Cloud/Bolt.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bmgaodjbxohlk" path="res://Bumper_Ships/Olympus_Cloud/lightning.png" id="2"]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id="2"]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 
 [node name="Bolt" type="RigidBody2D"]
-collision_mask = 5
+collision_layer = 8
+collision_mask = 19
 mass = 0.01
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource("2")
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource( 1 )
+script = ExtResource("1")
 speed = 500.0
 damage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Despawn_Timer" type="Timer" parent="."]
 wait_time = 6.0
