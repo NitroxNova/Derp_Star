@@ -8,16 +8,16 @@
 [ext_resource type="Script" path="res://main.gd" id="11"]
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
 [ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="16"]
-[ext_resource type="Texture2D" uid="uid://dus5ujjt1rtfi" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://bb76qv0erq0cc" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
 [ext_resource type="Script" path="res://Talent/Talent_Overlay.gd" id="18"]
 
-[sub_resource type="Resource" id="Resource_k0nu8"]
+[sub_resource type="Resource" id="Resource_j6ifm"]
 resource_local_to_scene = true
 script = ExtResource("16")
 current = 1000.0
 maximum = 1000.0
 
-[sub_resource type="Resource" id="Resource_ppyvg"]
+[sub_resource type="Resource" id="Resource_ki0oy"]
 resource_local_to_scene = true
 script = ExtResource("16")
 current = 1000.0
@@ -171,8 +171,8 @@ script = ExtResource("11")
 metadata/_edit_vertical_guides_ = [136.0]
 
 [node name="Derp_Star" parent="." instance=ExtResource("2")]
-health = SubResource("Resource_k0nu8")
-energy = SubResource("Resource_ppyvg")
+health = SubResource("Resource_j6ifm")
+energy = SubResource("Resource_ki0oy")
 
 [node name="Camera2D" type="Camera2D" parent="Derp_Star"]
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6ceymo3o04n6"]
 
 [ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1"]
-[ext_resource type="Script" path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://btwea4emtd6wr" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://dm2awkgha4o52" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cilsq81saccs" path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://dm5fll7360g1o" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://diyyeqyx1pmja" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://b60y824xdjrxs" path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bsk7r4lkvja81" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://drcmh0kfjp3de" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bhpy8teieqhu1" path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://d1kxiwyvmlnu8" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cj6l61kqsh2u8" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://difgdgmq4f761" path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" id="8"]
 [ext_resource type="Script" path="res://Dimension/Derp_Space/default_biome.gd" id="9"]
+[ext_resource type="Script" path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" id="9_g11vx"]
 [ext_resource type="PackedScene" uid="uid://yyrv5mkoljrv" path="res://Boss/Black_Hole/boss_encounter.tscn" id="10_shajg"]
 
 [node name="Dimension" instance=ExtResource("1")]
@@ -48,7 +48,7 @@ texture = ExtResource("4")
 centered = false
 
 [node name="Bumper_List" parent="." index="4"]
-biome_config = [ExtResource("2"), ExtResource("9")]
+biome_config = [ExtResource("9"), ExtResource("9_g11vx")]
 
 [node name="Boss" parent="." index="5"]
 boss_list = Array[PackedScene]([ExtResource("10_shajg")])
