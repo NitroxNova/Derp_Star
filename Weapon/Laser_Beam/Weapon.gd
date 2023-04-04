@@ -4,8 +4,8 @@ class_name Laser_Beam
 @export var dps: float
 var faction
 var area_scene = preload("res://Weapon/Laser_Beam/Beam_Area.tscn")
-@onready var length = $Line2D.points[1].x
-@onready var height = $Line2D.width
+@onready var length = $Reset_XForm/Line2D.points[1].x
+@onready var height = $Reset_XForm/Line2D.width
 
 func _ready():
 	deactivate()
@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 func deactivate():
 	set_physics_process(false)
-	$Line2D.points = []
+	$Reset_XForm/Line2D.points = []
 	remove_child($Beam_Area)
 	
 func activate():
@@ -40,5 +40,5 @@ func draw_beam():
 		else:
 			done = true
 	points.append(curr_beam.get_raycast_end())
-	points = $Line2D.get_global_transform()points * 
-	$Line2D.points = points
+#	points = $Line2D.get_global_transform()points * 
+	$Reset_XForm/Line2D.points = points

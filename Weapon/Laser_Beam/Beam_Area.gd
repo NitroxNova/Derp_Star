@@ -19,16 +19,17 @@ func _physics_process(delta):
 
 func set_height(h:float):
 	height = h
-	$CollisionShape2D.shape.size.y = height/2
+	$CollisionShape2D.shape.size.y = height
 	
 func set_length(l:float):
 	length = l
-	$CollisionShape2D.shape.size.x = length/2
+	$CollisionShape2D.shape.size.x = length
 	$CollisionShape2D.position.x = length/2
 
 func set_maximum_length(m):
 	max_length = m
 	$Max_Length.position.x = max_length
+	$RayCast2D.target_position.x = max_length
 
 func get_raycast_start():
 	return global_position
@@ -39,19 +40,20 @@ func get_raycast_end():
 func cast_beam():
 	var start = get_raycast_start()
 	var end = get_raycast_end()
-	var result = direct_space.intersect_ray(start,end,[],4)
-	if result:
-		set_length(start.distance_to(result.position))
+	if $RayCast2D.is_colliding():
+		var collision_point = $RayCast2D.get_collision_point()
+		set_length(start.distance_to(collision_point))
 		if not $Beam_Area:
 			var new_area = area_scene.instantiate()
 			new_area.set_height(height)
 			new_area.dps = dps
 			add_child(new_area)
 		$Beam_Area.set_maximum_length(max_length-length)
-		$Beam_Area.global_position = result.position
-		var incoming_direction = result.position - start
-		$Beam_Area.global_rotation = incoming_direction.bounce(result.normal).angle()
-		$Beam_Area.faction = result.collider.faction
+		$Beam_Area.global_position = collision_point
+#		var incoming_direction = collision_point - start
+#		$Beam_Area.global_rotation = incoming_direction.bounce(result.normal).angle()
+		$Beam_Area.global_rotation = $RayCast2D.get_collision_normal().angle()
+		$Beam_Area.faction = $RayCast2D.get_collider().faction
 		$Beam_Area.cast_beam()
 	else:
 		set_length(max_length)
