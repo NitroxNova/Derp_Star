@@ -1,20 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bibh81jnjpt8m"]
 
-[ext_resource path="res://Bumper_Ships/Bumper.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Bumper_Ships/Naval_Mine/naval_mine.png" type="Texture2D" id=2]
-[ext_resource path="res://Bumper_Ships/Naval_Mine/Bumper.gd" type="Script" id=3]
+[ext_resource type="PackedScene" uid="uid://cbkbgs8q5qxt2" path="res://Bumper_Ships/Bumper.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cixdjrs0c2k5v" path="res://Bumper_Ships/Naval_Mine/naval_mine.png" id="2"]
+[ext_resource type="Script" path="res://Bumper_Ships/Naval_Mine/Bumper.gd" id="3"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 77.0065
 
-[node name="Bumper" instance=ExtResource( 1 )]
-script = ExtResource( 3 )
+[node name="Bumper" instance=ExtResource("1")]
+script = ExtResource("3")
 starting_health = 1
 points = 10
 
 [node name="Base_Sprite" type="Sprite2D" parent="." index="3"]
-position = Vector2( -3, 73 )
-texture = ExtResource( 2 )
+position = Vector2(-3, 73)
+texture = ExtResource("2")
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="." index="4"]
-shape = SubResource( 1 )
+shape = SubResource("1")
+
+[editable path="Health_Node"]

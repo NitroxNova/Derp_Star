@@ -1,54 +1,59 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cuqvv1apm37pb"]
 
-[ext_resource path="res://Bumper_Ships/Naval_Mine/explosion_particle.png" type="Texture2D" id=1]
-[ext_resource path="res://Bumper_Ships/Naval_Mine/Explosion.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://bl0e14ka3nnis" path="res://Bumper_Ships/Naval_Mine/explosion_particle.png" id="1"]
+[ext_resource type="Script" path="res://Bumper_Ships/Naval_Mine/Explosion.gd" id="2"]
 
-[sub_resource type="Gradient" id=3]
-offsets = PackedFloat32Array( 0, 0.16129, 0.8, 1 )
-colors = PackedColorArray( 1, 0.756863, 0, 0, 1, 0.768627, 0, 1, 1, 0.203922, 0, 1, 1, 0.207317, 0, 0 )
+[sub_resource type="CircleShape2D" id="5"]
+radius = 180.0
 
-[sub_resource type="GradientTexture2D" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="Gradient" id="Gradient_4d4d8"]
+offsets = PackedFloat32Array(0, 0.162963, 0.37037, 0.592593, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.45098, 0, 1, 1, 0, 0.235294, 1, 0.295867, 0.295866, 0.295866, 1)
 
-[sub_resource type="ParticleProcessMaterial" id=2]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fyfwg"]
+gradient = SubResource("Gradient_4d4d8")
+
+[sub_resource type="Curve" id="Curve_6sioi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.17987, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y5ej2"]
+curve = SubResource("Curve_6sioi")
+
+[sub_resource type="ParticleProcessMaterial" id="2"]
 lifetime_randomness = 1.0
-flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
 spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 400.0
-initial_velocity_random = 0.4
-angular_velocity = 720.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 500.0
-angle = 720.0
-angle_random = 1.0
-scale = 2.0
-color_ramp = SubResource( 4 )
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 198.01
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_y5ej2")
+color = Color(1, 1, 1, 0.427451)
+color_ramp = SubResource("GradientTexture1D_fyfwg")
 
 [node name="Explosion" type="Area2D"]
-space_override = 4
 gravity_point = true
-gravity_direction = Vector2( 0, 0 )
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
 gravity = -4096.0
 linear_damp = 0.0
 angular_damp = 0.0
-script = ExtResource( 2 )
+script = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("5")
+debug_color = Color(0.913725, 0, 0.717647, 0.231373)
 
 [node name="Particle" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 50
+process_material = SubResource("2")
+texture = ExtResource("1")
 one_shot = true
 explosiveness = 0.6
-process_material = SubResource( 2 )
-texture = ExtResource( 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.2

@@ -8,25 +8,25 @@ var is_aggro = false
 signal aggro_on
 signal aggro_off
 
-func aggro_on():
+func set_aggro_on():
 	if not is_aggro:
 		is_aggro = true
 		emit_signal("aggro_on")
 
-func aggro_off():
+func set_aggro_off():
 	if is_aggro:
 		is_aggro = false
 		emit_signal("aggro_off")
 
-func _physics_process(delta):
-	var distance = Connector.derp_star.global_position.distance_to(global_position)
+func _integrate_forces(state):
+	var distance = global_position.distance_to(Connector.derp_star.global_position)
 	if distance < aggro_range:
-		aggro_on()
-		var target_angle = Connector.derp_star.global_position.angle_to_point(global_position)
-		global_rotation = lerp_angle(global_rotation,target_angle,.05)
+		set_aggro_on()
+		var angle_to = get_angle_to(Connector.derp_star.global_position)
+		state.angular_velocity = angle_to * 5
 	else:
-		aggro_off()
-	linear_velocity = Vector2(speed,0).rotated(global_rotation)
+		set_aggro_off()
+	state.linear_velocity = Vector2(speed,0).rotated(global_rotation)
 	
 func explode():
 	var e = explosion.instantiate()

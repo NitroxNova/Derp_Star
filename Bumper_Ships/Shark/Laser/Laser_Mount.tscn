@@ -1,31 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bufl3772bv211"]
 
-[ext_resource path="res://Bumper_Ships/Shark/Laser/laser_mount.png" type="Texture2D" id=1]
-[ext_resource path="res://Weapon/Laser_Beam/Weapon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Bumper_Ships/Shark/Laser/Laser_Mount.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://qv0foi476eqh" path="res://Bumper_Ships/Shark/Laser/laser_mount.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://c61am1nam7kal" path="res://Weapon/Laser_Beam/Weapon.tscn" id="2"]
+[ext_resource type="Script" path="res://Bumper_Ships/Shark/Laser/Laser_Mount.gd" id="3"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PackedFloat32Array( 0, 0.5, 1 )
-colors = PackedColorArray( 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
-fill_to = Vector2( 0, 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
+fill_to = Vector2(0, 1)
 
 [node name="Laser_Mount" type="Sprite2D"]
-texture = ExtResource( 1 )
-script = ExtResource( 3 )
+texture = ExtResource("1")
+script = ExtResource("3")
 
-[node name="Laser_Beam" parent="." instance=ExtResource( 2 )]
-position = Vector2( 38, -27 )
+[node name="Laser_Beam" parent="." instance=ExtResource("2")]
+position = Vector2(38, -27)
 dps = 10.0
 
-[node name="Line2D" parent="Laser_Beam" index="0"]
-points = PackedVector2Array( 0, 0, 700, 0 )
+[node name="Line2D" parent="Laser_Beam/Reset_XForm" index="0"]
+points = PackedVector2Array(0, 0, 700, 0)
 width = 14.0
-default_color = Color( 1, 1, 1, 1 )
-texture = SubResource( 2 )
+texture = SubResource("2")
 texture_mode = 2
-end_cap_mode = 2
 
 [editable path="Laser_Beam"]
