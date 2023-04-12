@@ -6,6 +6,7 @@ var overlay
 var hud
 var talent_overlay
 var dimension_list
+var current_dimension = 0
 
 func reset():
 	derp_star = get_node("/root/Main/Derp_Star")
@@ -23,6 +24,7 @@ func load_dimension(id):
 	var cur_dim = get_node("/root/Main/Dimension")
 	main.remove_child(cur_dim)
 	main.add_child(dimension_list[id])
+	current_dimension = id
 
 func show_boss_flash():
 	overlay.get_node("Boss_Flash").show()
