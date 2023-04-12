@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://drfoq0w8x13ls"]
+
+[ext_resource type="PackedScene" uid="uid://cyr21lbu542p3" path="res://Boss/Wyrm/boss_encounter.tscn" id="1_rcoir"]
+
+[sub_resource type="Gradient" id="Gradient_072wm"]
+offsets = PackedFloat32Array(0, 0.325714, 0.657143, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.607843, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1)
+
+[node name="Boss_Encounter" instance=ExtResource("1_rcoir")]
+splash_text = "Space
+Wyrm"
+splash_gradient = SubResource("Gradient_072wm")

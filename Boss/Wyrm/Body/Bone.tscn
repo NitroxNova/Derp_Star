@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="Body" type="Bone2D"]
+position = Vector2( 160, 0 )
+rest = Transform2D( 1, 0, 0, 1, 160, 0 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2( 80, 0 )
+remote_path = NodePath("../../../../../../Body")

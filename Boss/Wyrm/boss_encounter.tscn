@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyr21lbu542p3"]
+
+[ext_resource type="PackedScene" uid="uid://b4aabywfv2ugu" path="res://Boss/encounter.tscn" id="1_x76e1"]
+[ext_resource type="PackedScene" uid="uid://clb0mjh7qp4yl" path="res://Boss/Wyrm/Wyrmhole/Wyrmhole.tscn" id="2_bgyu7"]
+[ext_resource type="Script" path="res://Boss/Wyrm/boss_encounter.gd" id="2_hyd2t"]
+
+[sub_resource type="Gradient" id="Gradient_kqk7v"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 1, 1)
+
+[node name="Boss_Encounter" instance=ExtResource("1_x76e1")]
+script = ExtResource("2_hyd2t")
+final_points = 1500
+splash_text = "Boss
+Wyrm"
+splash_gradient = SubResource("Gradient_kqk7v")
+
+[node name="Wyrmhole" parent="." index="0" instance=ExtResource("2_bgyu7")]
+
+[connection signal="opened" from="Wyrmhole" to="." method="_on_wyrmhole_opened"]

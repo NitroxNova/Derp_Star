@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bkxjk26vd7ruy" path="res://Boss/Wyrm/Body/body_segment.png" id="1"]
+
+[node name="Body" type="Polygon2D"]
+position = Vector2( 160, -50 )
+texture = ExtResource( 1 )
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array( 0, 0, 60, 0, 100, 0, 160, 0, 160, 50, 160, 100, 100, 100, 60, 100, 0, 100, 0, 50 )
+uv = PackedVector2Array( 0, 0, 60, 0, 100, 0, 160, 0, 160, 50, 160, 100, 100, 100, 60, 100, 0, 100, 0, 50 )
+bones = [ "Tail", PackedFloat32Array( 1, 0, 0, 0, 0, 0, 0, 0, 1, 1 ), "Tail/Body_3", PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Tail/Body_3/Body_2", PackedFloat32Array( 0, 0, 0, 1, 1, 1, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1", PackedFloat32Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head", PackedFloat32Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head/Nose", PackedFloat32Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Tail/Body_3/Body_2/Body_1/Head/Jaw", PackedFloat32Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]

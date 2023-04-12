@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctx1y32enl574"]
+
+[ext_resource type="PackedScene" uid="uid://bl1k6mghaorce" path="res://Weapon/Laser_Beam/Particles/Weapon.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://4a8ud1jgvl22" path="res://Derp_Star/Laser/lightning.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxv8o0dcqd4e6" path="res://Boss/Wyrm/Head/head.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dag0eorxbnqig" path="res://Boss/Wyrm/Head/jaw.png" id="4"]
+
+[sub_resource type="Gradient" id="Gradient_7xbr1"]
+offsets = PackedFloat32Array(0, 0.384615, 0.65035, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.996752, 0.695843, 1, 1, 0.996752, 0.695843, 1, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jvcce"]
+gradient = SubResource("Gradient_7xbr1")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5bm37"]
+viewport_path = NodePath("Lazer/Particles_Viewport")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -30.0
+angle_max = 30.0
+scale_min = 0.2
+scale_max = 0.3
+color = Color(0.745098, 0, 1, 0.462745)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0pqct"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 150.0
+angle_max = 210.0
+scale_min = 0.2
+scale_max = 0.3
+color = Color(0.745098, 0, 1, 0.462745)
+
+[node name="Head" type="Bone2D"]
+position = Vector2(160, 0)
+rest = Transform2D(1, 0, 0, 1, 160, 0)
+
+[node name="Nose" type="Bone2D" parent="."]
+position = Vector2(135, 0)
+rest = Transform2D(1, 0, 0, 1, 135, 0)
+
+[node name="Jaw" type="Bone2D" parent="."]
+position = Vector2(65, 47)
+rotation = 0.364711
+rest = Transform2D(0.934227, 0.356679, -0.356679, 0.934227, 65, 47)
+
+[node name="Jaw" type="Sprite2D" parent="Jaw"]
+z_index = 2
+position = Vector2(41.0374, 12.163)
+rotation = -0.364711
+texture = ExtResource("4")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2(80, 0)
+remote_path = NodePath("../../../../../../../Head")
+
+[node name="Lazer" parent="." instance=ExtResource("1")]
+position = Vector2(79, 41)
+dps = 50.0
+
+[node name="Line2D" parent="Lazer/Reset_XForm" index="0"]
+points = PackedVector2Array(0, 0, 700, 0)
+width = 40.0
+default_color = Color(1, 1, 1, 0.556863)
+texture = SubResource("GradientTexture2D_jvcce")
+texture_mode = 2
+
+[node name="Particles_Line2D" parent="Lazer/Reset_XForm" index="1"]
+points = PackedVector2Array(0, 0, 700, 0)
+width = 50.0
+texture = SubResource("ViewportTexture_5bm37")
+
+[node name="Particles_Viewport" parent="Lazer" index="1"]
+size = Vector2i(1000, 60)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Lazer/Particles_Viewport" index="0"]
+position = Vector2(-1, 30)
+amount = 25
+process_material = SubResource("5")
+texture = ExtResource("2")
+lifetime = 8.0
+preprocess = 8.0
+visibility_rect = Rect2(-100, -100, 1200, 200)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Lazer/Particles_Viewport" index="1"]
+position = Vector2(-1, 30)
+amount = 26
+process_material = SubResource("ParticleProcessMaterial_0pqct")
+texture = ExtResource("2")
+lifetime = 8.0
+preprocess = 8.0
+visibility_rect = Rect2(-100, -100, 1200, 200)
+
+[node name="Head" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(74, -1)
+texture = ExtResource("3")
+
+[editable path="Lazer"]
