@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cyr21lbu542p3" path="res://Boss/Wyrm/boss_encounter.tscn" id="1_07xfw"]
 
 [sub_resource type="Gradient" id="Gradient_06w2r"]
-offsets = PackedFloat32Array(0.0571429, 0.285714, 0.6, 1)
-colors = PackedColorArray(1.58831e-06, 0.338419, 2.40654e-07, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1)
+offsets = PackedFloat32Array(0, 0.331429, 0.691429, 1)
+colors = PackedColorArray(0.100438, 0.337708, 1, 1, 6.73831e-06, 0.932929, 0.932929, 1, 0.2619, 0.97, 0.2619, 1, 1.94328e-06, 0.373541, 3.36915e-07, 1)
 
 [node name="Boss_Encounter" instance=ExtResource("1_07xfw")]
 splash_text = "Aqua

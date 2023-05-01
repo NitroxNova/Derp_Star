@@ -1,9 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctx1y32enl574"]
+[gd_scene load_steps=22 format=3 uid="uid://ctx1y32enl574"]
 
 [ext_resource type="PackedScene" uid="uid://bl1k6mghaorce" path="res://Weapon/Laser_Beam/Particles/Weapon.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://4a8ud1jgvl22" path="res://Derp_Star/Laser/lightning.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dxv8o0dcqd4e6" path="res://Boss/Wyrm/Head/head.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://dag0eorxbnqig" path="res://Boss/Wyrm/Head/jaw.png" id="4"]
+[ext_resource type="Script" path="res://Boss/Wyrm/Head/Bone.gd" id="1_s0dfn"]
+[ext_resource type="Texture2D" uid="uid://cynw5tkgauf4q" path="res://Derp_Star/Laser/lightning.png" id="2"]
+[ext_resource type="Shader" path="res://Boss/Wyrm/Body/Polygon.gdshader" id="2_8k7bt"]
+[ext_resource type="Texture2D" uid="uid://d0y6exi4ewebx" path="res://Boss/Wyrm/Head/jaw_overlay.png" id="3_0ejwi"]
+[ext_resource type="Texture2D" uid="uid://gknf1hitdnle" path="res://Boss/Wyrm/Head/jaw_bg_mask.png" id="4_3so6w"]
+[ext_resource type="Texture2D" uid="uid://dirrf8nax30k6" path="res://Boss/Wyrm/Head/lower_teeth.png" id="5_2eufc"]
+[ext_resource type="Texture2D" uid="uid://jgeuo5cn2uka" path="res://Boss/Wyrm/Head/head_overlay.png" id="7_7f8me"]
+[ext_resource type="Texture2D" uid="uid://dfe7vvnnyg3pp" path="res://Boss/Wyrm/Head/bg_mask.png" id="8_r5ewt"]
+[ext_resource type="Texture2D" uid="uid://c1p6ao4qfwaf1" path="res://Boss/Wyrm/Head/upper_teeth.png" id="10_e41in"]
+
+[sub_resource type="Gradient" id="Gradient_jrn8s"]
+colors = PackedColorArray(0.615686, 0, 1, 1, 1, 0.490196, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j2tu8"]
+gradient = SubResource("Gradient_jrn8s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42fls"]
+shader = ExtResource("2_8k7bt")
+shader_parameter/gradient = SubResource("GradientTexture1D_j2tu8")
+shader_parameter/overlay = ExtResource("3_0ejwi")
 
 [sub_resource type="Gradient" id="Gradient_7xbr1"]
 offsets = PackedFloat32Array(0, 0.384615, 0.65035, 1)
@@ -28,7 +45,7 @@ angle_min = -30.0
 angle_max = 30.0
 scale_min = 0.2
 scale_max = 0.3
-color = Color(0.745098, 0, 1, 0.462745)
+color = Color(0.988235, 0.984314, 0.984314, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0pqct"]
 particle_flag_disable_z = true
@@ -44,9 +61,21 @@ scale_min = 0.2
 scale_max = 0.3
 color = Color(0.745098, 0, 1, 0.462745)
 
+[sub_resource type="Gradient" id="Gradient_eh1fj"]
+colors = PackedColorArray(0.631373, 0, 1, 1, 1, 0.552941, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kiile"]
+gradient = SubResource("Gradient_eh1fj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qb58l"]
+shader = ExtResource("2_8k7bt")
+shader_parameter/gradient = SubResource("GradientTexture1D_kiile")
+shader_parameter/overlay = ExtResource("7_7f8me")
+
 [node name="Head" type="Bone2D"]
 position = Vector2(160, 0)
 rest = Transform2D(1, 0, 0, 1, 160, 0)
+script = ExtResource("1_s0dfn")
 
 [node name="Nose" type="Bone2D" parent="."]
 position = Vector2(135, 0)
@@ -59,9 +88,13 @@ rest = Transform2D(0.934227, 0.356679, -0.356679, 0.934227, 65, 47)
 
 [node name="Jaw" type="Sprite2D" parent="Jaw"]
 z_index = 2
+material = SubResource("ShaderMaterial_42fls")
 position = Vector2(41.0374, 12.163)
 rotation = -0.364711
-texture = ExtResource("4")
+texture = ExtResource("4_3so6w")
+
+[node name="LowerTeeth" type="Sprite2D" parent="Jaw/Jaw"]
+texture = ExtResource("5_2eufc")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 position = Vector2(80, 0)
@@ -106,7 +139,11 @@ visibility_rect = Rect2(-100, -100, 1200, 200)
 
 [node name="Head" type="Sprite2D" parent="."]
 z_index = 1
+material = SubResource("ShaderMaterial_qb58l")
 position = Vector2(74, -1)
-texture = ExtResource("3")
+texture = ExtResource("8_r5ewt")
+
+[node name="UpperTeeth" type="Sprite2D" parent="Head"]
+texture = ExtResource("10_e41in")
 
 [editable path="Lazer"]

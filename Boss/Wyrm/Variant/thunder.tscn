@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cyr21lbu542p3" path="res://Boss/Wyrm/boss_encounter.tscn" id="1_kisbp"]
 
 [sub_resource type="Gradient" id="Gradient_gj8vw"]
-offsets = PackedFloat32Array(0, 0.325714, 0.674286, 1)
-colors = PackedColorArray(1, 1, 0, 1, 0.682591, 0.458016, 5.77569e-07, 1, 0.215902, 0.215902, 0.215902, 1, 0.81, 0.81, 0.81, 1)
+offsets = PackedFloat32Array(0, 0.0742857, 0.331429, 0.731429, 1)
+colors = PackedColorArray(0.81, 0.81, 0.81, 1, 0.114897, 0.114897, 0.114897, 1, 0.259294, 0.259294, 0.259294, 1, 0.682591, 0.458016, 5.77569e-07, 1, 1, 1, 0, 1)
 
 [node name="Boss_Encounter" instance=ExtResource("1_kisbp")]
 splash_text = "Thunder

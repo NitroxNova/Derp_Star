@@ -8,12 +8,16 @@ func _ready():
 func _process(delta):
 	var target_angle = bone.global_position.angle_to_point(Connector.derp_star.global_position)
 	bone.global_rotation = lerp_angle(bone.global_rotation,target_angle,.05)
+	
+func set_color_gradient(gradient):
+	super(gradient)
+	bone.set_laser_color(gradient)
 
 func aura_on():
-	$GPUParticles2D.show()
+	$Charge_Aura.show()
 
 func aura_off():
-	$GPUParticles2D.hide()
+	$Charge_Aura.hide()
 	
 func take_damage(amount):
 	if invulnerable:

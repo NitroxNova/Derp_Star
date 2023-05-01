@@ -8,13 +8,20 @@ var next_segment
 @export var health : Capped_Value
 var faction = "enemy"
 
-
+func set_color_gradient(gradient:Gradient):
+	$Charge_Aura.process_material.color = gradient.sample(1.0)
+	$Charge_Aura.process_material.color.a = 0.5		
+	if not next_segment == null:
+		next_segment.set_color_gradient(gradient)
+	if not polygon == null:
+		polygon.material.get("shader_parameter/gradient").gradient = gradient
+	
 func aura_on():
-	$GPUParticles2D.show()
+	$Charge_Aura.show()
 	next_segment.aura_on()
 
 func aura_off():
-	$GPUParticles2D.hide()
+	$Charge_Aura.hide()
 	next_segment.aura_off()
 
 func uv_bone_path():

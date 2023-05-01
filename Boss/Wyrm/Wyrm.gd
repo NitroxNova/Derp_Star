@@ -4,6 +4,7 @@ extends Boss
 
 var attack_phase = ""
 var faction = "enemy"
+var color_gradient : Gradient
 
 var body_bone = preload("res://Boss/Wyrm/Body/Bone.tscn")
 var head_bone = preload("res://Boss/Wyrm/Head/Bone.tscn")
@@ -64,6 +65,7 @@ func laser():
 
 func destroy_segment(segment):
 	var top_half = wyrm.instantiate()
+	top_half.color_gradient = color_gradient
 	top_half.transform = segment.global_transform
 	var tail = top_half.get_node("Tail")
 	tail.bone = top_half.get_node("Skeleton2D/Tail")
@@ -92,6 +94,7 @@ func destroy_segment(segment):
 	head.set_prev(segment.prev_segment)
 	add_child(head)
 	$Tail.setup()
+	$Tail.set_color_gradient(color_gradient)
 	$AnimationPlayer.setup()
 	if attack_phase == "Laser":
 		laser()
@@ -118,6 +121,7 @@ func build(body_count):
 	head.set_prev(prev_segment)
 	add_child(head)
 	$Tail.setup()
+	$Tail.set_color_gradient(color_gradient)
 	$AnimationPlayer.setup()
 	
 func _on_Space_Wyrm_body_entered(body):

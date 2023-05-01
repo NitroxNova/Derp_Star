@@ -10,9 +10,9 @@ func _on_wyrmhole_opened():
 
 func init_wyrm():
 	var wyrm = wyrm_scene.instantiate()
-	wyrm.build(3)
+	wyrm.color_gradient = splash_gradient
+	wyrm.build(5)
 	spawn_wyrm(wyrm)
-	
 	
 func spawn_wyrm(wyrm):
 	wyrm.spawn_boss.connect(spawn_wyrm)

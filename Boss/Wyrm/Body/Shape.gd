@@ -6,7 +6,7 @@ func _ready():
 	connect_health()
 
 func set_polygon_x(pos = 0):
-	polygon.position.x = pos
+	polygon.offset.x = pos
 	next_segment.set_polygon_x(pos + 160)
 		
 func map_bones():
@@ -20,3 +20,4 @@ func map_bones():
 func died():
 	super.died()
 	Player_Stats.increase_points(points)
+

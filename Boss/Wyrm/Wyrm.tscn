@@ -1,10 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmxkyyh0ps21g"]
+[gd_scene load_steps=17 format=3 uid="uid://cmxkyyh0ps21g"]
 
 [ext_resource type="Script" path="res://Boss/Wyrm/Tail/Tail.gd" id="1"]
 [ext_resource type="Script" path="res://Boss/Wyrm/Animation_Player.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://yjgqrrun2q0s" path="res://Boss/Wyrm/Energy_Aura.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://06crdtnx6vxc" path="res://Boss/Wyrm/Tail/tail.png" id="4"]
+[ext_resource type="Shader" path="res://Boss/Wyrm/Body/Polygon.gdshader" id="2_4b2px"]
+[ext_resource type="Texture2D" uid="uid://b74g2xnal43rb" path="res://Boss/Wyrm/Energy_Aura.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bmhgfs1g7a0rg" path="res://Boss/Wyrm/Tail/overlay.png" id="3_36m75"]
+[ext_resource type="Texture2D" uid="uid://cv46fbp3o46q0" path="res://Boss/Wyrm/Tail/bg_mask.png" id="4_sbnh7"]
 [ext_resource type="Script" path="res://Boss/Wyrm/Wyrm.gd" id="5"]
+
+[sub_resource type="Gradient" id="Gradient_8xsaw"]
+colors = PackedColorArray(0.65098, 0, 1, 1, 1, 0.627451, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2rbur"]
+gradient = SubResource("Gradient_8xsaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulmli"]
+shader = ExtResource("2_4b2px")
+shader_parameter/gradient = SubResource("GradientTexture1D_2rbur")
+shader_parameter/overlay = ExtResource("3_36m75")
 
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(160, 100)
@@ -14,7 +27,6 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = -130.0
 initial_velocity_max = -130.0
-color = Color(1, 1, 1, 0.588235)
 
 [sub_resource type="Animation" id="6"]
 resource_name = "Charge"
@@ -67,8 +79,9 @@ remote_path = NodePath("../../../Tail")
 [node name="Polygons" type="Node2D" parent="."]
 
 [node name="Tail" type="Polygon2D" parent="Polygons"]
+material = SubResource("ShaderMaterial_ulmli")
 position = Vector2(-70, -90)
-texture = ExtResource("4")
+texture = ExtResource("4_sbnh7")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 0, 120, 0, 230, 0, 230, 90, 230, 180, 120, 180, 0, 180)
 uv = PackedVector2Array(0, 0, 120, 0, 230, 0, 230, 90, 230, 180, 120, 180, 0, 180)
@@ -79,7 +92,7 @@ position = Vector2(80, 0)
 shape = SubResource("3")
 script = ExtResource("1")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Tail"]
+[node name="Charge_Aura" type="GPUParticles2D" parent="Tail"]
 position = Vector2(80, 0)
 amount = 3
 process_material = SubResource("5")

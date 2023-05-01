@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Boss/Wyrm/Head/Shape.gd" id="1"]
 [ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dbhad8ef7404e" path="res://Bumper_Ships/Health_Node.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://yjgqrrun2q0s" path="res://Boss/Wyrm/Energy_Aura.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b74g2xnal43rb" path="res://Boss/Wyrm/Energy_Aura.png" id="4"]
 
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(160, 100)
@@ -33,7 +33,7 @@ remote_path = NodePath("../Health_Node/Node2D")
 update_rotation = false
 update_scale = false
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Charge_Aura" type="GPUParticles2D" parent="."]
 position = Vector2(80, 0)
 amount = 3
 process_material = SubResource("5")
