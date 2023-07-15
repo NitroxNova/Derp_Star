@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://nhoo4j7sdf8d"]
 
-[ext_resource type="Texture2D" uid="uid://dkjw54e5jyjg6" path="res://Derp_Star/derp_star.png" id="1"]
-[ext_resource type="PackedScene" path="res://Derp_Star/Thruster.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dmo47qsomqvxw" path="res://Derp_Star/derp_star.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://cbb0klr830pna" path="res://Derp_Star/Thruster.tscn" id="2"]
 [ext_resource type="Script" path="res://Derp_Star/Derp_Star.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cwb8h8uacacpr" path="res://Derp_Star/Laser/Muh_Lazer.tscn" id="4"]
 [ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://7knqr5o2y5ae" path="res://Derp_Star/Gravity/Gravity_Beam.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://Derp_Star/Energy_Shield/Energy_Shield.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://owtgctmiexx8" path="res://Derp_Star/Energy_Shield/Energy_Shield.tscn" id="7"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
