@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsv7b1mhuugjy"]
+
+[ext_resource type="PackedScene" uid="uid://cbkbgs8q5qxt2" path="res://Bumper_Ships/Bumper.tscn" id="1_o0qvc"]
+[ext_resource type="Script" path="res://Bumper_Ships/Snowflake/bumper.gd" id="2_4sk2h"]
+[ext_resource type="Script" path="res://Bumper_Ships/Snowflake/builder.gd" id="2_376cq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6mb5i"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Bumper" instance=ExtResource("1_o0qvc")]
+script = ExtResource("2_4sk2h")
+starting_health = 50
+points = 10
+
+[node name="Collision_Shape" type="CollisionPolygon2D" parent="." index="3"]
+polygon = PackedVector2Array(82, -143, -83, -143, -165, 0, -82, 143, 82, 143, 165, 0)
+
+[node name="SubViewport" type="SubViewport" parent="." index="4"]
+transparent_bg = true
+
+[node name="Builder" type="Node2D" parent="SubViewport" index="0"]
+position = Vector2(256, 256)
+script = ExtResource("2_376cq")
+
+[node name="Base_Sprite" type="Polygon2D" parent="." index="5"]
+texture = SubResource("ViewportTexture_6mb5i")
+texture_offset = Vector2(256, 256)
+polygon = PackedVector2Array(-90, -168, 89, -168, 187, -1, 109, 161, -81, 166, -196, 0)
+
+[editable path="Health_Node"]
