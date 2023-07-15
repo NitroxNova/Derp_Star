@@ -56,13 +56,17 @@ func drop_item():
 func get_base_sprite():
 	return $Base_Sprite
 
+func get_shatter_texture():
+	return get_base_sprite().texture
+
 func explode():
 	var e = explosion.instantiate()
 	e.transform = global_transform
 	var bs = get_base_sprite()
-	e.bumper_texture = bs.texture
-	e.height = bs.texture.get_height()
-	e.width = bs.texture.get_width()
+	var bs_texture = get_shatter_texture()
+	e.bumper_texture = bs_texture
+	e.height = bs_texture.get_height()
+	e.width = bs_texture.get_width()
 	e.scale = bs.global_scale
 	e.shader_material = bs.material
 	emit_signal("spawn_explosion",e)
