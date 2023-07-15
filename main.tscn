@@ -4,20 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
 [ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
 [ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
-[ext_resource type="FontFile" uid="uid://xvlnbxky7x7w" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
+[ext_resource type="FontFile" uid="uid://dh2le4755r4j0" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
 [ext_resource type="Script" path="res://main.gd" id="11"]
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
 [ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="16"]
-[ext_resource type="Texture2D" uid="uid://crw7yosal6q3a" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://d1b6okr1jtiiv" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
 [ext_resource type="Script" path="res://Talent/Talent_Overlay.gd" id="18"]
 
-[sub_resource type="Resource" id="Resource_px1al"]
+[sub_resource type="Resource" id="Resource_qs0lc"]
 resource_local_to_scene = true
 script = ExtResource("16")
 current = 1000.0
 maximum = 1000.0
 
-[sub_resource type="Resource" id="Resource_sq2wk"]
+[sub_resource type="Resource" id="Resource_7ppm2"]
 resource_local_to_scene = true
 script = ExtResource("16")
 current = 1000.0
@@ -171,8 +171,8 @@ script = ExtResource("11")
 metadata/_edit_vertical_guides_ = [136.0]
 
 [node name="Derp_Star" parent="." instance=ExtResource("2")]
-health = SubResource("Resource_px1al")
-energy = SubResource("Resource_sq2wk")
+health = SubResource("Resource_qs0lc")
+energy = SubResource("Resource_7ppm2")
 
 [node name="Camera2D" type="Camera2D" parent="Derp_Star"]
 
