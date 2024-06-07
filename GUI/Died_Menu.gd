@@ -1,7 +1,6 @@
 extends TextureRect
 
-@export (Array, String, MULTILINE) var messages
+@export_multiline var messages : PackedStringArray
 
-func show():
+func _on_visibility_changed():
 	$VBoxContainer/Label.text = RNG.array_rand(messages)
-	super.show()

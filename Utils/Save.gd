@@ -9,8 +9,7 @@ func save_file():
 	file.close()
 
 func load_file():
-#	var file = File.new()
-	if not FileAccess.file_exists(file_name):
+	if FileAccess.file_exists(file_name):
 		var file = FileAccess.open(file_name, FileAccess.READ)
 		Player_Stats.boss_cores = file.get_var()
 		Player_Stats.load_talents(file.get_var())

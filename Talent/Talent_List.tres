@@ -1,49 +1,39 @@
-[gd_resource type="Resource" load_steps=13 format=2]
+[gd_resource type="Resource" script_class="Dictionary_Resource" load_steps=8 format=3 uid="uid://cji1aa0644x4q"]
 
-[ext_resource path="res://Utils/Dictionary_Resource.gd" type="Script" id=1]
-[ext_resource path="res://Talent/Talent_Resource.gd" type="Script" id=2]
-[ext_resource path="res://Talent/Image/max_health.png" type="Texture2D" id=3]
-[ext_resource path="res://Talent/Image/max_energy.png" type="Texture2D" id=4]
-[ext_resource path="res://Talent/Image/Laser_Beam.png" type="Texture2D" id=5]
-[ext_resource path="res://Talent/Image/energy_shield.png" type="Texture2D" id=6]
-[ext_resource path="res://Talent/Image/Gravity_Beam.png" type="Texture2D" id=7]
+[ext_resource type="Script" path="res://Utils/Dictionary_Resource.gd" id="1"]
+[ext_resource type="Script" path="res://Talent/Talent_Resource.gd" id="2"]
 
-[sub_resource type="Resource" id=3]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="3"]
+script = ExtResource("2")
 display_name = "Energy Shield"
-texture = ExtResource( 6 )
 maximum = 1
 
-[sub_resource type="Resource" id=5]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="5"]
+script = ExtResource("2")
 display_name = "Gravity Beam"
-texture = ExtResource( 7 )
 maximum = 1
 
-[sub_resource type="Resource" id=4]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2")
 display_name = "Laser Beam"
-texture = ExtResource( 5 )
 maximum = 1
 
-[sub_resource type="Resource" id=2]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="2"]
+script = ExtResource("2")
 display_name = "Max Energy"
-texture = ExtResource( 4 )
 maximum = 0
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
 display_name = "Max Health"
-texture = ExtResource( 3 )
 maximum = 0
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 list = {
-"energy_shield": SubResource( 3 ),
-"gravity_beam": SubResource( 5 ),
-"laser_beam": SubResource( 4 ),
-"max_energy": SubResource( 2 ),
-"max_health": SubResource( 1 )
+"energy_shield": SubResource("3"),
+"gravity_beam": SubResource("5"),
+"laser_beam": SubResource("4"),
+"max_energy": SubResource("2"),
+"max_health": SubResource("1")
 }

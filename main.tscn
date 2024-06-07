@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
 [ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
 [ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
-[ext_resource type="FontFile" uid="uid://dh2le4755r4j0" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
+[ext_resource type="FontFile" uid="uid://ca2tdj4citf2q" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
 [ext_resource type="Script" path="res://main.gd" id="11"]
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
 [ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="16"]
-[ext_resource type="Texture2D" uid="uid://d1b6okr1jtiiv" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://c00tx7pi1fy8b" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
 [ext_resource type="Script" path="res://Talent/Talent_Overlay.gd" id="18"]
 
 [sub_resource type="Resource" id="Resource_qs0lc"]
@@ -371,12 +371,7 @@ anchor_bottom = 1.0
 texture = SubResource("12")
 expand_mode = 1
 script = ExtResource("3")
-messages = ["Died
-Suddenly", "You
-Died", "$whackd", "Death By
-Pew-Pew", "Derp Star
-Didn't
-Kill Itself"]
+messages = PackedStringArray("You\nDied!", "$WACKED", "Death By\nPew-Pew!")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Died_Menu"]
 layout_mode = 0
@@ -423,6 +418,7 @@ text = "Quit"
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Talents_Button" to="Overlay" method="_on_Talents_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Pause_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
+[connection signal="visibility_changed" from="Overlay/Died_Menu" to="Overlay/Died_Menu" method="_on_visibility_changed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
 
