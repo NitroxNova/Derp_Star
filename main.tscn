@@ -409,7 +409,7 @@ text = "Quit"
 [connection signal="health_changed" from="Derp_Star" to="Overlay/HUD" method="update_health"]
 [connection signal="max_energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
 [connection signal="max_health_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
-[connection signal="player_died" from="Derp_Star" to="Overlay" method="player_died"]
+[connection signal="player_died" from="Derp_Star" to="." method="_on_derp_star_player_died"]
 [connection signal="talents_changed" from="Overlay/Talents" to="Derp_Star" method="_on_Talents_talents_changed"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Upgrade" to="Overlay/Talents" method="upgrade_mode"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Unlock" to="Overlay/Talents" method="unlock_mode"]

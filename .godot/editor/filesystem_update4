@@ -2,3 +2,4 @@ res://default_env.tres
 res://main.tscn
 res://Talent/Talent_List.tres
 res://Utils/Save.gd
+res://main.gd
