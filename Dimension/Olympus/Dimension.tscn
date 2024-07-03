@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjcpkmyypqmh7"]
 
-[ext_resource type="Texture2D" uid="uid://ugi4aoxkh3sa" path="res://Dimension/Olympus/Clouds.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bcgmip7fy0s86" path="res://Dimension/Olympus/Clouds.png" id="1"]
 [ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="2"]
 [ext_resource type="Script" path="res://Dimension/Olympus/default_biome.gd" id="3"]
-[ext_resource type="PackedScene" uid="uid://cfrv0p8i4dprh" path="res://Boss/Wyrm/Variant/thunder.tscn" id="4_ghjpn"]
+[ext_resource type="PackedScene" uid="uid://cyr21lbu542p3" path="res://Boss/Wyrm/boss_encounter.tscn" id="4_vdjbt"]
 
 [node name="Dimension" instance=ExtResource("2")]
 
@@ -14,4 +14,4 @@ texture = ExtResource("1")
 biome_config = [ExtResource("3")]
 
 [node name="Boss" parent="." index="5"]
-boss_list = Array[PackedScene]([ExtResource("4_ghjpn")])
+boss_list = Array[PackedScene]([ExtResource("4_vdjbt")])

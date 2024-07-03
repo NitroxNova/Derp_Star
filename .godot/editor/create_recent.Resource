@@ -1,0 +1,2 @@
+Wyrm_Variant
+Resource

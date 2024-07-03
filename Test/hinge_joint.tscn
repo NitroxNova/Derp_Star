@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://yaksd4u0vutj"]
+
+[ext_resource type="Script" path="res://Utils/HingeJoint2D.gd" id="1_tpt2s"]
+[ext_resource type="Texture2D" uid="uid://b104tl38o4r22" path="res://Boss/Wyrm/base_texture.png" id="2_nk8vi"]
+
+[sub_resource type="GDScript" id="GDScript_0d1lr"]
+script/source = "extends Node2D
+
+func _ready():
+	$RigidBody2D2.apply_central_force(Vector2.DOWN*2000)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jqmx"]
+size = Vector2(183, 92)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vbbo3"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvrsv"]
+size = Vector2(183, 92)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(44, 40)
+script = SubResource("GDScript_0d1lr")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(81.5, 36)
+shape = SubResource("RectangleShape2D_3jqmx")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_vbbo3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(317, 35)
+shape = SubResource("RectangleShape2D_qvrsv")
+
+[node name="HingeJoint2D" type="PinJoint2D" parent="RigidBody2D2"]
+position = Vector2(202, 33)
+node_a = NodePath("..")
+node_b = NodePath("../../RigidBody2D")
+script = ExtResource("1_tpt2s")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(0, -3.34694)
+scale = Vector2(1, 0.790816)
+texture = ExtResource("2_nk8vi")
+polygon = PackedVector2Array(59, -16, 212, 29, 258, 179, -11, 180)
+uv = PackedVector2Array(-10, -10, 250, -10, 258, 179, -11, 180)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://clb0mjh7qp4yl"]
 
-[ext_resource type="Texture2D" uid="uid://seskk78gufv8" path="res://Boss/Wyrm/Wyrmhole/wyrmhole.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://df0u8etm6p0kw" path="res://Boss/Wyrm/Wyrmhole/wyrmhole.png" id="1"]
 [ext_resource type="Script" path="res://Boss/Wyrm/Wyrmhole/Wyrmhole.gd" id="2"]
 
 [sub_resource type="Animation" id="1"]
@@ -103,15 +103,15 @@ texture = ExtResource("1")
 script = ExtResource("2")
 
 [node name="Spin_Player" type="AnimationPlayer" parent="."]
-autoplay = "Spin"
 libraries = {
 "": SubResource("AnimationLibrary_48p83")
 }
+autoplay = "Spin"
 
 [node name="Resize_Player" type="AnimationPlayer" parent="."]
-autoplay = "Open"
 libraries = {
 "": SubResource("AnimationLibrary_5yk61")
 }
+autoplay = "Open"
 
 [connection signal="animation_finished" from="Resize_Player" to="." method="_on_Resize_Player_animation_finished"]
