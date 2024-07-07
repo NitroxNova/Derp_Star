@@ -1,9 +1,10 @@
 @tool
-extends Node
+extends RigidBody2D
+class_name Wyrm_Segment
 
 var faction = "enemy"
 @export var id = 0
-@export var health := Capped_Value.new(100,100)
+@export var health := Capped_Value.new(150,150)
 @export var points := 5
 signal damage_taken (amount,id)
 signal destroyed (id)

@@ -9,8 +9,11 @@ viewport_path = NodePath("Lazer/Particles_Viewport")
 [node name="Laser_Beam" instance=ExtResource("1")]
 script = ExtResource("2")
 
+[node name="Line2D" parent="Reset_XForm" index="0"]
+points = PackedVector2Array()
+
 [node name="Particles_Line2D" type="Line2D" parent="Reset_XForm" index="1"]
-points = PackedVector2Array(0, 0, 400, 0)
+width = 512.0
 texture = SubResource("1")
 texture_mode = 2
 joint_mode = 1

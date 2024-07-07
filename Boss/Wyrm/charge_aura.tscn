@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkpv3nygrgkc"]
+
+[ext_resource type="Texture2D" uid="uid://cp786wrt3wcrl" path="res://Boss/Wyrm/Energy_Aura.png" id="1_bp4ow"]
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+spread = 0.0
+initial_velocity_min = -130.0
+initial_velocity_max = -130.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.588235)
+
+[node name="Charge_Aura" type="GPUParticles2D"]
+position = Vector2(80, 0)
+amount = 3
+process_material = SubResource("5")
+texture = ExtResource("1_bp4ow")
+lifetime = 1.3
+preprocess = 1.3
+visibility_rect = Rect2(-160, -100, 200, 200)
+local_coords = true

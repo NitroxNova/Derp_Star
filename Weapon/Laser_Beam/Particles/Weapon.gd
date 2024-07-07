@@ -1,8 +1,10 @@
+@tool
 extends Laser_Beam
 class_name Particle_Laser_Beam
 
 func _ready():
 	$Reset_XForm/Particles_Line2D.width = $Particles_Viewport.size.y
+	super()
 
 func draw_beam():
 	super.draw_beam()

@@ -4,19 +4,24 @@ class_name Wyrm_Builder
 
 var body_count : int = 0 #number of body segments, not including head and tail
 var bones = []
+var gradient:Gradient
 var texture:ImageTexture
 
-func _init(_count:int, _texture:ImageTexture):
+func _init(_count:int, _gradient:Gradient, _texture=null):
 	body_count = _count
-	texture = _texture
+	gradient = _gradient
+	if texture == null:
+		texture = prepare_texture(_gradient)
+	else:
+		texture = _texture
 
-static func prepare_texture(variant:Wyrm_Variant):
+static func prepare_texture(_gradient:Gradient):
 	var image = Image.load_from_file("res://Boss/Wyrm/base_texture.png")
 	var overlay = Image.load_from_file("res://Boss/Wyrm/overlay_texture.png")
 	for x in image.get_width():
 		for y in image.get_height():
 			var bg_mask = image.get_pixel(x,y)
-			var bg_color = variant.gradient.sample(bg_mask.r)
+			var bg_color = _gradient.sample(bg_mask.r)
 			var overlay_color = overlay.get_pixel(x,y)
 			var blended_color = bg_color
 			blended_color = color_burn(blended_color,overlay_color)
@@ -49,6 +54,15 @@ func build():
 	var wyrm := Node2D.new()
 	wyrm.set_script(load("res://Boss/Wyrm/Wyrm.gd"))
 	wyrm.texture = texture
+	wyrm.attack_phase = "Charge"
+	wyrm.gradient = gradient
+	
+	var attack_timer = Timer.new()
+	attack_timer.one_shot = true
+	attack_timer.name = "Attack_Timer"
+	wyrm.add_child(attack_timer)
+	attack_timer.timeout.connect(wyrm.attack_timer_timeout)
+	
 	var skeleton := Skeleton2D.new()
 	skeleton.name = "Skeleton"
 		
@@ -115,13 +129,42 @@ func build():
 				joint.node_b = joint.get_path_to(prev_body)
 			rigid_body.damage_taken.connect(wyrm.segment_damage_taken)
 			rigid_body.destroyed.connect(wyrm.segment_destroyed)
-			wyrm.segment_list.append(rigid_body)
+			
 			var health_node = load("res://Bumper_Ships/Health_Node.tscn").instantiate()
 			rigid_body.add_child(health_node)
 			var health_xform = RemoteTransform2D.new()
 			rigid_body.add_child(health_xform)
 			health_xform.remote_path = health_xform.get_path_to(health_node.get_node("Node2D"))
 			
+			var charge_aura = load("res://Boss/Wyrm/charge_aura.tscn").instantiate()
+			rigid_body.add_child(charge_aura)
+			charge_aura.hide()
+			charge_aura.z_index = 3
+			charge_aura.modulate = gradient.get_color(0)
+				
+			if bone_id == body_count +1: #head
+				var laser = load("res://Boss/Wyrm/laser_beam.tscn").instantiate()
+				laser.dps = 35
+				var laser_attach = Node2D.new()
+				laser_attach.name = "Laser"
+				laser_attach.position = Vector2(-3,34)
+				laser_attach.add_child(laser)
+				rigid_body.add_child(laser_attach)
+				
+				var laser_line = laser.get_node("Reset_XForm/Line2D")
+				var inner_color = gradient.sample(1.0)
+				var outer_color = gradient.sample(0.75)
+				laser_line.texture.gradient.colors[0] = outer_color
+				laser_line.texture.gradient.colors[1] = inner_color
+				laser_line.texture.gradient.colors[2] = inner_color
+				laser_line.texture.gradient.colors[3] = outer_color
+				
+				laser.get_node("Particles_Viewport/GPUParticles2D").process_material.color = gradient.sample(0)
+				laser.get_node("Particles_Viewport/GPUParticles2D").process_material.color.a = .5
+				laser.get_node("Particles_Viewport/GPUParticles2D2").process_material.color = gradient.sample(0.25)
+				laser.get_node("Particles_Viewport/GPUParticles2D2").process_material.color.a = .5
+			
+			wyrm.segment_list.append(rigid_body)
 			prev_body = rigid_body
 		else:
 			rigid_body = prev_body
@@ -144,10 +187,11 @@ func build():
 			poly2D.position.x -= 62
 		elif bone_id == bones.size()-2:
 			poly2D.position.x -= 50
+			poly2D.z_index = 2
 		elif bone_id == bones.size()-1:
 			poly2D.position.y += 50
 			poly2D.position.x -= 30
-			poly2D.z_index = -1
+			poly2D.z_index = 1
 		#else:
 			#poly2D.position.x = -80
 			
@@ -160,6 +204,7 @@ func build():
 			poly2D.add_bone(skeleton.get_path_to(bones[bone_id+1]),PackedFloat32Array([0,0,1,1,0,0]))
 		if bone_id > 0 and bone_id < bones.size()-1:
 			poly2D.add_bone(skeleton.get_path_to(bones[bone_id-1]),PackedFloat32Array([1,0,0,0,0,1]))
+	
 		
 	return wyrm
 	
@@ -207,3 +252,4 @@ static func transfer_health_and_position(wyrm,copy_from):
 			var health = Capped_Value.new(c_health,m_health)
 			wyrm.segment_list[id].health = health
 		wyrm.segment_list[id].global_transform = copy_from[id].global_transform
+

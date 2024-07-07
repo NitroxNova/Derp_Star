@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://wg6cw2y4ytot"]
+
+[ext_resource type="PackedScene" uid="uid://bl1k6mghaorce" path="res://Weapon/Laser_Beam/Particles/Weapon.tscn" id="1_8doje"]
+[ext_resource type="Texture2D" uid="uid://bx2fvib0eplhx" path="res://Derp_Star/Laser/lightning.png" id="2_e427c"]
+
+[sub_resource type="Gradient" id="Gradient_7xbr1"]
+offsets = PackedFloat32Array(0, 0.384615, 0.65035, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.996752, 0.695843, 1, 1, 0.996752, 0.695843, 1, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jvcce"]
+gradient = SubResource("Gradient_7xbr1")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3xy6g"]
+viewport_path = NodePath("Particles_Viewport")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjlqf"]
+particle_flag_disable_z = true
+angle_min = -30.0
+angle_max = 30.0
+spread = 0.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.3
+color = Color(0.988235, 0.984314, 0.984314, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e045a"]
+particle_flag_disable_z = true
+angle_min = 150.0
+angle_max = 210.0
+spread = 0.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.3
+color = Color(0.745098, 0, 1, 0.462745)
+
+[node name="Laser_Beam" instance=ExtResource("1_8doje")]
+
+[node name="Line2D" parent="Reset_XForm" index="0"]
+points = PackedVector2Array(0, 0, 700, 0)
+width = 40.0
+default_color = Color(1, 1, 1, 0.556863)
+texture = SubResource("GradientTexture2D_jvcce")
+texture_mode = 2
+
+[node name="Particles_Line2D" parent="Reset_XForm" index="1"]
+points = PackedVector2Array(0, 0, 700, 0)
+width = 60.0
+texture = SubResource("ViewportTexture_3xy6g")
+
+[node name="Particles_Viewport" parent="." index="1"]
+size = Vector2i(1000, 60)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particles_Viewport" index="0"]
+position = Vector2(-1, 30)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_wjlqf")
+texture = ExtResource("2_e427c")
+lifetime = 8.0
+preprocess = 8.0
+visibility_rect = Rect2(-100, -100, 1200, 200)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particles_Viewport" index="1"]
+position = Vector2(-1, 30)
+amount = 26
+process_material = SubResource("ParticleProcessMaterial_e045a")
+texture = ExtResource("2_e427c")
+lifetime = 8.0
+preprocess = 8.0
+visibility_rect = Rect2(-100, -100, 1200, 200)
