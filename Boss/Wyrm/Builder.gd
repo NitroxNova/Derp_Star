@@ -11,7 +11,7 @@ func _init(_count:int, _gradient:Gradient, _texture=null):
 	body_count = _count
 	gradient = _gradient
 	if texture == null:
-		texture = prepare_texture(_gradient)
+		texture = Wyrm_Builder.prepare_texture(_gradient)
 	else:
 		texture = _texture
 
@@ -68,24 +68,22 @@ func build():
 		
 	var tail_bone = Bone2D.new()
 	tail_bone.name = "Tail"
-	tail_bone.position.x = (total_length/2) * -1
+	tail_bone.position.x = (total_length/2.0) * -1
 	tail_bone.set_rest(tail_bone.transform)
 	skeleton.add_child(tail_bone)
 	bones.append(tail_bone)
 	
-	var prev_bone = tail_bone
 	for i in body_count:
 		var curr_bone = Bone2D.new()
 		curr_bone.name = "Body " + str(i+1)
-		curr_bone.position.x = (total_length/2) * -1 + segment_length * (i+1)
+		curr_bone.position.x = (total_length/2.0) * -1 + segment_length * (i+1)
 		curr_bone.set_rest(curr_bone.transform)
 		skeleton.add_child(curr_bone)
 		bones.append(curr_bone)
-		prev_bone = curr_bone
 		
 	var head_bone = Bone2D.new()
 	head_bone.name = "Head"
-	head_bone.position.x = (total_length/2) * -1 + segment_length * (body_count+1)
+	head_bone.position.x = (total_length/2.0) * -1 + segment_length * (body_count+1)
 	skeleton.add_child(head_bone)
 	bones.append(head_bone)
 	head_bone.set_rest(head_bone.transform)
@@ -107,7 +105,7 @@ func build():
 		var curr_bone:Bone2D = bones[bone_id]
 		if bone_id < bones.size()-1: #dont make rigidbody for jaw
 			rigid_body.position = curr_bone.global_position
-			rigid_body.position.x += segment_length/2
+			rigid_body.position.x += segment_length/2.0
 			rigid_body.collision_layer = 2
 			rigid_body.collision_mask = 3
 			rigid_body.set_script(load("res://Boss/Wyrm/Segment.gd"))

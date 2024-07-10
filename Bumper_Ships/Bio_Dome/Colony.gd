@@ -60,7 +60,7 @@ func make_domes():
 	
 func make_triangles(dome_coords):
 	var delaunay_points = Geometry2D.triangulate_delaunay(dome_coords)
-	for triangle_index in len(delaunay_points) / 3:
+	for triangle_index in int(len(delaunay_points) / 3.0):
 		var triangle_domes = []
 		var triangle_coords = PackedVector2Array()
 		for n in 3:

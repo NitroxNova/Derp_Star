@@ -21,7 +21,7 @@ func teleport_player():
 	Connector.derp_star.position = linked_portal.position
 
 func _on_Area2D_body_entered(body):
-	if not disabled:
+	if not disabled and body == Connector.derp_star:
 		$Timer.start()
 		disabled = true
 		teleport_player()

@@ -23,7 +23,7 @@ func rand_dict(dict:Dictionary):
 func build_facets():
 	for i in 15:
 		var pos = rand_dict(grid.cells)
-		while pos in facets:
+		while not is_new_facet_position_valid(pos):
 			pos = rand_dict(grid.cells)
 		var facet = Snowflake_Facet.new(pos,grid)
 		grid.set_cell(pos,grid.FACET_BRANCH)
@@ -31,6 +31,12 @@ func build_facets():
 		
 	for i in 8:
 		grow_facets()
+
+func is_new_facet_position_valid(pos:Vector3i):
+	for facet:Snowflake_Facet in facets:
+		if facet.origin == pos:
+			return false
+	return true
 		
 func grow_facets():
 	for f in facets:

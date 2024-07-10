@@ -14,7 +14,7 @@ func _ready():
 	$Derp_Star.energy.update_maximum()
 	$Derp_Star.energy.update_current()
 	
-	Connector.load_dimension(0)
+	Connector.load_dimension(int(randf()*3))
 
 func _input(event):
 	if event.is_action_pressed("pause"):

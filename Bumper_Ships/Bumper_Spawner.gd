@@ -1,11 +1,11 @@
 extends Node2D
 
 const MAX_COUNT = 100
-const INNER_X = 1920/2 + 100
-const INNER_Y = 1080/2 + 100
+const INNER_X:int = int(1920/2.0 + 100)
+const INNER_Y:int = int(1080/2.0 + 100)
 
-const SPAWN_SIZE = 4000
-const DESPAWN_RADIUS = (SPAWN_SIZE/2) * sqrt(2)
+const SPAWN_SIZE:float = 4000
+const DESPAWN_RADIUS = (SPAWN_SIZE/2.0) * sqrt(2)
 
 @export var biome_config = []
 var biome_list = []
@@ -52,7 +52,8 @@ func is_valid_spawn_location(bumper):
 			query.set_shape(cs.shape)
 		elif cs is CollisionPolygon2D:
 			var shape = ConvexPolygonShape2D.new()
-			shape.points = cs.polygon
+			#shape.points = cs.polygon
+			shape.set_point_cloud(cs.polygon)
 			query.set_shape(shape)
 		query.transform = cs.transform
 		var result = space_state.intersect_shape(query,1)
@@ -72,14 +73,14 @@ func is_off_screen(loc):
 	else:
 		return false
 
-func _process(delta):
+func _process(_delta):
 	while get_child_count() < MAX_COUNT:
 		generate_bumper()
 	despawn_random(20)
 
 func despawn_random(n=1):
 	if get_child_count():
-		var rand_bumper = get_child(randf() * get_child_count())
+		var rand_bumper = get_child(int(randf() * get_child_count()))
 		var distance = rand_bumper.global_position.distance_to(Connector.derp_star.global_position)
 		if distance > DESPAWN_RADIUS:
 			rand_bumper.queue_free()

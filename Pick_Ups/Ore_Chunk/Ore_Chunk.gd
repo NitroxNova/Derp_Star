@@ -4,7 +4,8 @@ class_name Ore_Chunk
 @export var points : int
 
 func on_pickup(body):
-	Player_Stats.increase_points(points)
+	if body==Connector.derp_star:
+		Player_Stats.increase_points(points)
 
 func set_size(s:float):
 	points *= s

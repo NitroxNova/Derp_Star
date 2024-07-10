@@ -35,7 +35,7 @@ func draw_beam():
 	var done = false
 	while not done:
 		points.append(curr_beam.get_raycast_start())
-		var next_beam = curr_beam.get_node("Beam_Area")
+		var next_beam = curr_beam.get_node_or_null("Beam_Area")
 		if next_beam:
 			curr_beam = next_beam
 		else:

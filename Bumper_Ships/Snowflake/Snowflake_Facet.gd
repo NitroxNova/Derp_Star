@@ -79,10 +79,13 @@ func count_neighbor_facets(cell):
 
 func draw(node:Node2D, color:Color):
 	var poly = get_outline()
+	#print(poly)
 	var reflect_poly = reflect_coords(poly)
 	for i in 6:
 		node.draw_polyline(poly,Color.BLACK,2)
 		node.draw_colored_polygon(poly,color)
+		if reflect_poly.size() == 0:
+			print("empty poly")
 		node.draw_polyline(reflect_poly,Color.BLACK,2)
 		node.draw_colored_polygon(reflect_poly,color)
 		poly = rotate_coords(poly)

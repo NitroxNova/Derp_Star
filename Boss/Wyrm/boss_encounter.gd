@@ -8,7 +8,7 @@ func _on_wyrmhole_opened():
 	$Wyrmhole.close()
 
 func init_wyrm():
-	var segments = 3
+	var segments = 1
 	var wyrm_builder = Wyrm_Builder.new(segments,splash_gradient)
 	var wyrm = wyrm_builder.build()
 	spawn_wyrm(wyrm)

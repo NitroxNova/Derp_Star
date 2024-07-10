@@ -21,11 +21,11 @@ func _on_Beam_body_exited(body):
 		body.static_off()
 
 func _on_Beam_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	var shape = body.shape_owner_get_owner(body_shape_index)
+	var shape = body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))
 	if is_instance_valid(shape):
 		damage_shapes.append(shape)
 
 func _on_Beam_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	if is_instance_valid(body):
-		var shape = body.shape_owner_get_owner(body_shape_index)
+		var shape = body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))
 		damage_shapes.erase(shape)

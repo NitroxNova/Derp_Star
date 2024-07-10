@@ -3,8 +3,8 @@ extends Node2D
 var bumper_texture : Texture2D
 var shard_velocity_map = {}
 var shard_count = 50
-var height : int
-var width : int
+var height : float
+var width : float
 var shader_material
 
 func _ready():
@@ -34,7 +34,7 @@ func make_debris():
 	points.append(Vector2(width,0))
 		
 	for i in range(shard_count):
-		points.append(Vector2(randi()%width,randi()%height))
+		points.append(Vector2(randf()*width,randf()*height))
 	
 	var delaunay_points = Geometry2D.triangulate_delaunay(points)
 	
