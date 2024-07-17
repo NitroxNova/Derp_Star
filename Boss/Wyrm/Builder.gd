@@ -16,8 +16,8 @@ func _init(_count:int, _gradient:Gradient, _texture=null):
 		texture = _texture
 
 static func prepare_texture(_gradient:Gradient):
-	var image = Image.load_from_file("res://Boss/Wyrm/base_texture.png")
-	var overlay = Image.load_from_file("res://Boss/Wyrm/overlay_texture.png")
+	var image = load("res://Boss/Wyrm/base_texture.png").get_image()
+	var overlay = load("res://Boss/Wyrm/overlay_texture.png").get_image()
 	for x in image.get_width():
 		for y in image.get_height():
 			var bg_mask = image.get_pixel(x,y)
