@@ -22,7 +22,7 @@ func spawn_wyrm(wyrm:Node2D):
 	wyrm.add_to_group("Space_Wyrm")
 
 func spawn_wyrmhole(wh):
-	add_child(wh)
+	emit_signal("spawn_explosion",wh) #so the position is from 0 
 
 func wyrm_defeated(wyrm):
 	print("wyrm defeated")
