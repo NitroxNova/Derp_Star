@@ -1,7 +1,7 @@
 extends Node2D
 class_name Boss_Encounter
 
-@export_multiline var splash_text
+@export_multiline var splash_text : String
 @export var splash_gradient : Gradient
 
 signal spawn_boss
