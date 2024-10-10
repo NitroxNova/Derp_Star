@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Hacked-KerX.ttf-0f97160c0ef9781a3d363adac1085
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0dnd6twlor84"]
+[gd_scene load_steps=33 format=3 uid="uid://d0dnd6twlor84"]
 
 [ext_resource type="PackedScene" uid="uid://c6ceymo3o04n6" path="res://Dimension/Derp_Space/Dimension.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
 [ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
 [ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
+[ext_resource type="Script" path="res://Utils/Gradient_Progress_Bar.gd" id="8_2d2js"]
 [ext_resource type="FontFile" uid="uid://ca2tdj4citf2q" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
 [ext_resource type="Script" path="res://main.gd" id="11"]
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
@@ -132,6 +133,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_gidti"]
+offsets = PackedFloat32Array(0.037037, 0.592593, 1)
+colors = PackedColorArray(0.8, 0, 0, 1, 0.8, 0.8, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87u0d"]
 bg_color = Color(0, 0, 0, 1)
@@ -282,6 +287,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xg0fh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_13cfp")
 value = 50.0
 rounded = true
+script = ExtResource("8_2d2js")
+gradient = SubResource("Gradient_gidti")
 
 [node name="Energy_Bar" type="ProgressBar" parent="Overlay/HUD"]
 layout_mode = 1

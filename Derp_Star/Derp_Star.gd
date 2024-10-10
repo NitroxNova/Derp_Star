@@ -156,4 +156,3 @@ func lock_energy():
 func unlock_energy():
 	is_energy_locked = false
 	emit_signal("energy_unlocked")
-
