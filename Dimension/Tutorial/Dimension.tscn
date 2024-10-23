@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8ol5cqkf0pwl"]
+
+[ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1_xdh86"]
+[ext_resource type="Texture2D" uid="uid://dlvch671wymbh" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="2_pbhho"]
+[ext_resource type="Script" path="res://Dimension/Tutorial/dimension.gd" id="2_vracy"]
+[ext_resource type="Texture2D" uid="uid://w28y24teqh7p" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3_kjwlm"]
+[ext_resource type="Texture2D" uid="uid://dxu8uyt806053" path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" id="4_4hv5j"]
+[ext_resource type="Texture2D" uid="uid://m5x4w4lo76sw" path="res://Dimension/Derp_Space/Space_Clouds/cloud2.png" id="5_ciwjv"]
+[ext_resource type="Texture2D" uid="uid://qlate0ch6d3o" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="6_54q0q"]
+[ext_resource type="Texture2D" uid="uid://dxyqxvjmjb13g" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="7_5ykrq"]
+[ext_resource type="PackedScene" uid="uid://drfoq0w8x13ls" path="res://Boss/Wyrm/Variant/space.tscn" id="9_bdc8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ick73"]
+size = Vector2(1146, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6apvw"]
+size = Vector2(54, 573)
+
+[node name="Dimension" instance=ExtResource("1_xdh86")]
+script = ExtResource("2_vracy")
+
+[node name="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_pbhho")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(2000, 2000)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("3_kjwlm")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(4000, 4000)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("4_4hv5j")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="1"]
+position = Vector2(2000, 0)
+texture = ExtResource("5_ciwjv")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="2"]
+position = Vector2(2000, 2000)
+texture = ExtResource("6_54q0q")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="3"]
+position = Vector2(0, 2000)
+texture = ExtResource("7_5ykrq")
+centered = false
+
+[node name="Boss" parent="." index="5"]
+boss_list = Array[PackedScene]([ExtResource("9_bdc8g")])
+
+[node name="Containment" type="StaticBody2D" parent="." index="6"]
+position = Vector2(-547, -299)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containment" index="0"]
+position = Vector2(575, 20)
+shape = SubResource("RectangleShape2D_ick73")
+
+[node name="ColorRect" type="ColorRect" parent="Containment" index="1"]
+offset_right = 1149.0
+offset_bottom = 40.0
+color = Color(0.568627, 1, 1, 0.301961)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Containment" index="2"]
+position = Vector2(26, 327.5)
+shape = SubResource("RectangleShape2D_6apvw")
+
+[node name="ColorRect3" type="ColorRect" parent="Containment" index="3"]
+offset_top = 40.0
+offset_right = 54.0
+offset_bottom = 602.0
+color = Color(0.568627, 1, 1, 0.301961)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Containment" index="4"]
+position = Vector2(1120, 326.5)
+shape = SubResource("RectangleShape2D_6apvw")
+
+[node name="ColorRect4" type="ColorRect" parent="Containment" index="5"]
+offset_left = 1094.0
+offset_top = 39.0
+offset_right = 1148.0
+offset_bottom = 601.0
+color = Color(0.568627, 1, 1, 0.301961)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Containment" index="6"]
+position = Vector2(576, 624)
+shape = SubResource("RectangleShape2D_ick73")
+
+[node name="ColorRect2" type="ColorRect" parent="Containment" index="7"]
+offset_left = 1.0
+offset_top = 604.0
+offset_right = 1150.0
+offset_bottom = 644.0
+color = Color(0.568627, 1, 1, 0.301961)
+
+[node name="Tutorial_Prompt" type="Label" parent="." index="7"]
+offset_right = 40.0
+offset_bottom = 23.0

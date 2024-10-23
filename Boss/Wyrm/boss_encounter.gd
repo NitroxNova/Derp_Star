@@ -8,7 +8,7 @@ func _on_wyrmhole_opened():
 	$Wyrmhole.close()
 
 func init_wyrm():
-	var segments = 3
+	var segments = int(Connector.difficulty)
 	var wyrm_builder = Wyrm_Builder.new(segments,splash_gradient)
 	var wyrm = wyrm_builder.build()
 	spawn_wyrm(wyrm)
@@ -32,6 +32,7 @@ func wyrm_defeated(wyrm):
 		emit_signal("spawn_boss_core",wyrm.segment_list[-1].global_position)
 		spawn_player_portal(wyrm.segment_list[-1].global_position)
 		emit_signal("boss_defeated")
+		Connector.difficulty += .5
 		queue_free()
 #
 func spawn_player_portal(pos):

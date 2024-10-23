@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Dimension
 
 func spawn_explosion(node):
 	$Explosions.add_child(node)

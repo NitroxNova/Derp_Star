@@ -29,11 +29,12 @@ func generate_bumper():
 	while not success:
 		var coords = generate_coords()
 		var biome = get_biome(coords)
-		var bumper = biome.current_bumper
-		if is_valid_spawn_location(bumper):
-			success = true
-			emit_signal("spawn_bumper",bumper)
-			biome.reset_bumper()
+		if biome != null and biome.current_bumper != null:
+			var bumper = biome.current_bumper
+			if is_valid_spawn_location(bumper):
+				success = true
+				emit_signal("spawn_bumper",bumper)
+				biome.reset_bumper()
 
 func generate_coords():
 	var min_coord = Connector.derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
@@ -74,9 +75,10 @@ func is_off_screen(loc):
 		return false
 
 func _process(_delta):
-	while get_child_count() < MAX_COUNT:
-		generate_bumper()
-	despawn_random(20)
+	if biome_config.size() > 0:
+		while get_child_count() < MAX_COUNT:
+			generate_bumper()
+		despawn_random(20)
 
 func despawn_random(n=1):
 	if get_child_count():

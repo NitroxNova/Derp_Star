@@ -1,6 +1,5 @@
-[gd_scene load_steps=33 format=3 uid="uid://d0dnd6twlor84"]
+[gd_scene load_steps=32 format=3 uid="uid://d0dnd6twlor84"]
 
-[ext_resource type="PackedScene" uid="uid://c6ceymo3o04n6" path="res://Dimension/Derp_Space/Dimension.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
 [ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
 [ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
@@ -407,8 +406,6 @@ text = "Restart"
 [node name="Quit_Button" type="Button" parent="Overlay/Died_Menu/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
-
-[node name="Dimension" parent="." instance=ExtResource("1")]
 
 [connection signal="energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_energy"]
 [connection signal="energy_locked" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]

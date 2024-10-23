@@ -7,6 +7,7 @@ var hud
 var talent_overlay
 var dimension_list
 var current_dimension = 0
+var difficulty = 0
 
 func reset():
 	derp_star = get_node("/root/Main/Derp_Star")
@@ -15,7 +16,8 @@ func reset():
 	hud = get_node("/root/Main/Overlay/HUD")
 	main = get_node("/root/Main")
 	dimension_list = []
-	dimension_list.append(get_node("/root/Main/Dimension"))
+	dimension_list.append(load("res://Dimension/Tutorial/Dimension.tscn").instantiate())
+	dimension_list.append(load("res://Dimension/Derp_Space/Dimension.tscn").instantiate())
 	dimension_list.append(load("res://Dimension/Olympus/Dimension.tscn").instantiate())
 	dimension_list.append(load("res://Dimension/Oceanus/Dimension.tscn").instantiate())
 	Player_Stats.reset()
