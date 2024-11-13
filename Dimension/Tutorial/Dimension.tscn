@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8ol5cqkf0pwl"]
+[gd_scene load_steps=13 format=3 uid="uid://b8ol5cqkf0pwl"]
 
 [ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1_xdh86"]
 [ext_resource type="Texture2D" uid="uid://dlvch671wymbh" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="2_pbhho"]
@@ -9,12 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://qlate0ch6d3o" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="6_54q0q"]
 [ext_resource type="Texture2D" uid="uid://dxyqxvjmjb13g" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="7_5ykrq"]
 [ext_resource type="PackedScene" uid="uid://drfoq0w8x13ls" path="res://Boss/Wyrm/Variant/space.tscn" id="9_bdc8g"]
+[ext_resource type="Texture2D" uid="uid://cihjhn6aoygke" path="res://Dimension/Tutorial/the_chamber.png" id="10_rm5sy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ick73"]
-size = Vector2(1146, 42)
+size = Vector2(970, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6apvw"]
-size = Vector2(54, 573)
+size = Vector2(54, 722)
 
 [node name="Dimension" instance=ExtResource("1_xdh86")]
 script = ExtResource("2_vracy")
@@ -53,53 +54,65 @@ position = Vector2(0, 2000)
 texture = ExtResource("7_5ykrq")
 centered = false
 
-[node name="Boss" parent="." index="5"]
+[node name="TheChamber" type="Sprite2D" parent="." index="1"]
+z_index = -2
+position = Vector2(32, 50)
+texture = ExtResource("10_rm5sy")
+
+[node name="Boss" parent="." index="6"]
 boss_list = Array[PackedScene]([ExtResource("9_bdc8g")])
 
-[node name="Containment" type="StaticBody2D" parent="." index="6"]
+[node name="Containment" type="StaticBody2D" parent="." index="7"]
 position = Vector2(-547, -299)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Containment" index="0"]
-position = Vector2(575, 20)
+position = Vector2(575, 29)
 shape = SubResource("RectangleShape2D_ick73")
 
 [node name="ColorRect" type="ColorRect" parent="Containment" index="1"]
-offset_right = 1149.0
-offset_bottom = 40.0
+offset_left = 88.0
+offset_top = 9.0
+offset_right = 1237.0
+offset_bottom = 49.0
+scale = Vector2(0.854067, 1.15374)
 color = Color(0.568627, 1, 1, 0.301961)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Containment" index="2"]
-position = Vector2(26, 327.5)
+position = Vector2(114, 381)
 shape = SubResource("RectangleShape2D_6apvw")
 
 [node name="ColorRect3" type="ColorRect" parent="Containment" index="3"]
-offset_top = 40.0
-offset_right = 54.0
-offset_bottom = 602.0
+offset_left = 88.0
+offset_top = 56.0
+offset_right = 142.0
+offset_bottom = 618.0
+scale = Vector2(1, 1.19872)
 color = Color(0.568627, 1, 1, 0.301961)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Containment" index="4"]
-position = Vector2(1120, 326.5)
+position = Vector2(1037, 387.5)
 shape = SubResource("RectangleShape2D_6apvw")
 
 [node name="ColorRect4" type="ColorRect" parent="Containment" index="5"]
-offset_left = 1094.0
-offset_top = 39.0
-offset_right = 1148.0
-offset_bottom = 601.0
+offset_left = 1011.0
+offset_top = 50.0
+offset_right = 1065.0
+offset_bottom = 612.0
+scale = Vector2(1, 1.21179)
 color = Color(0.568627, 1, 1, 0.301961)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Containment" index="6"]
-position = Vector2(576, 624)
+position = Vector2(569, 754)
 shape = SubResource("RectangleShape2D_ick73")
 
 [node name="ColorRect2" type="ColorRect" parent="Containment" index="7"]
-offset_left = 1.0
-offset_top = 604.0
-offset_right = 1150.0
-offset_bottom = 644.0
+offset_left = 82.0
+offset_top = 730.0
+offset_right = 1231.0
+offset_bottom = 770.0
+scale = Vector2(0.856672, 1.33664)
 color = Color(0.568627, 1, 1, 0.301961)
 
-[node name="Tutorial_Prompt" type="Label" parent="." index="7"]
+[node name="Tutorial_Prompt" type="Label" parent="." index="8"]
 offset_right = 40.0
 offset_bottom = 23.0
