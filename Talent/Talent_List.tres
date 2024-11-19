@@ -1,31 +1,41 @@
-[gd_resource type="Resource" script_class="Dictionary_Resource" load_steps=8 format=3 uid="uid://cji1aa0644x4q"]
+[gd_resource type="Resource" script_class="Dictionary_Resource" load_steps=13 format=3 uid="uid://cji1aa0644x4q"]
 
 [ext_resource type="Script" path="res://Utils/Dictionary_Resource.gd" id="1"]
 [ext_resource type="Script" path="res://Talent/Talent_Resource.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://df5i7myq11ftv" path="res://Talent/Image/energy_shield.png" id="2_mrlpv"]
+[ext_resource type="Texture2D" uid="uid://g2u6qjgfi5uj" path="res://Talent/Image/Gravity_Beam.png" id="3_a7f78"]
+[ext_resource type="Texture2D" uid="uid://s0r8n0uq5as1" path="res://Talent/Image/Laser_Beam.png" id="4_lrip0"]
+[ext_resource type="Texture2D" uid="uid://dx2oxs5cymsh2" path="res://Talent/Image/max_energy.png" id="5_f1ss4"]
+[ext_resource type="Texture2D" uid="uid://da5v0ve8gy7mj" path="res://Talent/Image/max_health.png" id="6_mglir"]
 
 [sub_resource type="Resource" id="3"]
 script = ExtResource("2")
 display_name = "Energy Shield"
+texture = ExtResource("2_mrlpv")
 maximum = 1
 
 [sub_resource type="Resource" id="5"]
 script = ExtResource("2")
 display_name = "Gravity Beam"
+texture = ExtResource("3_a7f78")
 maximum = 1
 
 [sub_resource type="Resource" id="4"]
 script = ExtResource("2")
 display_name = "Laser Beam"
+texture = ExtResource("4_lrip0")
 maximum = 1
 
 [sub_resource type="Resource" id="2"]
 script = ExtResource("2")
 display_name = "Max Energy"
+texture = ExtResource("5_f1ss4")
 maximum = 0
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("2")
 display_name = "Max Health"
+texture = ExtResource("6_mglir")
 maximum = 0
 
 [resource]
