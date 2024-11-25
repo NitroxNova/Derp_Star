@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://djwsaaopgl6m"]
 
-[ext_resource path="res://Bumper_Ships/Bumper_Spawner.gd" type="Script" id=1]
-[ext_resource path="res://Dimension/Dimension.gd" type="Script" id=2]
-[ext_resource path="res://Boss/Boss_Spawner.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://Bumper_Ships/Bumper_Spawner.gd" id="1"]
+[ext_resource type="Script" path="res://Dimension/Dimension.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://1adtcdkx3qgy" path="res://Boss/Boss_Spawner.tscn" id="3"]
 
 [node name="Dimension" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
-motion_mirroring = Vector2( 2000, 2000 )
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(2000, 2000)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 centered = false
@@ -23,9 +23,12 @@ centered = false
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Bumper_List" type="Node2D" parent="."]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Boss" parent="." instance=ExtResource( 3 )]
+[node name="Boss" parent="." instance=ExtResource("3")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
 
 [connection signal="spawn_bumper" from="Bumper_List" to="." method="spawn_bumper"]
 [connection signal="spawn_boss" from="Boss" to="." method="spawn_boss"]

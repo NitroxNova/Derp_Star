@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6ceymo3o04n6"]
+[gd_scene load_steps=17 format=3 uid="uid://c6ceymo3o04n6"]
 
-[ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://djwsaaopgl6m" path="res://Dimension/Dimension.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://w28y24teqh7p" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://dxyqxvjmjb13g" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dxu8uyt806053" path="res://Dimension/Derp_Space/Space_Clouds/cloud1.png" id="5"]
@@ -11,6 +11,18 @@
 [ext_resource type="Script" path="res://Dimension/Derp_Space/asteroid_belt_biome.gd" id="9_g11vx"]
 [ext_resource type="PackedScene" uid="uid://drfoq0w8x13ls" path="res://Boss/Wyrm/Variant/space.tscn" id="10_3q0he"]
 [ext_resource type="PackedScene" uid="uid://yyrv5mkoljrv" path="res://Boss/Black_Hole/boss_encounter.tscn" id="11_x3m74"]
+[ext_resource type="AudioStream" uid="uid://x6sofk8f0412" path="res://Assets/Music/spacesong1.mp3" id="12_ldxef"]
+[ext_resource type="AudioStream" uid="uid://bu0t0k4a6snqf" path="res://Assets/Music/spacesong2.mp3" id="13_d3frm"]
+[ext_resource type="AudioStream" uid="uid://1r5u4tjna5dg" path="res://Assets/Music/spacesong3.mp3" id="14_wuopp"]
+[ext_resource type="AudioStream" uid="uid://vcw871442q0u" path="res://Assets/Music/spacesong4.mp3" id="15_7x0ey"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3dcya"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("12_ldxef")
+stream_1 = ExtResource("13_d3frm")
+stream_2 = ExtResource("14_wuopp")
+stream_3 = ExtResource("15_7x0ey")
 
 [node name="Dimension" instance=ExtResource("1")]
 
@@ -53,3 +65,6 @@ biome_config = [ExtResource("9"), ExtResource("9_g11vx")]
 
 [node name="Boss" parent="." index="5"]
 boss_list = Array[PackedScene]([ExtResource("10_3q0he"), ExtResource("11_x3m74")])
+
+[node name="AudioStreamPlayer" parent="." index="6"]
+stream = SubResource("AudioStreamPlaylist_3dcya")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8ol5cqkf0pwl"]
+[gd_scene load_steps=15 format=3 uid="uid://b8ol5cqkf0pwl"]
 
-[ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1_xdh86"]
+[ext_resource type="PackedScene" uid="uid://djwsaaopgl6m" path="res://Dimension/Dimension.tscn" id="1_xdh86"]
 [ext_resource type="Texture2D" uid="uid://dlvch671wymbh" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="2_pbhho"]
 [ext_resource type="Script" path="res://Dimension/Tutorial/dimension.gd" id="2_vracy"]
 [ext_resource type="Texture2D" uid="uid://w28y24teqh7p" path="res://Dimension/Derp_Space/Space_Clouds/big_stars.png" id="3_kjwlm"]
@@ -10,12 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://dxyqxvjmjb13g" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="7_5ykrq"]
 [ext_resource type="PackedScene" uid="uid://drfoq0w8x13ls" path="res://Boss/Wyrm/Variant/space.tscn" id="9_bdc8g"]
 [ext_resource type="Texture2D" uid="uid://cihjhn6aoygke" path="res://Dimension/Tutorial/the_chamber.png" id="10_rm5sy"]
+[ext_resource type="AudioStream" uid="uid://bur4kwuyfsvqs" path="res://Assets/Music/chillspace2.mp3" id="11_dqdfk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ick73"]
 size = Vector2(970, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6apvw"]
 size = Vector2(54, 722)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_tuo7d"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("11_dqdfk")
 
 [node name="Dimension" instance=ExtResource("1_xdh86")]
 script = ExtResource("2_vracy")
@@ -116,3 +122,6 @@ color = Color(0.568627, 1, 1, 0.301961)
 [node name="Tutorial_Prompt" type="Label" parent="." index="8"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="AudioStreamPlayer" parent="." index="9"]
+stream = SubResource("AudioStreamPlaylist_tuo7d")

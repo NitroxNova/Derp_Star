@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6bqhbotagxmb"]
+[gd_scene load_steps=7 format=3 uid="uid://b6bqhbotagxmb"]
 
-[ext_resource type="PackedScene" path="res://Dimension/Dimension.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://djwsaaopgl6m" path="res://Dimension/Dimension.tscn" id="1"]
 [ext_resource type="Script" path="res://Dimension/Oceanus/default_biome.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://cy08u0gt37e07" path="res://Dimension/Oceanus/ocean.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dgkwacmv6lqyf" path="res://Dimension/Oceanus/ocean.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://cq0pr3su16re4" path="res://Boss/Wyrm/Variant/aqua.tscn" id="4_ivou4"]
+[ext_resource type="AudioStream" uid="uid://30cmjj1a8lq7" path="res://Assets/Music/oceansong1.mp3" id="5_earf3"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_qc3uu"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("5_earf3")
 
 [node name="Dimension" instance=ExtResource("1")]
 
@@ -15,3 +21,6 @@ biome_config = [ExtResource("2")]
 
 [node name="Boss" parent="." index="5"]
 boss_list = Array[PackedScene]([ExtResource("4_ivou4")])
+
+[node name="AudioStreamPlayer" parent="." index="6"]
+stream = SubResource("AudioStreamPlaylist_qc3uu")
