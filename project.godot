@@ -21,6 +21,7 @@ RNG="*res://Utils/RNG.gd"
 Connector="*res://Utils/Connector.gd"
 Player_Stats="*res://Utils/Player_Stats.gd"
 Save="*res://Utils/Save.gd"
+ECS="*res://ECS/Manager.tscn"
 
 [input]
 

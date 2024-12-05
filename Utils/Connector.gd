@@ -1,7 +1,11 @@
 extends Node
 
 var main
-var derp_star
+var derp_star:
+	get:
+		for e_id in ECS.c_get("Player"):
+			var entity = ECS.get_entity(e_id)
+			return entity.c_get("Node").node
 var overlay
 var hud
 var talent_overlay
@@ -9,8 +13,11 @@ var dimension_list
 var current_dimension = 0
 var difficulty = 0
 
+func get_current_dimension():
+	return dimension_list[current_dimension]
+
 func reset():
-	derp_star = get_node("/root/Main/Derp_Star")
+	#derp_star = get_node("/root/Main/Derp_Star")
 	overlay = get_node("/root/Main/Overlay")
 	talent_overlay = get_node("/root/Main/Overlay/Talents")
 	hud = get_node("/root/Main/Overlay/HUD")

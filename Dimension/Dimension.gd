@@ -1,6 +1,12 @@
 extends Node2D
 class_name Dimension
 
+func spawn_entity(node:Node2D,bumper:bool):
+	if bumper:
+		$Bumper_List.add_child(node)
+	else:
+		$Entity.add_child(node)
+
 func spawn_explosion(node):
 	$Explosions.add_child(node)
 
@@ -14,7 +20,8 @@ func spawn_boss_core(pos):
 
 func spawn_projectile(p):
 	$Projectiles.add_child(p)
-	
+
+#bumpers need special handling because of despawning, keep them together so its faster to search	
 func spawn_bumper(b):
 	b.connect("spawn_bumper",Callable(self,"spawn_bumper"))
 	b.connect("spawn_explosion",Callable(self,"spawn_explosion"))

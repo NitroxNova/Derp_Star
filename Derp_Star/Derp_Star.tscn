@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://nhoo4j7sdf8d"]
 
-[ext_resource type="Texture2D" uid="uid://dmo47qsomqvxw" path="res://Derp_Star/derp_star.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bwcj8w88pe3li" path="res://Derp_Star/derp_star.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://cbb0klr830pna" path="res://Derp_Star/Thruster.tscn" id="2"]
 [ext_resource type="Script" path="res://Derp_Star/Derp_Star.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cwb8h8uacacpr" path="res://Derp_Star/Laser/Muh_Lazer.tscn" id="4"]
@@ -15,14 +15,14 @@ bounce = 1.0
 [sub_resource type="Resource" id="2"]
 resource_local_to_scene = true
 script = ExtResource("5")
-current = 0.0
-maximum = 0.0
+current = 1000.0
+maximum = 1000.0
 
 [sub_resource type="Resource" id="3"]
 resource_local_to_scene = true
 script = ExtResource("5")
-current = 0.0
-maximum = 0.0
+current = 1000.0
+maximum = 1000.0
 
 [sub_resource type="CircleShape2D" id="4"]
 radius = 99.0453
@@ -32,9 +32,9 @@ collision_layer = 524289
 collision_mask = 3
 mass = 0.1
 physics_material_override = SubResource("1")
-max_contacts_reported = 1
-contact_monitor = true
 can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("3")
 health = SubResource("2")
 energy = SubResource("3")
@@ -74,6 +74,8 @@ position = Vector2(-26.3536, 2.79289)
 [node name="Gravity_Beam" parent="." instance=ExtResource("6")]
 visible = false
 position = Vector2(-26.354, 2.793)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_Derp_Star_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_Derp_Star_body_shape_entered"]

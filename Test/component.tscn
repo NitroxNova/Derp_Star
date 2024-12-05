@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr2l1rghhai4o"]
+
+[sub_resource type="GDScript" id="GDScript_ttes1"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var derp_star :RigidBody2D = load(\"res://Derp_Star/Derp_Star.tscn\").instantiate()
+	add_child(derp_star)
+	var node_c = Node_Component.new(derp_star)
+	print(node_c.scene_path)
+	#var component = Node_Component.new(\"path\")
+	#print(component.type)
+"
+
+[node name="Component" type="Node2D"]
+script = SubResource("GDScript_ttes1")

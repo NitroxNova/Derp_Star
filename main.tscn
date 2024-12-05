@@ -1,27 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://d0dnd6twlor84"]
+[gd_scene load_steps=28 format=3 uid="uid://d0dnd6twlor84"]
 
-[ext_resource type="PackedScene" uid="uid://nhoo4j7sdf8d" path="res://Derp_Star/Derp_Star.tscn" id="2"]
 [ext_resource type="Script" path="res://GUI/Died_Menu.gd" id="3"]
 [ext_resource type="Script" path="res://GUI/overlay.gd" id="5"]
 [ext_resource type="Script" path="res://Utils/Gradient_Progress_Bar.gd" id="8_2d2js"]
 [ext_resource type="FontFile" uid="uid://ca2tdj4citf2q" path="res://fonts/Hacked-KerX.ttf" id="8_jf57f"]
 [ext_resource type="Script" path="res://main.gd" id="11"]
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="15"]
-[ext_resource type="Script" path="res://Utils/Capped_Value.gd" id="16"]
 [ext_resource type="Texture2D" uid="uid://c00tx7pi1fy8b" path="res://Pick_Ups/Boss_Core/boss_core.png" id="17"]
 [ext_resource type="Script" path="res://Talent/Talent_Overlay.gd" id="18"]
-
-[sub_resource type="Resource" id="Resource_qs0lc"]
-resource_local_to_scene = true
-script = ExtResource("16")
-current = 1000.0
-maximum = 1000.0
-
-[sub_resource type="Resource" id="Resource_7ppm2"]
-resource_local_to_scene = true
-script = ExtResource("16")
-current = 1000.0
-maximum = 1000.0
 
 [sub_resource type="Shader" id="16"]
 code = "shader_type canvas_item;
@@ -173,12 +159,6 @@ base_font = ExtResource("8_jf57f")
 process_mode = 1
 script = ExtResource("11")
 metadata/_edit_vertical_guides_ = [136.0]
-
-[node name="Derp_Star" parent="." instance=ExtResource("2")]
-health = SubResource("Resource_qs0lc")
-energy = SubResource("Resource_7ppm2")
-
-[node name="Camera2D" type="Camera2D" parent="Derp_Star"]
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -407,14 +387,6 @@ text = "Restart"
 layout_mode = 2
 text = "Quit"
 
-[connection signal="energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_energy"]
-[connection signal="energy_locked" from="Derp_Star" to="Overlay/HUD" method="lock_energy"]
-[connection signal="energy_unlocked" from="Derp_Star" to="Overlay/HUD" method="unlock_energy"]
-[connection signal="health_changed" from="Derp_Star" to="Overlay/HUD" method="update_health"]
-[connection signal="max_energy_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_energy"]
-[connection signal="max_health_changed" from="Derp_Star" to="Overlay/HUD" method="update_max_health"]
-[connection signal="player_died" from="Derp_Star" to="." method="_on_derp_star_player_died"]
-[connection signal="talents_changed" from="Overlay/Talents" to="Derp_Star" method="_on_Talents_talents_changed"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Upgrade" to="Overlay/Talents" method="upgrade_mode"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Unlock" to="Overlay/Talents" method="unlock_mode"]
 [connection signal="pressed" from="Overlay/Talents/Buttons/Back" to="Overlay" method="pause"]
@@ -425,5 +397,3 @@ text = "Quit"
 [connection signal="visibility_changed" from="Overlay/Died_Menu" to="Overlay/Died_Menu" method="_on_visibility_changed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Restart_Button" to="Overlay" method="_on_Restart_Button_pressed"]
 [connection signal="pressed" from="Overlay/Died_Menu/VBoxContainer/Quit_Button" to="Overlay" method="_on_Quit_Button_pressed"]
-
-[editable path="Derp_Star"]

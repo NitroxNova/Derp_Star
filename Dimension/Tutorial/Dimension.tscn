@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8ol5cqkf0pwl"]
+[gd_scene load_steps=15 format=4 uid="uid://b8ol5cqkf0pwl"]
 
 [ext_resource type="PackedScene" uid="uid://djwsaaopgl6m" path="res://Dimension/Dimension.tscn" id="1_xdh86"]
 [ext_resource type="Texture2D" uid="uid://dlvch671wymbh" path="res://Dimension/Derp_Space/Space_Clouds/smol_stars.png" id="2_pbhho"]
@@ -9,19 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://qlate0ch6d3o" path="res://Dimension/Derp_Space/Space_Clouds/clouds3.png" id="6_54q0q"]
 [ext_resource type="Texture2D" uid="uid://dxyqxvjmjb13g" path="res://Dimension/Derp_Space/Space_Clouds/clouds4.png" id="7_5ykrq"]
 [ext_resource type="PackedScene" uid="uid://drfoq0w8x13ls" path="res://Boss/Wyrm/Variant/space.tscn" id="9_bdc8g"]
-[ext_resource type="Texture2D" uid="uid://cihjhn6aoygke" path="res://Dimension/Tutorial/the_chamber.png" id="10_rm5sy"]
 [ext_resource type="AudioStream" uid="uid://bur4kwuyfsvqs" path="res://Assets/Music/chillspace2.mp3" id="11_dqdfk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ick73"]
-size = Vector2(970, 42)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6apvw"]
-size = Vector2(54, 722)
+[ext_resource type="Texture2D" uid="uid://uksyja3kwoml" path="res://Dimension/Tutorial/tilemap.png" id="11_skbys"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_tuo7d"]
 shuffle = true
 stream_count = 1
 stream_0 = ExtResource("11_dqdfk")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u12y7"]
+texture = ExtResource("11_skbys")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_jt3al"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_u12y7")
 
 [node name="Dimension" instance=ExtResource("1_xdh86")]
 script = ExtResource("2_vracy")
@@ -60,68 +65,16 @@ position = Vector2(0, 2000)
 texture = ExtResource("7_5ykrq")
 centered = false
 
-[node name="TheChamber" type="Sprite2D" parent="." index="1"]
-z_index = -2
-position = Vector2(32, 50)
-texture = ExtResource("10_rm5sy")
-
-[node name="Boss" parent="." index="6"]
+[node name="Boss" parent="." index="5"]
 boss_list = Array[PackedScene]([ExtResource("9_bdc8g")])
 
-[node name="Containment" type="StaticBody2D" parent="." index="7"]
-position = Vector2(-547, -299)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Containment" index="0"]
-position = Vector2(575, 29)
-shape = SubResource("RectangleShape2D_ick73")
-
-[node name="ColorRect" type="ColorRect" parent="Containment" index="1"]
-offset_left = 88.0
-offset_top = 9.0
-offset_right = 1237.0
-offset_bottom = 49.0
-scale = Vector2(0.854067, 1.15374)
-color = Color(0.568627, 1, 1, 0.301961)
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Containment" index="2"]
-position = Vector2(114, 381)
-shape = SubResource("RectangleShape2D_6apvw")
-
-[node name="ColorRect3" type="ColorRect" parent="Containment" index="3"]
-offset_left = 88.0
-offset_top = 56.0
-offset_right = 142.0
-offset_bottom = 618.0
-scale = Vector2(1, 1.19872)
-color = Color(0.568627, 1, 1, 0.301961)
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Containment" index="4"]
-position = Vector2(1037, 387.5)
-shape = SubResource("RectangleShape2D_6apvw")
-
-[node name="ColorRect4" type="ColorRect" parent="Containment" index="5"]
-offset_left = 1011.0
-offset_top = 50.0
-offset_right = 1065.0
-offset_bottom = 612.0
-scale = Vector2(1, 1.21179)
-color = Color(0.568627, 1, 1, 0.301961)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Containment" index="6"]
-position = Vector2(569, 754)
-shape = SubResource("RectangleShape2D_ick73")
-
-[node name="ColorRect2" type="ColorRect" parent="Containment" index="7"]
-offset_left = 82.0
-offset_top = 730.0
-offset_right = 1231.0
-offset_bottom = 770.0
-scale = Vector2(0.856672, 1.33664)
-color = Color(0.568627, 1, 1, 0.301961)
-
-[node name="Tutorial_Prompt" type="Label" parent="." index="8"]
+[node name="Tutorial_Prompt" type="Label" parent="." index="6"]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="AudioStreamPlayer" parent="." index="9"]
+[node name="AudioStreamPlayer" parent="." index="7"]
 stream = SubResource("AudioStreamPlaylist_tuo7d")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="8"]
+tile_map_data = PackedByteArray("AAD6//v/AAAAAAAAAAD7//v/AAAAAAAAAAD8//v/AAAAAAAAAAD9//v/AAAAAAAAAAD+//v/AAAAAAAAAAD///v/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AAAAAAAAAAACAPv/AAAAAAAAAAADAPv/AAAAAAAAAAAEAPv/AAAAAAAAAAAFAPv/AAAAAAAAAAAGAPv/AAAAAAAAAAD6/wYAAAAAAAAAADD7/wYAAAAAAAAAADD8/wYAAAAAAAAAADD9/wYAAAAAAAAAADD+/wYAAAAAAAAAADD//wYAAAAAAAAAADAAAAYAAAAAAAAAADABAAYAAAAAAAAAADACAAYAAAAAAAAAADADAAYAAAAAAAAAADAEAAYAAAAAAAAAADAFAAYAAAAAAAAAADAGAAYAAAAAAAAAADAHAPz/AAAAAAAAAFAHAP3/AAAAAAAAAFAHAP7/AAAAAAAAAFAHAP//AAAAAAAAAFAHAAAAAAAAAAAAAFAHAAEAAAAAAAAAAFAHAAIAAAAAAAAAAFAHAAMAAAAAAAAAAFAHAAQAAAAAAAAAAFAHAAUAAAAAAAAAAFD5//z/AAAAAAAAAGD5//3/AAAAAAAAAGD5//7/AAAAAAAAAGD5////AAAAAAAAAGD5/wAAAAAAAAAAAGD5/wEAAAAAAAAAAGD5/wIAAAAAAAAAAGD5/wMAAAAAAAAAAGD5/wQAAAAAAAAAAGD5/wUAAAAAAAAAAGAHAAYAAAAAAAAAADD5/wYAAAAAAAAAADD5//v/AAAAAAAAAAAHAPv/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_jt3al")

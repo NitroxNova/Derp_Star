@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var entity_id : int
+
 @onready var thrusters = [$Thruster1,$Thruster2,$Thruster3,$Thruster4,$Thruster5]
 var hotkeys = ["thruster_1","thruster_2","thruster_3","thruster_4","thruster_5"]
 var is_energy_locked = false
@@ -103,15 +105,6 @@ func _input(event):
 				thrusters[i].activate()
 			if event.is_action_released(hotkeys[i]):
 				thrusters[i].deactivate()	
-			
-func _on_Derp_Star_body_entered(body):
-	var damage = linear_velocity.length()/20
-	Connector.deal_damage(self,body,damage)
-
-func _on_Derp_Star_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	var shape = body.shape_owner_get_owner(body_shape_index)
-	var damage = linear_velocity.length()/20
-	Connector.deal_damage(self,shape,damage)
 			
 func change_beam(amount):
 	if beams.size() > 0:

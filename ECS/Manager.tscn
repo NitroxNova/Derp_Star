@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cosg6uvgvasbe"]
+
+[sub_resource type="GDScript" id="GDScript_b42b8"]
+script/source = "extends Node
+
+var entity_list := {}
+var component_list := {}
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for class_data in ProjectSettings.get_global_class_list():
+		if class_data.base == \"Component\":
+			var c_name = class_data.class.trim_suffix(\"_Component\")
+			component_list[c_name] = {}
+	print(\"ECS Manager is ready\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	Render_System.run()
+
+func get_entity(id:int):
+	return entity_list[id]
+
+func new_entity():
+	var id = randi()
+	while id in entity_list:
+		id = randi()
+	var entity = Entity.new(id)
+	entity_list[id] = entity
+	return entity
+	
+func c_get(component_name:String):
+	return component_list[component_name]	
+"
+
+[node name="ECS" type="Node"]
+script = SubResource("GDScript_b42b8")
