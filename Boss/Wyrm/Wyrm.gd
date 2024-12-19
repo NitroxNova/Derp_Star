@@ -31,7 +31,7 @@ func _ready():
 		
 func _process(delta):
 	if attack_phase == "Laser":
-		SmoothLookAtRigid(segment_list[-1],Connector.derp_star.global_position,5.0)
+		SmoothLookAtRigid(segment_list[-1],Connector.derp_star.get_node().global_position,5.0)
 		
 static func SmoothLookAtRigid( nodeToTurn, targetPosition, turnSpeed ):
 	#https://github.com/LillyByte/godot-smoothlookat2d/blob/master/smoothlookat2d.gd
@@ -87,7 +87,7 @@ func spawn_wyrmhole():
 	var port_1 = wyrmhole.instantiate()
 	var port_2 = wyrmhole.instantiate()
 	port_1.position = segment_list[-1].global_position
-	port_2.position = Connector.derp_star.global_position
+	port_2.position = Connector.derp_star.get_node().global_position
 	port_2.connect("opened",Callable(self,"teleport").bind(port_2))
 	connect("close_wyrmhole",Callable(port_1,"close"))
 	connect("close_wyrmhole",Callable(port_2,"close"))

@@ -18,10 +18,12 @@ func _on_Resize_Player_animation_finished(anim_name):
 
 func teleport_player():
 	Connector.load_dimension(linked_portal.dimension_id)
-	Connector.derp_star.position = linked_portal.position
+	var pos = Position_Component.new(linked_portal.position.x,linked_portal.position.y)
+	Connector.derp_star.c_add(pos)
+	Connector.derp_star.c_add(Change_Dimension_Component.new(linked_portal.dimension_id))
 
 func _on_Area2D_body_entered(body):
-	if not disabled and body == Connector.derp_star:
+	if not disabled and body == Connector.derp_star.get_node():
 		$Timer.start()
 		disabled = true
 		teleport_player()

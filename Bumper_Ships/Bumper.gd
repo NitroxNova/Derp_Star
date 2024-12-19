@@ -76,4 +76,3 @@ func static_on():
 	
 func static_off():
 	$Static.emitting = false
-

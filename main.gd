@@ -4,7 +4,8 @@ func _ready():
 	Save.load_file()
 	Connector.reset()
 	Connector.load_dimension(0)
-	var derp_star = Entity_Spawner.derp_star(Vector2(0,0))
+	var derp_star = Entity_Spawner.derp_star()
+	derp_star.c_add(Position_Component.new(0,0))
 	
 	
 #	Player_Stats.increase_points(10000)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cneasc37ch3fv"]
+
+[sub_resource type="Gradient" id="Gradient_br448"]
+offsets = PackedFloat32Array(0, 0.524904, 1)
+colors = PackedColorArray(0.158472, 0.158472, 0.158472, 1, 0.60933, 0.60933, 0.60933, 1, 0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d431n"]
+gradient = SubResource("Gradient_br448")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bqgb"]
+size = Vector2(71, 284)
+
+[node name="Bumper" type="StaticBody2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 34.0
+offset_top = -128.0
+offset_right = 217.0
+offset_bottom = -63.0
+rotation = 1.5708
+scale = Vector2(1.56, 1.04)
+texture = SubResource("GradientTexture1D_d431n")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 15)
+shape = SubResource("RectangleShape2D_6bqgb")

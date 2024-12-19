@@ -1,11 +1,12 @@
 extends Node
 
 var main
-var derp_star:
+var derp_star: Entity:
 	get:
 		for e_id in ECS.c_get("Player"):
 			var entity = ECS.get_entity(e_id)
-			return entity.c_get("Node").node
+			return entity
+		return null
 var overlay
 var hud
 var talent_overlay

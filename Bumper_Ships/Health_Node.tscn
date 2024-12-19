@@ -12,10 +12,8 @@ corner_radius_bottom_left = 5
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="Node2D"]
-offset_left = -50.0
-offset_top = -90.0
-offset_right = 50.0
-offset_bottom = -76.0
+offset_right = 100.0
+offset_bottom = 14.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_hbinq")
 value = 100.0
 show_percentage = false

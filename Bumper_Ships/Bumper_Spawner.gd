@@ -37,7 +37,7 @@ func generate_bumper():
 				biome.reset_bumper()
 
 func generate_coords():
-	var min_coord = Connector.derp_star.global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
+	var min_coord = Connector.derp_star.get_node().global_position - Vector2(SPAWN_SIZE/2,SPAWN_SIZE/2)
 	var newx = (randf() * SPAWN_SIZE) + min_coord[0]
 	var newy = (randf() * SPAWN_SIZE) + min_coord[1]
 	var new_coords = Vector2(newx,newy)
@@ -63,13 +63,13 @@ func is_valid_spawn_location(bumper):
 	return true
 
 func is_off_screen(loc):
-	if loc[0] < Connector.derp_star.global_position.x - INNER_X:
+	if loc[0] < Connector.derp_star.get_node().global_position.x - INNER_X:
 		return true
-	elif loc[0] > Connector.derp_star.global_position.x + INNER_X:
+	elif loc[0] > Connector.derp_star.get_node().global_position.x + INNER_X:
 		return true
-	elif loc[1] < Connector.derp_star.global_position.y - INNER_Y:
+	elif loc[1] < Connector.derp_star.get_node().global_position.y - INNER_Y:
 		return true
-	elif loc[1] > Connector.derp_star.global_position.y + INNER_Y:
+	elif loc[1] > Connector.derp_star.get_node().global_position.y + INNER_Y:
 		return true
 	else:
 		return false
@@ -83,7 +83,7 @@ func _process(_delta):
 func despawn_random(n=1):
 	if get_child_count():
 		var rand_bumper = get_child(int(randf() * get_child_count()))
-		var distance = rand_bumper.global_position.distance_to(Connector.derp_star.global_position)
+		var distance = rand_bumper.global_position.distance_to(Connector.derp_star.get_node().global_position)
 		if distance > DESPAWN_RADIUS:
 			rand_bumper.queue_free()
 			if n > 1:

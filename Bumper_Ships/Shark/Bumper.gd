@@ -19,10 +19,10 @@ func set_aggro_off():
 		emit_signal("aggro_off")
 
 func _integrate_forces(state):
-	var distance = global_position.distance_to(Connector.derp_star.global_position)
+	var distance = global_position.distance_to(Connector.derp_star.get_node().global_position)
 	if distance < aggro_range:
 		set_aggro_on()
-		var angle_to = get_angle_to(Connector.derp_star.global_position)
+		var angle_to = get_angle_to(Connector.derp_star.get_node().global_position)
 		state.angular_velocity = angle_to * 5
 	else:
 		set_aggro_off()
@@ -50,4 +50,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	for body in $Bite_Area.get_overlapping_bodies():
 		if body.faction != faction and not $AnimationPlayer.is_playing():
 			$AnimationPlayer.play("Chomp")
-

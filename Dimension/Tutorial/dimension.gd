@@ -1,12 +1,18 @@
 extends Dimension
 
 var tutorial_objective = MultiObjective.new()
-enum stages {MOVEMENT_KEYS,BOSS_WYRM}
+enum stages {MOVEMENT_KEYS,DOOR_1,BOSS_WYRM}
 var current_stage = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Boss/Spawn_Timer.stop()
+	
+	#spawn obsticles
+	var barrier = Entity_Spawner.blockade()
+	barrier.c_add(Position_Component.new(480,30))
+	
+	#objectives
 	var move_keys = MultiObjective.new("Press the Q, W, E, R, T keys to control the Derp Star's movement.")
 	move_keys.add_objective(SimpleObjective.new("press the q key"))
 	move_keys.add_objective(SimpleObjective.new("press the w key"))
@@ -15,6 +21,10 @@ func _ready() -> void:
 	move_keys.add_objective(SimpleObjective.new("press the t key"))
 	tutorial_objective.add_objective(move_keys)
 	move_keys.objective_complete.connect(next_stage)
+	var door1 = SimpleObjective.new("Break Down the Door!")
+	tutorial_objective.add_objective(door1)
+	door1.objective_complete.connect(next_stage)
+	
 	tutorial_objective.add_objective(SimpleObjective.new("Kill the Space Wyrm!"))
 	next_stage()
 	
